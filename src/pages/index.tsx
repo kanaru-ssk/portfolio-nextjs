@@ -20,6 +20,8 @@ const Home: NextPage<Props> = ({ common }: Props) => {
 				<meta property="og:description" content="仙台のweb開発エンジニア 佐々木かなるのポートフォリオサイト" />
 				<meta name="twitter:card" content="summary" />
 
+				<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+
 				<title>{common.site_title}</title>
 				<meta name="description" content="仙台のweb開発エンジニア 佐々木かなるのポートフォリオサイト" />
 				<link rel="icon" href="/favicon.svg" />
