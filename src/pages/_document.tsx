@@ -8,15 +8,27 @@ import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 
 class MyDocument extends Document {
-	render() {
-		return (
-			<Html lang="ja">
-				<Head>
+	static async getInitialProps(ctx: any) {
+		const initialProps: any = await Document.getInitialProps(ctx);
+		return {
+			...initialProps,
+			styles: (
+				<>
+					{initialProps.styles}
 					<style
 						dangerouslySetInnerHTML={{
 							__html: outputcss,
 						}}
 					/>
+				</>
+			),
+		};
+	}
+
+	render() {
+		return (
+			<Html lang="ja">
+				<Head>
 					<link rel="icon" href="/favicon.svg" />
 				</Head>
 				<body>
