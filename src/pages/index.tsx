@@ -15,6 +15,8 @@ const Home: NextPage<Props> = ({ common }: Props) => {
 	return (
 		<>
 			<Head>
+				<link rel="canonical" href={process.env.NEXT_PUBLIC_MICROCMS_DOMAIN} />
+
 				{/* ogp */}
 				<meta property="og:url" content={process.env.NEXT_PUBLIC_MICROCMS_DOMAIN} />
 				<meta property="og:type" content="website" />
