@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import SnsLink from './SnsLink';
 
 const OfficialSns = () => {
