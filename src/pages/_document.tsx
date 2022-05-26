@@ -4,6 +4,10 @@ import React from 'react';
 // @ts-ignore
 import outputcss from '!raw-loader!../styles/output.css';
 
+// import components
+import Header from 'components/common/Header';
+import Footer from 'components/common/Footer';
+
 class MyDocument extends Document {
 	static async getInitialProps(ctx: any) {
 		const initialProps: any = await Document.getInitialProps(ctx);
@@ -25,9 +29,13 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html>
-				<Head />
+				<Head>
+					<link rel="icon" href="/favicon.svg" />
+				</Head>
 				<body>
+					<Header />
 					<Main />
+					<Footer />
 					<NextScript />
 				</body>
 			</Html>
@@ -36,38 +44,3 @@ class MyDocument extends Document {
 }
 
 export default MyDocument;
-
-// @ts-ignore
-// import outputcss from '!raw-loader!../styles/output.css';
-// import Document, { Html, Head, Main, NextScript } from 'next/document';
-
-// export default class MyDocument extends Document {
-// 	static async getInitialProps(ctx: any) {
-// 		const page = ctx.renderPage((App: any) => (props: any) => <App {...props} />);
-// 		const initialProps: any = await Document.getInitialProps(ctx);
-// 		return {
-// 			...page,
-// 			styles: [
-// 				...initialProps.styles,
-// 				<style
-// 					key="custom"
-// 					dangerouslySetInnerHTML={{
-// 						__html: outputcss,
-// 					}}
-// 				/>,
-// 			],
-// 		};
-// 	}
-
-// 	render() {
-// 		return (
-// 			<Html>
-// 				<Head></Head>
-// 				<body>
-// 					<Main />
-// 					<NextScript />
-// 				</body>
-// 			</Html>
-// 		);
-// 	}
-// }
