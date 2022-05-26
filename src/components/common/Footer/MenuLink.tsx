@@ -7,7 +7,7 @@ type Props = {
 const MenuLink = ({ path }: Props) => {
 	return (
 		<Link href={'/' + path}>
-			<a className="font-medium">{path}</a>
+			<a className="font-medium text-base">{path}</a>
 		</Link>
 	);
 };
