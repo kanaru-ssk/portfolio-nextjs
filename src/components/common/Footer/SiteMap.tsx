@@ -9,14 +9,14 @@ const SiteMap = () => {
 			</div>
 			<div>
 				<MenuLink path="products" />
-				<ul>
+				<ul className="pt-4">
 					<PageLink title="ホームページ制作" path="products/home-page" />
 					<PageLink title="webアプリ開発" path="products/web-app" />
 				</ul>
 			</div>
 			<div>
 				<MenuLink path="works" />
-				<ul>
+				<ul className="pt-4">
 					<PageLink title="当サイト" path="works/kanaru-hp" />
 					<PageLink title="行きたいとこリスト" path="works/go-list" />
 				</ul>
