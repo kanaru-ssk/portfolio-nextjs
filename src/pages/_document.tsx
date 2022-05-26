@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import React from 'react';
 // @ts-ignore
