@@ -5,6 +5,7 @@ module.exports = {
 		colors: {
 			white: '#fff',
 			black: '#000',
+			gray: '#ddd',
 		},
 		fontFamily: {
 			sans: ['Nunito Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
