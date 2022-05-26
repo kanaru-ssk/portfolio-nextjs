@@ -1,5 +1,6 @@
 import Logo from './Logo';
 import SiteMap from './SiteMap';
+import OfficialSns from './OfficialSns';
 import Copy from './Copy';
 
 const Footer = () => {
@@ -7,6 +8,7 @@ const Footer = () => {
 		<footer className="w-full bg-black text-white">
 			<Logo />
 			<SiteMap />
+			<OfficialSns />
 			<Copy />
 		</footer>
 	);
