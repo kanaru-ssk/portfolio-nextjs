@@ -1,27 +1,28 @@
-import Link from 'next/link';
+import MenuLink from './MenuLink';
+import PageLink from './PageLink';
 
 const SiteMap = () => {
 	return (
-		<div className="flex justify-between px-4 py-8 font-medium">
+		<div className="flex justify-between px-4 py-8">
 			<div>
-				<Link href="/about">
-					<a>about</a>
-				</Link>
+				<MenuLink path="about" />
 			</div>
 			<div>
-				<Link href="/products">
-					<a>products</a>
-				</Link>
+				<MenuLink path="products" />
+				<ul>
+					<PageLink title="ホームページ制作" path="products/home-page" />
+					<PageLink title="webアプリ開発" path="products/web-app" />
+				</ul>
 			</div>
 			<div>
-				<Link href="/works">
-					<a>works</a>
-				</Link>
+				<MenuLink path="works" />
+				<ul>
+					<PageLink title="当サイト" path="works/kanaru-hp" />
+					<PageLink title="行きたいとこリスト" path="works/go-list" />
+				</ul>
 			</div>
 			<div>
-				<Link href="/contact">
-					<a>contact</a>
-				</Link>
+				<MenuLink path="contact" />
 			</div>
 		</div>
 	);
