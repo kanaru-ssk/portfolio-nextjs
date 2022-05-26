@@ -3,14 +3,17 @@ import Head from 'next/head';
 
 import { fetchAPI } from 'libs/api';
 
-import Header from 'components/organisms/Header';
-import Footer from 'components/organisms/Footer';
+import FirstView from 'components/Home/FirstView';
 
 export const config = { amp: true };
 
+type Props = {
+	common: Common;
+};
+
 const Home: NextPage<Props> = ({ common }: Props) => {
 	return (
-		<div>
+		<>
 			<Head>
 				{/* ogp */}
 				<meta property="og:url" content="https://kanaru.jp" />
@@ -22,18 +25,12 @@ const Home: NextPage<Props> = ({ common }: Props) => {
 
 				<title>{common.site_title}</title>
 				<meta name="description" content="仙台のweb開発エンジニア 佐々木かなるのポートフォリオサイト" />
-				<link rel="icon" href="/favicon.svg" />
 			</Head>
 
-			<Header />
-
-			<main className="bg-red-100">
-				<h1 className="p-4">top page</h1>
-				<div>{common.catch_copy}</div>
+			<main className="flex items-center h-screen p-4">
+				<FirstView catchCopy={common.catch_copy} />
 			</main>
-
-			<Footer />
-		</div>
+		</>
 	);
 };
 
@@ -47,10 +44,6 @@ export const getStaticProps: GetStaticProps = async () => {
 			common,
 		},
 	};
-};
-
-type Props = {
-	common: Common;
 };
 
 type APIres = {
