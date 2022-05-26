@@ -16,9 +16,9 @@ const Home: NextPage<Props> = ({ common }: Props) => {
 		<>
 			<Head>
 				{/* ogp */}
-				<meta property="og:url" content="https://kanaru.jp" />
+				<meta property="og:url" content={process.env.NEXT_PUBLIC_MICROCMS_DOMAIN} />
 				<meta property="og:type" content="website" />
-				<meta property="og:image" content="https://kanaru.jp/ogp.png" />
+				<meta property="og:image" content={process.env.NEXT_PUBLIC_MICROCMS_DOMAIN + '/ogp.png'} />
 				<meta property="og:title" content={common.site_title} />
 				<meta property="og:description" content="仙台のweb開発エンジニア 佐々木かなるのポートフォリオサイト" />
 				<meta name="twitter:card" content="summary" />
