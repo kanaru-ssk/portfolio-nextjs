@@ -1,19 +1,13 @@
 module.exports = {
 	content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
-	darkMode: false, // or 'media' or 'class'
+	darkMode: 'media',
 	theme: {
-		extend: {
-			colors: {
-				blue: {
-					450: '#1ea7fd',
-				},
-			},
+		colors: {
+			white: '#fff',
+			black: '#000',
 		},
 		fontFamily: {
 			sans: ['Nunito Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
-		},
-		boxShadow: {
-			inner: 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset',
 		},
 	},
 	variants: {

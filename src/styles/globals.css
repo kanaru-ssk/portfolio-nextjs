@@ -1,9 +1,18 @@
-@import 'tailwindcss/base';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Start purging... */
-@import 'tailwindcss/components';
-/* Stop purging. */
-
-/* Start purging... */
-@import 'tailwindcss/utilities';
-/* Stop purging. */
+@layer base {
+	body {
+		@apply text-sm box-border;
+	}
+	main {
+		@apply mx-auto max-w-3xl;
+	}
+	h1 {
+		@apply text-2xl;
+	}
+	h2 {
+		@apply text-xl;
+	}
+}
