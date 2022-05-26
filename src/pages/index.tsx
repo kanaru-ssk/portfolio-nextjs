@@ -15,12 +15,12 @@ const Home: NextPage<Props> = ({ common }: Props) => {
 	return (
 		<>
 			<Head>
-				<link rel="canonical" href={process.env.NEXT_PUBLIC_MICROCMS_DOMAIN} />
+				<link rel="canonical" href={process.env.NEXT_PUBLIC_DOMAIN} />
 
 				{/* ogp */}
-				<meta property="og:url" content={process.env.NEXT_PUBLIC_MICROCMS_DOMAIN} />
+				<meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
 				<meta property="og:type" content="website" />
-				<meta property="og:image" content={process.env.NEXT_PUBLIC_MICROCMS_DOMAIN + '/ogp.png'} />
+				<meta property="og:image" content={process.env.NEXT_PUBLIC_DOMAIN + '/ogp.png'} />
 				<meta property="og:title" content={common.site_title} />
 				<meta property="og:description" content="仙台のweb開発エンジニア 佐々木かなるのポートフォリオサイト" />
 				<meta name="twitter:card" content="summary" />

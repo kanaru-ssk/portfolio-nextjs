@@ -8,9 +8,9 @@ const Works: NextPage = () => {
 		<>
 			<Head>
 				{/* ogp */}
-				<meta property="og:url" content={process.env.NEXT_PUBLIC_MICROCMS_DOMAIN} />
+				<meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
 				<meta property="og:type" content="website" />
-				<meta property="og:image" content={process.env.NEXT_PUBLIC_MICROCMS_DOMAIN + '/ogp.png'} />
+				<meta property="og:image" content={process.env.NEXT_PUBLIC_DOMAIN + '/ogp.png'} />
 				<meta property="og:title" content="webエンジニア 佐々木哉瑠(かなる)の公式ホームページ" />
 				<meta
 					property="og:description"
