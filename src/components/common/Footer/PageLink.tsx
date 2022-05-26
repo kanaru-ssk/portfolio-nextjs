@@ -7,7 +7,7 @@ type Props = {
 
 const PageLink = ({ title, path }: Props) => {
 	return (
-		<li className="font-medium text-gray py-2">
+		<li className="font-medium text-gray py-3">
 			<Link href={'/' + path}>
 				<a>{title}</a>
 			</Link>
