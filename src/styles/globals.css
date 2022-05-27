@@ -4,7 +4,7 @@
 
 @layer base {
 	body {
-		@apply text-sm box-border font-sans font-light tracking-wider;
+		@apply text-sm box-border font-sans font-light tracking-wider leading-6;
 	}
 	main {
 		@apply mx-auto max-w-3xl;
