@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { fetchAPI } from 'libs/api';
 
 import FirstView from 'components/Home/FirstView';
+import AboutSection from 'components/Home/AboutSection';
 
 export const config = { amp: true };
 
@@ -29,8 +30,9 @@ const Home: NextPage<Props> = ({ common }: Props) => {
 				<meta name="description" content="仙台のweb開発エンジニア 佐々木かなるのポートフォリオサイト" />
 			</Head>
 
-			<main className="flex items-center h-screen p-4">
+			<main className="p-4">
 				<FirstView catchCopy={common.catch_copy} />
+				<AboutSection />
 			</main>
 		</>
 	);
