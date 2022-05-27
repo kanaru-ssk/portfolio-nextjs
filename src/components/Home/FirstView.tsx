@@ -3,14 +3,12 @@ type Props = {
 };
 
 const FirstView = ({ catchCopy }: Props) => {
-	const split = catchCopy.split('\n');
-	return (
-		<div>
-			{split.map((key, value) => {
-				return <div key={key}>{split[value]}</div>;
-			})}
-		</div>
-	);
+	// 置換 : \n -> <br />>
+	const lbToBr = (txt: string) => {
+		return txt.split(/(\n)/g).map((t) => (t === '\n' ? <br /> : t));
+	};
+
+	return <div className="flex flex-col  justify-center h-screen ">{lbToBr(catchCopy)}</div>;
 };
 
 export default FirstView;
