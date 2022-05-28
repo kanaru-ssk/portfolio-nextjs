@@ -8,7 +8,7 @@ const SnsLink = ({ iconUrl, profileUrl }: Props) => {
 	return (
 		<li className="p-2 text-base">
 			<Link href={profileUrl}>
-				<a area-label="SNSプロフィールへのリンク">
+				<a title="SNSプロフィールへのリンク">
 					<amp-img src={iconUrl} width="32" height="20" alt="sns-link" />
 				</a>
 			</Link>
