@@ -3,10 +3,11 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "yarn build-css && next dev",
+		"dev": "next dev",
 		"build": "yarn build-css && next build",
 		"start": "yarn build-css && next start",
 		"lint": "next lint",
+		"watch-css": "postcss src/styles/globals.css --config postcss.config.js -o src/styles/output.css -w",
 		"build-css": "postcss src/styles/globals.css --config postcss.config.js -o src/styles/output.css"
 	},
 	"dependencies": {
