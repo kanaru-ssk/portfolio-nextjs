@@ -1,5 +1,9 @@
-const Copy = () => {
-	return <div className="text-center py-8">&copy;2022 Kanaru</div>;
+type Props = {
+	copyRight: string;
+};
+
+const Copy = ({ copyRight }: Props) => {
+	return <div className="text-center py-8">&copy;{copyRight}</div>;
 };
 
 export default Copy;
