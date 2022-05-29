@@ -22,14 +22,7 @@ type Props = {
 	about: AboutPage;
 };
 
-// import qs from 'qs';
 const Home: NextPage<Props> = ({ common, top, about }: Props) => {
-	// console.log(
-	// 	qs.stringify({
-	// 		populate: { links: { populate: '*' }, profile_img: { populate: '*' }, ogp_img: { populate: '*' } },
-	// 	}),
-	// );
-	// console.log(about);
 	return (
 		<>
 			<Head>
