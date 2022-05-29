@@ -6,9 +6,9 @@ const ProductsSection = () => {
 
 	return (
 		<div>
-			<h1 className="py-4">products</h1>
+			<h2 className="py-4">products</h2>
 			<div className="flex justify-center gap-8 flex-wrap">
-				<div className="w-72 h-72">
+				{/* <div className="w-72 h-72">
 					<div className="w-72 h-40">
 						<amp-img src="test.svg" width="288" height="160" alt="profile" />
 					</div>
@@ -22,7 +22,7 @@ const ProductsSection = () => {
 				</div>
 				<div className="w-72 h-72">
 					<amp-img src="test.svg" width="288" height="160" alt="profile" />
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
