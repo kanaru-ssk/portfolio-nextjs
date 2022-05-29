@@ -23,6 +23,13 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({ common, top, about }: Props) => {
+	const schemaData = {
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		name: '佐々木哉瑠',
+		url: process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN,
+		logo: common.header_logo.data.attributes.url,
+	};
 	return (
 		<>
 			<Head>
@@ -39,6 +46,8 @@ const Home: NextPage<Props> = ({ common, top, about }: Props) => {
 
 				<title>{top.title}</title>
 				<meta name="description" content={top.description} />
+
+				<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 			</Head>
 
 			<Header logo={common.header_logo.data.attributes.url} />
