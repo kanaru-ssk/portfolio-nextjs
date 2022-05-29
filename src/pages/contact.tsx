@@ -6,7 +6,6 @@ const EditorJSHtml = require('editorjs-html');
 import { fetchAPI } from 'libs/api';
 import { CommonRes, Common } from 'types/common';
 import { AboutPageRes, AboutPage } from 'types/aboutPage';
-import { ProductsPageRes, ProductsPage } from 'types/productsPage';
 import { ContactPageRes, ContactPage } from 'types/contactPage';
 
 // components
@@ -18,16 +17,15 @@ export const config = { amp: true };
 type Props = {
 	common: Common;
 	about: AboutPage;
-	products: ProductsPage;
 	contact: ContactPage;
 };
 
-const Contact: NextPage<Props> = ({ common, about, products, contact }: Props) => {
+const Contact: NextPage<Props> = ({ common, about, contact }: Props) => {
 	const contents: string[] = EditorJSHtml().parse(JSON.parse(contact.contents));
 	return (
 		<>
 			<Head>
-				<link rel="canonical" href={process.env.NEXT_PUBLIC_DOMAIN} />
+				<link rel="canonical" href={process.env.NEXT_PUBLIC_DOMAIN + '/contact'} />
 				<link rel="icon" href={common.favicon.data.attributes.url} />
 
 				{/* ogp */}
@@ -61,18 +59,15 @@ export const getStaticProps: GetStaticProps = async () => {
 	const aboutRes: AboutPageRes = await fetchAPI('about-page', {
 		populate: { links: { populate: '*' }, profile_img: { populate: '*' }, ogp_img: { populate: '*' } },
 	});
-	const productsRes: ProductsPageRes = await fetchAPI('products-page', { populate: '*' });
 	const contactRes: ContactPageRes = await fetchAPI('contact-page', { populate: '*' });
 
 	const common: Common = commonRes.data.attributes;
 	const about: AboutPage = aboutRes.data.attributes;
-	const products: ProductsPage = productsRes.data.attributes;
 	const contact: ContactPage = contactRes.data.attributes;
 	return {
 		props: {
 			common,
 			about,
-			products,
 			contact,
 		},
 	};

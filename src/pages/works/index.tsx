@@ -25,7 +25,7 @@ const Works: NextPage<Props> = ({ common, about, works }: Props) => {
 	return (
 		<>
 			<Head>
-				<link rel="canonical" href={process.env.NEXT_PUBLIC_DOMAIN} />
+				<link rel="canonical" href={process.env.NEXT_PUBLIC_DOMAIN + '/works'} />
 				<link rel="icon" href={common.favicon.data.attributes.url} />
 
 				{/* ogp */}
