@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /data/
+
+Sitemap: https://kanaru.jp/sitemap.xml
