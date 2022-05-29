@@ -45,7 +45,13 @@ const Home: NextPage<Props> = ({ common, top, about }: Props) => {
 
 			<main className="p-4">
 				<FirstView catchCopy={top.catch_copy} />
-				<AboutSection contents={about} />
+				<AboutSection
+					profileImg={about.profile_img.data.attributes.url}
+					name={about.name}
+					nameKana={about.name_kana}
+					job={about.job}
+					profileText={about.profile_text}
+				/>
 				<ProductsSection />
 			</main>
 
