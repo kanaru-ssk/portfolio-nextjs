@@ -10,9 +10,9 @@ import { AboutPageRes, AboutPage } from 'types/aboutPage';
 // components
 import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
-import FirstView from 'components/Home/FirstView';
-import AboutSection from 'components/Home/AboutSection';
-import ProductsSection from 'components/Home/ProductsSection';
+import FirstView from 'components/top/FirstView';
+import AboutSection from 'components/top/AboutSection';
+import ProductsSection from 'components/top/ProductsSection';
 
 export const config = { amp: true };
 
