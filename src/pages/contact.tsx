@@ -25,7 +25,7 @@ const Contact: NextPage<Props> = ({ common, about, contact }: Props) => {
 	return (
 		<>
 			<Head>
-				<link rel="canonical" href={process.env.NEXT_PUBLIC_DOMAIN + '/contact'} />
+				<link rel="canonical" href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + '/contact'} />
 				<link rel="icon" href={common.favicon.data.attributes.url} />
 
 				{/* ogp */}
