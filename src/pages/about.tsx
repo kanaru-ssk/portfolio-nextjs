@@ -9,7 +9,8 @@ import { AboutPageRes, AboutPage } from 'types/aboutPage';
 // components
 import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
-import AboutSection from 'components/top/AboutSection';
+import Profile from 'components/about/Profile';
+import Biography from 'components/about/Biography';
 
 export const config = { amp: true };
 
@@ -39,7 +40,21 @@ const About: NextPage<Props> = ({ common, about }: Props) => {
 			<Header logo={common.header_logo.data.attributes.url} />
 			<main className="p-4">
 				<div className="h-20"></div>
-				<AboutSection contents={about} />
+				<div className="py-8">
+					<h1>about</h1>
+					<Profile
+						profileImg={about.profile_img.data.attributes.url}
+						name={about.name}
+						nameKana={about.name_kana}
+						job={about.job}
+						profileText={about.profile_text}
+					/>
+				</div>
+
+				<div className="py-8">
+					<h2>biography</h2>
+					<Biography />
+				</div>
 			</main>
 			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.links} />
 		</>
