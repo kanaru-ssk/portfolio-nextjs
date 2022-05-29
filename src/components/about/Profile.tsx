@@ -13,7 +13,7 @@ const Profile = ({ profileImg, name, nameKana, job, profileText }: Props) => {
 	};
 
 	return (
-		<div>
+		<>
 			<div className="flex items-center gap-8 py-4">
 				<amp-img className="rounded-full" src={profileImg} width="128" height="128" alt="profile" />
 				<div>
@@ -23,7 +23,7 @@ const Profile = ({ profileImg, name, nameKana, job, profileText }: Props) => {
 				</div>
 			</div>
 			<p className="py-4">{lbToBr(profileText)}</p>
-		</div>
+		</>
 	);
 };
 
