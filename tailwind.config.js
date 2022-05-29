@@ -6,6 +6,7 @@ module.exports = {
 			white: '#fff',
 			black: '#000',
 			gray: '#ddd',
+			blue: '#232C93',
 		},
 		fontFamily: {
 			sans: ['Nunito Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
