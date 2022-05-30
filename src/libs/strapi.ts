@@ -18,7 +18,7 @@ export const fetchAPI = async (path: string, urlParamsObject = {}, options = {})
 
 	// Build request URL
 	const queryString = qs.stringify(urlParamsObject);
-	const requestUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL + `/api/${path}${queryString ? `?${queryString}` : ''}`;
+	const requestUrl = process.env.STRAPI_API_URL + `/api/${path}${queryString ? `?${queryString}` : ''}`;
 
 	// Trigger API call
 	const response = await fetch(requestUrl, mergedOptions);
