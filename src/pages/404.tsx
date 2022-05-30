@@ -9,6 +9,7 @@ import { AboutPageRes, AboutPage } from 'types/aboutPage';
 // components
 import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
+import A from 'components/common/A';
 
 export const config = { amp: true };
 
@@ -26,9 +27,7 @@ const Custom404: NextPage<Props> = ({ common, about }: Props) => {
 				<h1>404 Not Found</h1>
 				<p>申し訳ございません。お探しのページは見つかりませんでした。</p>
 				<div className="py-8">
-					<Link href="/">
-						<a className="text-blue underline">トップページに戻る</a>
-					</Link>
+					<A title="トップページに戻る" url="/" />
 				</div>
 			</main>
 			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.links} />
