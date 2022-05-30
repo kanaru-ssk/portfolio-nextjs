@@ -88,7 +88,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 	const common: Common = commonRes.data.attributes;
 	const about: AboutPage = aboutRes.data.attributes;
-	const work: Work = worksRes.data[0].attributes;
+	const work: Work | undefined = worksRes.data.find((value) => {
+		return value.attributes.path === params!.id;
+	})?.attributes;
+
 	return {
 		props: {
 			common,
