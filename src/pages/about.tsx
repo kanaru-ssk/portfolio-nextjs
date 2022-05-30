@@ -4,10 +4,11 @@ import Head from 'next/head';
 // lib
 import { fetchAPI } from 'libs/api';
 import { CommonRes, Common } from 'types/common';
-import { AboutPageRes, AboutPage } from 'types/aboutPage';
+import { AboutPageRes, AboutPage, Skills } from 'types/aboutPage';
 
 // components
 import Header from 'components/common/Header';
+import ContactButton from 'components/common/ContactButton';
 import Footer from 'components/common/Footer';
 import Profile from 'components/about/Profile';
 import Biography from 'components/about/Biography';
@@ -18,9 +19,10 @@ export const config = { amp: true };
 type Props = {
 	common: Common;
 	about: AboutPage;
+	skills: Skills;
 };
 
-const About: NextPage<Props> = ({ common, about }: Props) => {
+const About: NextPage<Props> = ({ common, about, skills }: Props) => {
 	return (
 		<>
 			<Head>
@@ -53,12 +55,28 @@ const About: NextPage<Props> = ({ common, about }: Props) => {
 
 				<div className="py-8">
 					<h2>biography</h2>
-					<Biography bio={about.biography} />
+					{about.biography.map((value) => {
+						return (
+							<Biography
+								date={value.time}
+								title={value.title}
+								jobs={value.jobs}
+								skills={value.skills}
+								links={value.links}
+								note={value.note}
+								key={value.id}
+							/>
+						);
+					})}
 				</div>
 
 				<div className="py-8">
 					<h2>skill</h2>
-					<Skill />
+					<Skill skills={skills} />
+				</div>
+
+				<div className="py-8">
+					<ContactButton />
 				</div>
 			</main>
 			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.sns} />
@@ -78,6 +96,7 @@ export const getStaticProps: GetStaticProps = async () => {
 			biography: { populate: '*' },
 		},
 	});
+	const skills: Skills = await fetchAPI('skills');
 
 	const common: Common = commonRes.data.attributes;
 	const about: AboutPage = aboutRes.data.attributes;
@@ -85,6 +104,7 @@ export const getStaticProps: GetStaticProps = async () => {
 		props: {
 			common,
 			about,
+			skills,
 		},
 	};
 };
