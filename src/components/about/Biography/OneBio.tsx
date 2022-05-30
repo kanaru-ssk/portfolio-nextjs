@@ -1,19 +1,23 @@
+import { Job, Skills, Link } from 'types/aboutPage';
+
 import A from 'components/common/A';
 
 type Props = {
 	date: string;
 	title: string;
-	jobs: string[];
-	langs: string[];
-	tools: string[];
-	links?: {
-		title: string;
-		url: string;
-	}[];
+	jobs: Job[];
+	skills: Skills;
+	links?: Link[];
 	note: string;
 };
 
-const OneBio = ({ date, title, jobs, langs, tools, links, note }: Props) => {
+const OneBio = ({ date, title, jobs, skills, links, note }: Props) => {
+	const langs = skills.data.filter((value) => {
+		return value.attributes.category === 'lang';
+	});
+	const tools = skills.data.filter((value) => {
+		return value.attributes.category === 'tool';
+	});
 	return (
 		<div className="py-4 border-y border-gray">
 			<div>{date}</div>
@@ -22,10 +26,10 @@ const OneBio = ({ date, title, jobs, langs, tools, links, note }: Props) => {
 				<div className="py-1">
 					<div>担当 :</div>
 					<ul>
-						{jobs.map((value, key) => {
+						{jobs.map((value) => {
 							return (
-								<li className="pl-5" key={key}>
-									- {value}
+								<li className="pl-5" key={value.id}>
+									- {value.name}
 								</li>
 							);
 						})}
@@ -35,10 +39,10 @@ const OneBio = ({ date, title, jobs, langs, tools, links, note }: Props) => {
 				<div className="py-1">
 					<div>使用言語など :</div>
 					<ul>
-						{langs.map((value, key) => {
+						{langs.map((value) => {
 							return (
-								<li className="inline-block pl-5" key={key}>
-									{value}
+								<li className="inline-block pl-5" key={value.id}>
+									{value.attributes.name}
 								</li>
 							);
 						})}
@@ -48,10 +52,10 @@ const OneBio = ({ date, title, jobs, langs, tools, links, note }: Props) => {
 				<div className="py-1">
 					<div>使用ツールなど :</div>
 					<ul>
-						{tools.map((value, key) => {
+						{tools.map((value) => {
 							return (
-								<li className="inline-block pl-5" key={key}>
-									{value}
+								<li className="inline-block pl-5" key={value.id}>
+									{value.attributes.name}
 								</li>
 							);
 						})}
@@ -62,9 +66,9 @@ const OneBio = ({ date, title, jobs, langs, tools, links, note }: Props) => {
 					<div className="py-1">
 						<div>関連リンク</div>
 						<ul>
-							{links.map((value, key) => {
+							{links.map((value) => {
 								return (
-									<li className="pl-5" key={key}>
+									<li className="pl-5" key={value.id}>
 										<A title={value.title} url={value.url} />
 									</li>
 								);

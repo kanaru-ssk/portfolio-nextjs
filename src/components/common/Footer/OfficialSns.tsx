@@ -11,10 +11,10 @@ const OfficialSns = ({ snsLinks }: Props) => {
 		<ul className="flex justify-left items-center list-none p-4">
 			<li className="p-2 text-base">official SNS :</li>
 
-			{snsLinks.map((value, key) => {
+			{snsLinks.map((value) => {
 				return (
 					<SnsLink
-						key={key}
+						key={value.id}
 						snsName={value.sns.data.attributes.name}
 						iconUrl={value.sns.data.attributes.icon.data.attributes.url}
 						profileUrl={value.url}

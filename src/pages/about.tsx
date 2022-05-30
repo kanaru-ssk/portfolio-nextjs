@@ -53,7 +53,7 @@ const About: NextPage<Props> = ({ common, about }: Props) => {
 
 				<div className="py-8">
 					<h2>biography</h2>
-					<Biography />
+					<Biography bio={about.biography} />
 				</div>
 
 				<div className="py-8">

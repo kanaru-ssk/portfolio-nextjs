@@ -99,7 +99,7 @@ export interface Biography {
 	id: number;
 	time: string;
 	title: string;
-	note: null | string;
+	note: string;
 	jobs: Job[];
 	skills: Skills;
 	links: Link[];
@@ -127,7 +127,7 @@ export interface DAT {
 
 export interface TentacledAttributes {
 	name: string;
-	category?: Category;
+	category: Category;
 	createdAt: Date;
 	updatedAt: Date;
 	publishedAt: Date;
