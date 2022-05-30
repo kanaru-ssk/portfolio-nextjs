@@ -4,6 +4,8 @@ import type { NextPage, GetStaticProps } from 'next';
 import { fetchAPI } from 'libs/api';
 import { CommonRes, Common } from 'types/common';
 import { AboutPageRes, AboutPage } from 'types/aboutPage';
+import { WorksRes } from 'types/works';
+import { ProductsRes } from 'types/products';
 
 // components
 import Header from 'components/common/Header';
@@ -15,9 +17,11 @@ export const config = { amp: true };
 type Props = {
 	common: Common;
 	about: AboutPage;
+	productsRes: ProductsRes;
+	worksRes: WorksRes;
 };
 
-const Custom404: NextPage<Props> = ({ common, about }: Props) => {
+const Custom404: NextPage<Props> = ({ common, about, productsRes, worksRes }: Props) => {
 	return (
 		<>
 			<Header logo={common.header_logo.data.attributes.url} />
@@ -29,7 +33,13 @@ const Custom404: NextPage<Props> = ({ common, about }: Props) => {
 					<A title="トップページに戻る" url="/" />
 				</div>
 			</main>
-			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.sns} />
+			<Footer
+				logo={common.logo_white.data.attributes.url}
+				copyRight={common.copy_right}
+				snsLinks={about.sns}
+				productsRes={productsRes}
+				worksRes={worksRes}
+			/>
 		</>
 	);
 };
@@ -46,6 +56,8 @@ export const getStaticProps: GetStaticProps = async () => {
 			biography: { populate: '*' },
 		},
 	});
+	const productsRes: ProductsRes = await fetchAPI('products');
+	const worksRes: WorksRes = await fetchAPI('works');
 
 	const common: Common = commonRes.data.attributes;
 	const about: AboutPage = aboutRes.data.attributes;
@@ -53,6 +65,8 @@ export const getStaticProps: GetStaticProps = async () => {
 		props: {
 			common,
 			about,
+			productsRes,
+			worksRes,
 		},
 	};
 };

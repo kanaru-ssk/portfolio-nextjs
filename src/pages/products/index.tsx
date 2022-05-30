@@ -7,6 +7,8 @@ import { fetchAPI } from 'libs/api';
 import { CommonRes, Common } from 'types/common';
 import { AboutPageRes, AboutPage } from 'types/aboutPage';
 import { ProductsPageRes, ProductsPage } from 'types/productsPage';
+import { WorksRes } from 'types/works';
+import { ProductsRes } from 'types/products';
 
 // components
 import Header from 'components/common/Header';
@@ -18,9 +20,11 @@ type Props = {
 	common: Common;
 	about: AboutPage;
 	products: ProductsPage;
+	productsRes: ProductsRes;
+	worksRes: WorksRes;
 };
 
-const Products: NextPage<Props> = ({ common, about, products }: Props) => {
+const Products: NextPage<Props> = ({ common, about, products, productsRes, worksRes }: Props) => {
 	const contents: string[] = EditorJSHtml().parse(JSON.parse(products.contents));
 	return (
 		<>
@@ -47,7 +51,13 @@ const Products: NextPage<Props> = ({ common, about, products }: Props) => {
 					return <div key={key} dangerouslySetInnerHTML={{ __html: value }}></div>;
 				})}
 			</main>
-			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.sns} />
+			<Footer
+				logo={common.logo_white.data.attributes.url}
+				copyRight={common.copy_right}
+				snsLinks={about.sns}
+				productsRes={productsRes}
+				worksRes={worksRes}
+			/>
 		</>
 	);
 };
@@ -64,18 +74,22 @@ export const getStaticProps: GetStaticProps = async () => {
 			biography: { populate: '*' },
 		},
 	});
-	const productsRes: ProductsPageRes = await fetchAPI('products-page', {
+	const productsPageRes: ProductsPageRes = await fetchAPI('products-page', {
 		populate: { basic_seo: { populate: '*' } },
 	});
+	const productsRes: ProductsRes = await fetchAPI('products');
+	const worksRes: WorksRes = await fetchAPI('works');
 
 	const common: Common = commonRes.data.attributes;
 	const about: AboutPage = aboutRes.data.attributes;
-	const products: ProductsPage = productsRes.data.attributes;
+	const products: ProductsPage = productsPageRes.data.attributes;
 	return {
 		props: {
 			common,
 			about,
 			products,
+			productsRes,
+			worksRes,
 		},
 	};
 };

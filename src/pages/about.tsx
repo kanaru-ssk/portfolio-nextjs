@@ -5,11 +5,13 @@ import Head from 'next/head';
 import { fetchAPI } from 'libs/api';
 import { CommonRes, Common } from 'types/common';
 import { AboutPageRes, AboutPage, Skills } from 'types/aboutPage';
+import { WorksRes } from 'types/works';
+import { ProductsRes } from 'types/products';
 
 // components
 import Header from 'components/common/Header';
-import ContactButton from 'components/common/ContactButton';
 import Footer from 'components/common/Footer';
+import ContactButton from 'components/common/ContactButton';
 import Profile from 'components/about/Profile';
 import Biography from 'components/about/Biography';
 import Skill from 'components/about/Skill';
@@ -20,9 +22,11 @@ type Props = {
 	common: Common;
 	about: AboutPage;
 	skills: Skills;
+	productsRes: ProductsRes;
+	worksRes: WorksRes;
 };
 
-const About: NextPage<Props> = ({ common, about, skills }: Props) => {
+const About: NextPage<Props> = ({ common, about, skills, productsRes, worksRes }: Props) => {
 	return (
 		<>
 			<Head>
@@ -79,7 +83,13 @@ const About: NextPage<Props> = ({ common, about, skills }: Props) => {
 					<ContactButton />
 				</div>
 			</main>
-			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.sns} />
+			<Footer
+				logo={common.logo_white.data.attributes.url}
+				copyRight={common.copy_right}
+				snsLinks={about.sns}
+				productsRes={productsRes}
+				worksRes={worksRes}
+			/>
 		</>
 	);
 };
@@ -97,6 +107,8 @@ export const getStaticProps: GetStaticProps = async () => {
 		},
 	});
 	const skills: Skills = await fetchAPI('skills');
+	const productsRes: ProductsRes = await fetchAPI('products');
+	const worksRes: WorksRes = await fetchAPI('works');
 
 	const common: Common = commonRes.data.attributes;
 	const about: AboutPage = aboutRes.data.attributes;
@@ -105,6 +117,8 @@ export const getStaticProps: GetStaticProps = async () => {
 			common,
 			about,
 			skills,
+			productsRes,
+			worksRes,
 		},
 	};
 };

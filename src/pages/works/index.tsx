@@ -7,6 +7,8 @@ import { fetchAPI } from 'libs/api';
 import { CommonRes, Common } from 'types/common';
 import { AboutPageRes, AboutPage } from 'types/aboutPage';
 import { WorksPageRes, WorksPage } from 'types/worksPage';
+import { WorksRes } from 'types/works';
+import { ProductsRes } from 'types/products';
 
 // components
 import Header from 'components/common/Header';
@@ -18,9 +20,11 @@ type Props = {
 	common: Common;
 	about: AboutPage;
 	works: WorksPage;
+	productsRes: ProductsRes;
+	worksRes: WorksRes;
 };
 
-const Works: NextPage<Props> = ({ common, about, works }: Props) => {
+const Works: NextPage<Props> = ({ common, about, works, productsRes, worksRes }: Props) => {
 	const contents: string[] = EditorJSHtml().parse(JSON.parse(works.contents));
 	return (
 		<>
@@ -46,7 +50,13 @@ const Works: NextPage<Props> = ({ common, about, works }: Props) => {
 					return <div key={key} dangerouslySetInnerHTML={{ __html: value }}></div>;
 				})}
 			</main>
-			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.sns} />
+			<Footer
+				logo={common.logo_white.data.attributes.url}
+				copyRight={common.copy_right}
+				snsLinks={about.sns}
+				productsRes={productsRes}
+				worksRes={worksRes}
+			/>
 		</>
 	);
 };
@@ -63,18 +73,22 @@ export const getStaticProps: GetStaticProps = async () => {
 			biography: { populate: '*' },
 		},
 	});
-	const worksRes: WorksPageRes = await fetchAPI('works-page', {
+	const worksPageRes: WorksPageRes = await fetchAPI('works-page', {
 		populate: { basic_seo: { populate: '*' } },
 	});
+	const productsRes: ProductsRes = await fetchAPI('products');
+	const worksRes: WorksRes = await fetchAPI('works');
 
 	const common: Common = commonRes.data.attributes;
 	const about: AboutPage = aboutRes.data.attributes;
-	const works: WorksPage = worksRes.data.attributes;
+	const works: WorksPage = worksPageRes.data.attributes;
 	return {
 		props: {
 			common,
 			about,
 			works,
+			productsRes,
+			worksRes,
 		},
 	};
 };

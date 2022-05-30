@@ -6,10 +6,13 @@ import { fetchAPI } from 'libs/api';
 import { CommonRes, Common } from 'types/common';
 import { TopPageRes, TopPage } from 'types/topPage';
 import { AboutPageRes, AboutPage } from 'types/aboutPage';
+import { WorksRes } from 'types/works';
+import { ProductsRes } from 'types/products';
 
 // components
 import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
+import ContactButton from 'components/common/ContactButton';
 import FirstView from 'components/top/FirstView';
 import AboutSection from 'components/top/AboutSection';
 import ProductsSection from 'components/top/ProductsSection';
@@ -20,9 +23,11 @@ type Props = {
 	common: Common;
 	top: TopPage;
 	about: AboutPage;
+	productsRes: ProductsRes;
+	worksRes: WorksRes;
 };
 
-const Home: NextPage<Props> = ({ common, top, about }: Props) => {
+const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Props) => {
 	const schemaData = {
 		'@context': 'https://schema.org',
 		'@type': 'Organization',
@@ -62,9 +67,19 @@ const Home: NextPage<Props> = ({ common, top, about }: Props) => {
 					profileText={about.profile_text}
 				/>
 				<ProductsSection />
+
+				<div className="py-8">
+					<ContactButton />
+				</div>
 			</main>
 
-			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.sns} />
+			<Footer
+				logo={common.logo_white.data.attributes.url}
+				copyRight={common.copy_right}
+				snsLinks={about.sns}
+				productsRes={productsRes}
+				worksRes={worksRes}
+			/>
 		</>
 	);
 };
@@ -82,6 +97,8 @@ export const getStaticProps: GetStaticProps = async () => {
 			biography: { populate: '*' },
 		},
 	});
+	const productsRes: ProductsRes = await fetchAPI('products');
+	const worksRes: WorksRes = await fetchAPI('works');
 
 	const common: Common = commonRes.data.attributes;
 	const top: TopPage = topRes.data.attributes;
@@ -91,6 +108,8 @@ export const getStaticProps: GetStaticProps = async () => {
 			common,
 			top,
 			about,
+			productsRes,
+			worksRes,
 		},
 	};
 };
