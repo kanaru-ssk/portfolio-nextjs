@@ -1,5 +1,4 @@
 import type { NextPage, GetStaticProps } from 'next';
-import Link from 'next/link';
 
 // lib
 import { fetchAPI } from 'libs/api';
