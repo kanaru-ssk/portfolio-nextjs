@@ -1,6 +1,5 @@
 import type { NextPage, GetStaticProps } from 'next';
 import Head from 'next/head';
-const EditorJSHtml = require('editorjs-html');
 
 // lib
 import { fetchAPI } from 'libs/api';
@@ -25,6 +24,7 @@ type Props = {
 };
 
 const Products: NextPage<Props> = ({ common, about, products, productsRes, worksRes }: Props) => {
+	const EditorJSHtml = require('editorjs-html');
 	const contents: string[] = EditorJSHtml().parse(JSON.parse(products.contents));
 	return (
 		<>
