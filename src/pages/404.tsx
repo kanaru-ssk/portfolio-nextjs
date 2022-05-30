@@ -30,7 +30,7 @@ const Custom404: NextPage<Props> = ({ common, about }: Props) => {
 					<A title="トップページに戻る" url="/" />
 				</div>
 			</main>
-			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.links} />
+			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.sns} />
 		</>
 	);
 };
@@ -40,7 +40,12 @@ export default Custom404;
 export const getStaticProps: GetStaticProps = async () => {
 	const commonRes: CommonRes = await fetchAPI('common', { populate: '*' });
 	const aboutRes: AboutPageRes = await fetchAPI('about-page', {
-		populate: { links: { populate: '*' }, profile_img: { populate: '*' }, ogp_img: { populate: '*' } },
+		populate: {
+			profile_img: { populate: '*' },
+			basic_seo: { populate: '*' },
+			sns: { populate: { sns: { populate: '*' } } },
+			biography: { populate: '*' },
+		},
 	});
 
 	const common: Common = commonRes.data.attributes;

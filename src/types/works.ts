@@ -19,13 +19,18 @@ export interface Works {
 
 export interface Work {
 	path: string;
-	title: string;
-	description: string;
 	heading: string;
 	contents: string;
 	createdAt: Date;
 	updatedAt: Date;
 	publishedAt: Date;
+	basic_seo: BasicSEO;
+}
+
+export interface BasicSEO {
+	id: number;
+	title: string;
+	description: string;
 	ogp_img: OgpImg;
 }
 
@@ -260,13 +265,20 @@ const typeMap: any = {
 	Work: o(
 		[
 			{ json: 'path', js: 'path', typ: '' },
-			{ json: 'title', js: 'title', typ: '' },
-			{ json: 'description', js: 'description', typ: '' },
 			{ json: 'heading', js: 'heading', typ: '' },
 			{ json: 'contents', js: 'contents', typ: '' },
 			{ json: 'createdAt', js: 'createdAt', typ: Date },
 			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
 			{ json: 'publishedAt', js: 'publishedAt', typ: Date },
+			{ json: 'basic_seo', js: 'basic_seo', typ: r('BasicSEO') },
+		],
+		false,
+	),
+	BasicSEO: o(
+		[
+			{ json: 'id', js: 'id', typ: 0 },
+			{ json: 'title', js: 'title', typ: '' },
+			{ json: 'description', js: 'description', typ: '' },
 			{ json: 'ogp_img', js: 'ogp_img', typ: r('OgpImg') },
 		],
 		false,

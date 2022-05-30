@@ -31,13 +31,13 @@ const Products: NextPage<Props> = ({ common, about, products }: Props) => {
 				{/* ogp */}
 				<meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
 				<meta property="og:type" content="website" />
-				<meta property="og:image" content={products.ogp_img.data.attributes.url} />
-				<meta property="og:title" content={products.title} />
-				<meta property="og:description" content={products.description} />
+				<meta property="og:image" content={products.basic_seo.ogp_img.data.attributes.url} />
+				<meta property="og:title" content={products.basic_seo.title} />
+				<meta property="og:description" content={products.basic_seo.description} />
 				<meta name="twitter:card" content="summary" />
 
-				<title>{products.title}</title>
-				<meta name="description" content={products.description} />
+				<title>{products.basic_seo.title}</title>
+				<meta name="description" content={products.basic_seo.description} />
 			</Head>
 			<Header logo={common.header_logo.data.attributes.url} />
 			<main className="p-4">
@@ -47,7 +47,7 @@ const Products: NextPage<Props> = ({ common, about, products }: Props) => {
 					return <div key={key} dangerouslySetInnerHTML={{ __html: value }}></div>;
 				})}
 			</main>
-			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.links} />
+			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.sns} />
 		</>
 	);
 };
@@ -57,9 +57,16 @@ export default Products;
 export const getStaticProps: GetStaticProps = async () => {
 	const commonRes: CommonRes = await fetchAPI('common', { populate: '*' });
 	const aboutRes: AboutPageRes = await fetchAPI('about-page', {
-		populate: { links: { populate: '*' }, profile_img: { populate: '*' }, ogp_img: { populate: '*' } },
+		populate: {
+			profile_img: { populate: '*' },
+			basic_seo: { populate: '*' },
+			sns: { populate: { sns: { populate: '*' } } },
+			biography: { populate: '*' },
+		},
 	});
-	const productsRes: ProductsPageRes = await fetchAPI('products-page', { populate: '*' });
+	const productsRes: ProductsPageRes = await fetchAPI('products-page', {
+		populate: { basic_seo: { populate: '*' } },
+	});
 
 	const common: Common = commonRes.data.attributes;
 	const about: AboutPage = aboutRes.data.attributes;

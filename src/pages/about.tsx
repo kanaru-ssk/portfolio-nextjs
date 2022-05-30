@@ -11,6 +11,7 @@ import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 import Profile from 'components/about/Profile';
 import Biography from 'components/about/Biography';
+import Skill from 'components/about/Skill';
 
 export const config = { amp: true };
 
@@ -26,16 +27,15 @@ const About: NextPage<Props> = ({ common, about }: Props) => {
 				<link rel="canonical" href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + '/about'} />
 				<link rel="icon" href={common.favicon.data.attributes.url} />
 
-				{/* ogp */}
 				<meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
 				<meta property="og:type" content="website" />
-				<meta property="og:image" content={about.ogp_img.data.attributes.url} />
-				<meta property="og:title" content={about.title} />
-				<meta property="og:description" content={about.description} />
+				<meta property="og:image" content={about.basic_seo.ogp_img.data.attributes.url} />
+				<meta property="og:title" content={about.basic_seo.title} />
+				<meta property="og:description" content={about.basic_seo.description} />
 				<meta name="twitter:card" content="summary" />
 
-				<title>{about.title}</title>
-				<meta name="description" content={about.description} />
+				<title>{about.basic_seo.title}</title>
+				<meta name="description" content={about.basic_seo.description} />
 			</Head>
 			<Header logo={common.header_logo.data.attributes.url} />
 			<main className="p-4">
@@ -55,8 +55,13 @@ const About: NextPage<Props> = ({ common, about }: Props) => {
 					<h2>biography</h2>
 					<Biography />
 				</div>
+
+				<div className="py-8">
+					<h2>skill</h2>
+					<Skill />
+				</div>
 			</main>
-			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.links} />
+			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.sns} />
 		</>
 	);
 };
@@ -66,7 +71,12 @@ export default About;
 export const getStaticProps: GetStaticProps = async () => {
 	const commonRes: CommonRes = await fetchAPI('common', { populate: '*' });
 	const aboutRes: AboutPageRes = await fetchAPI('about-page', {
-		populate: { links: { populate: '*' }, profile_img: { populate: '*' }, ogp_img: { populate: '*' } },
+		populate: {
+			profile_img: { populate: '*' },
+			basic_seo: { populate: '*' },
+			sns: { populate: { sns: { populate: '*' } } },
+			biography: { populate: '*' },
+		},
 	});
 
 	const common: Common = commonRes.data.attributes;

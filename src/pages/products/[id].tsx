@@ -31,13 +31,13 @@ const WorksArticle: NextPage<Props> = ({ common, about, product }: Props) => {
 				{/* ogp */}
 				<meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
 				<meta property="og:type" content="website" />
-				<meta property="og:image" content={product.ogp_img.data.attributes.url} />
-				<meta property="og:title" content={product.title} />
-				<meta property="og:description" content={product.description} />
+				<meta property="og:image" content={product.basic_seo.ogp_img.data.attributes.url} />
+				<meta property="og:title" content={product.basic_seo.title} />
+				<meta property="og:description" content={product.basic_seo.description} />
 				<meta name="twitter:card" content="summary" />
 
-				<title>{product.title}</title>
-				<meta name="description" content={product.description} />
+				<title>{product.basic_seo.title}</title>
+				<meta name="description" content={product.basic_seo.description} />
 			</Head>
 
 			<Header logo={common.header_logo.data.attributes.url} />
@@ -48,7 +48,7 @@ const WorksArticle: NextPage<Props> = ({ common, about, product }: Props) => {
 					return <div key={key} dangerouslySetInnerHTML={{ __html: value }}></div>;
 				})}
 			</main>
-			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.links} />
+			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.sns} />
 		</>
 	);
 };
@@ -56,7 +56,9 @@ const WorksArticle: NextPage<Props> = ({ common, about, product }: Props) => {
 export default WorksArticle;
 
 export const getStaticPaths = async () => {
-	const productsRes: ProductsRes = await fetchAPI('products');
+	const productsRes: ProductsRes = await fetchAPI('products', {
+		populate: { basic_seo: { populate: '*' } },
+	});
 	const paths = productsRes.data.map((products: Products) => `/products/${products.attributes.path}`);
 	return { paths, fallback: false };
 };
@@ -64,9 +66,17 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const commonRes: CommonRes = await fetchAPI('common', { populate: '*' });
 	const aboutRes: AboutPageRes = await fetchAPI('about-page', {
-		populate: { links: { populate: '*' }, profile_img: { populate: '*' }, ogp_img: { populate: '*' } },
+		populate: {
+			profile_img: { populate: '*' },
+			basic_seo: { populate: '*' },
+			sns: { populate: { sns: { populate: '*' } } },
+			biography: { populate: '*' },
+		},
 	});
-	const productsRes: ProductsRes = await fetchAPI('products', { filter: { path: params!.id }, populate: '*' });
+	const productsRes: ProductsRes = await fetchAPI('products', {
+		filter: { path: params!.id },
+		populate: { basic_seo: { populate: '*' } },
+	});
 
 	const common: Common = commonRes.data.attributes;
 	const about: AboutPage = aboutRes.data.attributes;

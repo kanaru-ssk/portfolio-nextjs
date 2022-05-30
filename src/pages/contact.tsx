@@ -28,16 +28,15 @@ const Contact: NextPage<Props> = ({ common, about, contact }: Props) => {
 				<link rel="canonical" href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + '/contact'} />
 				<link rel="icon" href={common.favicon.data.attributes.url} />
 
-				{/* ogp */}
 				<meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
 				<meta property="og:type" content="website" />
-				<meta property="og:image" content={contact.ogp_img.data.attributes.url} />
-				<meta property="og:title" content={contact.title} />
-				<meta property="og:description" content={contact.description} />
+				<meta property="og:image" content={contact.basic_seo.ogp_img.data.attributes.url} />
+				<meta property="og:title" content={contact.basic_seo.title} />
+				<meta property="og:description" content={contact.basic_seo.description} />
 				<meta name="twitter:card" content="summary" />
 
-				<title>{contact.title}</title>
-				<meta name="description" content={contact.description} />
+				<title>{contact.basic_seo.title}</title>
+				<meta name="description" content={contact.basic_seo.description} />
 			</Head>
 			<Header logo={common.header_logo.data.attributes.url} />
 			<main className="p-4">
@@ -47,7 +46,7 @@ const Contact: NextPage<Props> = ({ common, about, contact }: Props) => {
 					return <div key={key} dangerouslySetInnerHTML={{ __html: value }}></div>;
 				})}
 			</main>
-			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.links} />
+			<Footer logo={common.logo_white.data.attributes.url} copyRight={common.copy_right} snsLinks={about.sns} />
 		</>
 	);
 };
@@ -57,9 +56,16 @@ export default Contact;
 export const getStaticProps: GetStaticProps = async () => {
 	const commonRes: CommonRes = await fetchAPI('common', { populate: '*' });
 	const aboutRes: AboutPageRes = await fetchAPI('about-page', {
-		populate: { links: { populate: '*' }, profile_img: { populate: '*' }, ogp_img: { populate: '*' } },
+		populate: {
+			profile_img: { populate: '*' },
+			basic_seo: { populate: '*' },
+			sns: { populate: { sns: { populate: '*' } } },
+			biography: { populate: '*' },
+		},
 	});
-	const contactRes: ContactPageRes = await fetchAPI('contact-page', { populate: '*' });
+	const contactRes: ContactPageRes = await fetchAPI('contact-page', {
+		populate: { basic_seo: { populate: '*' } },
+	});
 
 	const common: Common = commonRes.data.attributes;
 	const about: AboutPage = aboutRes.data.attributes;

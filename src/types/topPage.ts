@@ -18,12 +18,17 @@ export interface TopPageResData {
 }
 
 export interface TopPage {
-	title: string;
-	description: string;
 	catch_copy: string;
 	createdAt: Date;
 	updatedAt: Date;
 	publishedAt: Date;
+	basic_seo: BasicSEO;
+}
+
+export interface BasicSEO {
+	id: number;
+	title: string;
+	description: string;
 	ogp_img: OgpImg;
 }
 
@@ -248,12 +253,19 @@ const typeMap: any = {
 	),
 	TopPage: o(
 		[
-			{ json: 'title', js: 'title', typ: '' },
-			{ json: 'description', js: 'description', typ: '' },
 			{ json: 'catch_copy', js: 'catch_copy', typ: '' },
 			{ json: 'createdAt', js: 'createdAt', typ: Date },
 			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
 			{ json: 'publishedAt', js: 'publishedAt', typ: Date },
+			{ json: 'basic_seo', js: 'basic_seo', typ: r('BasicSEO') },
+		],
+		false,
+	),
+	BasicSEO: o(
+		[
+			{ json: 'id', js: 'id', typ: 0 },
+			{ json: 'title', js: 'title', typ: '' },
+			{ json: 'description', js: 'description', typ: '' },
 			{ json: 'ogp_img', js: 'ogp_img', typ: r('OgpImg') },
 		],
 		false,

@@ -1,4 +1,4 @@
-import { Link } from 'types/aboutPage';
+import { Sn } from 'types/aboutPage';
 
 import Logo from './Logo';
 import SiteMap from './SiteMap';
@@ -8,7 +8,7 @@ import Copy from './Copy';
 type Props = {
 	logo: string;
 	copyRight: string;
-	snsLinks: Link[];
+	snsLinks: Sn[];
 };
 
 const Footer = ({ logo, copyRight, snsLinks }: Props) => {

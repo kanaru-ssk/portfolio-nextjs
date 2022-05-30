@@ -1,9 +1,9 @@
-import { Link } from 'types/aboutPage';
+import { Sn } from 'types/aboutPage';
 
 import SnsLink from './SnsLink';
 
 type Props = {
-	snsLinks: Link[];
+	snsLinks: Sn[];
 };
 
 const OfficialSns = ({ snsLinks }: Props) => {
@@ -12,7 +12,14 @@ const OfficialSns = ({ snsLinks }: Props) => {
 			<li className="p-2 text-base">official SNS :</li>
 
 			{snsLinks.map((value, key) => {
-				return <SnsLink key={key} iconUrl={value.icon.data.attributes.url} profileUrl={value.url} />;
+				return (
+					<SnsLink
+						key={key}
+						snsName={value.sns.data.attributes.name}
+						iconUrl={value.sns.data.attributes.icon.data.attributes.url}
+						profileUrl={value.url}
+					/>
+				);
 			})}
 		</ul>
 	);

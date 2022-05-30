@@ -18,8 +18,6 @@ export interface AboutPageResData {
 }
 
 export interface AboutPage {
-	title: string;
-	description: string;
 	job: string;
 	name: string;
 	name_kana: string;
@@ -27,17 +25,17 @@ export interface AboutPage {
 	createdAt: Date;
 	updatedAt: Date;
 	publishedAt: Date;
-	links: Link[];
-	profile_img: OgpImg;
-	ogp_img: OgpImg;
-	__type?: string;
-	copy_right: string;
+	profile_img: ProfileImg;
+	basic_seo: BasicSEO;
+	sns: Sn[];
+	biography: Biography[];
 }
 
-export interface Link {
+export interface BasicSEO {
 	id: number;
-	url: string;
-	icon: OgpImg;
+	title: string;
+	description: string;
+	ogp_img: OgpImg;
 }
 
 export interface OgpImg {
@@ -55,7 +53,7 @@ export interface FluffyAttributes {
 	caption: string;
 	width: number | null;
 	height: number | null;
-	formats: Formats | null;
+	formats: PurpleFormats | null;
 	hash: string;
 	ext: string;
 	mime: string;
@@ -66,17 +64,16 @@ export interface FluffyAttributes {
 	provider_metadata: ProviderMetadata;
 	createdAt: Date;
 	updatedAt: Date;
-	related?: Related;
 }
 
-export interface Formats {
-	large?: Large;
-	small: Large;
-	medium?: Large;
-	thumbnail: Large;
+export interface PurpleFormats {
+	large: Small;
+	small: Small;
+	medium: Small;
+	thumbnail: Small;
 }
 
-export interface Large {
+export interface Small {
 	ext: string;
 	url: string;
 	hash: string;
@@ -98,31 +95,113 @@ export enum ResourceType {
 	Image = 'image',
 }
 
+export interface Biography {
+	id: number;
+	time: string;
+	title: string;
+	note: null | string;
+	jobs: Job[];
+	skills: Skills;
+	links: Link[];
+}
+
+export interface Job {
+	id: number;
+	name: string;
+}
+
+export interface Link {
+	id: number;
+	title: string;
+	url: string;
+}
+
+export interface Skills {
+	data: DAT[];
+}
+
+export interface DAT {
+	id: number;
+	attributes: TentacledAttributes;
+}
+
+export interface TentacledAttributes {
+	name: string;
+	category?: Category;
+	createdAt: Date;
+	updatedAt: Date;
+	publishedAt: Date;
+	icon: OgpImg;
+}
+
+export enum Category {
+	Lang = 'lang',
+	Tool = 'tool',
+}
+
+export interface ProfileImg {
+	data: ProfileImgData;
+}
+
+export interface ProfileImgData {
+	id: number;
+	attributes: StickyAttributes;
+}
+
+export interface StickyAttributes {
+	name: string;
+	alternativeText: string;
+	caption: string;
+	width: number;
+	height: number;
+	formats: FluffyFormats;
+	hash: string;
+	ext: string;
+	mime: string;
+	size: number;
+	url: string;
+	previewUrl: null;
+	provider: string;
+	provider_metadata: ProviderMetadata;
+	createdAt: Date;
+	updatedAt: Date;
+	related: Related;
+}
+
+export interface FluffyFormats {
+	small: Small;
+	thumbnail: Small;
+}
+
 export interface Related {
 	data: Datum[];
 }
 
 export interface Datum {
 	id: number;
-	attributes: DatumAttributes;
+	attributes: IndigoAttributes;
 }
 
-export interface DatumAttributes {
+export interface IndigoAttributes {
 	__type: string;
 	createdAt: Date;
 	updatedAt: Date;
 	publishedAt: Date;
 	copy_right?: string;
-	path?: string;
-	title?: string;
-	description?: string;
-	heading?: string;
-	contents?: string;
-	catch_copy?: string;
 	job?: string;
 	name?: string;
 	name_kana?: string;
 	profile_text?: string;
+}
+
+export interface Sn {
+	id: number;
+	url: string;
+	sns: Sns;
+}
+
+export interface Sns {
+	data: DAT;
 }
 
 export interface Meta {}
@@ -293,28 +372,26 @@ const typeMap: any = {
 	),
 	AboutPage: o(
 		[
-			{ json: 'title', js: 'title', typ: u(undefined, '') },
-			{ json: 'description', js: 'description', typ: u(undefined, '') },
-			{ json: 'job', js: 'job', typ: u(undefined, '') },
-			{ json: 'name', js: 'name', typ: u(undefined, '') },
-			{ json: 'name_kana', js: 'name_kana', typ: u(undefined, '') },
-			{ json: 'profile_text', js: 'profile_text', typ: u(undefined, '') },
+			{ json: 'job', js: 'job', typ: '' },
+			{ json: 'name', js: 'name', typ: '' },
+			{ json: 'name_kana', js: 'name_kana', typ: '' },
+			{ json: 'profile_text', js: 'profile_text', typ: '' },
 			{ json: 'createdAt', js: 'createdAt', typ: Date },
 			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
 			{ json: 'publishedAt', js: 'publishedAt', typ: Date },
-			{ json: 'links', js: 'links', typ: u(undefined, a(r('Link'))) },
-			{ json: 'profile_img', js: 'profile_img', typ: u(undefined, r('OgpImg')) },
-			{ json: 'ogp_img', js: 'ogp_img', typ: u(undefined, r('OgpImg')) },
-			{ json: '__type', js: '__type', typ: u(undefined, '') },
-			{ json: 'copy_right', js: 'copy_right', typ: u(undefined, '') },
+			{ json: 'profile_img', js: 'profile_img', typ: r('ProfileImg') },
+			{ json: 'basic_seo', js: 'basic_seo', typ: r('BasicSEO') },
+			{ json: 'sns', js: 'sns', typ: a(r('Sn')) },
+			{ json: 'biography', js: 'biography', typ: a(r('Biography')) },
 		],
 		false,
 	),
-	Link: o(
+	BasicSEO: o(
 		[
 			{ json: 'id', js: 'id', typ: 0 },
-			{ json: 'url', js: 'url', typ: '' },
-			{ json: 'icon', js: 'icon', typ: r('OgpImg') },
+			{ json: 'title', js: 'title', typ: '' },
+			{ json: 'description', js: 'description', typ: '' },
+			{ json: 'ogp_img', js: 'ogp_img', typ: r('OgpImg') },
 		],
 		false,
 	),
@@ -333,7 +410,7 @@ const typeMap: any = {
 			{ json: 'caption', js: 'caption', typ: '' },
 			{ json: 'width', js: 'width', typ: u(0, null) },
 			{ json: 'height', js: 'height', typ: u(0, null) },
-			{ json: 'formats', js: 'formats', typ: u(r('Formats'), null) },
+			{ json: 'formats', js: 'formats', typ: u(r('PurpleFormats'), null) },
 			{ json: 'hash', js: 'hash', typ: '' },
 			{ json: 'ext', js: 'ext', typ: '' },
 			{ json: 'mime', js: 'mime', typ: '' },
@@ -344,20 +421,19 @@ const typeMap: any = {
 			{ json: 'provider_metadata', js: 'provider_metadata', typ: r('ProviderMetadata') },
 			{ json: 'createdAt', js: 'createdAt', typ: Date },
 			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
-			{ json: 'related', js: 'related', typ: u(undefined, r('Related')) },
 		],
 		false,
 	),
-	Formats: o(
+	PurpleFormats: o(
 		[
-			{ json: 'large', js: 'large', typ: u(undefined, r('Large')) },
-			{ json: 'small', js: 'small', typ: r('Large') },
-			{ json: 'medium', js: 'medium', typ: u(undefined, r('Large')) },
-			{ json: 'thumbnail', js: 'thumbnail', typ: r('Large') },
+			{ json: 'large', js: 'large', typ: r('Small') },
+			{ json: 'small', js: 'small', typ: r('Small') },
+			{ json: 'medium', js: 'medium', typ: r('Small') },
+			{ json: 'thumbnail', js: 'thumbnail', typ: r('Small') },
 		],
 		false,
 	),
-	Large: o(
+	Small: o(
 		[
 			{ json: 'ext', js: 'ext', typ: '' },
 			{ json: 'url', js: 'url', typ: '' },
@@ -379,27 +455,104 @@ const typeMap: any = {
 		],
 		false,
 	),
+	Biography: o(
+		[
+			{ json: 'id', js: 'id', typ: 0 },
+			{ json: 'time', js: 'time', typ: '' },
+			{ json: 'title', js: 'title', typ: '' },
+			{ json: 'note', js: 'note', typ: u(null, '') },
+			{ json: 'jobs', js: 'jobs', typ: a(r('Job')) },
+			{ json: 'skills', js: 'skills', typ: r('Skills') },
+			{ json: 'links', js: 'links', typ: a(r('Link')) },
+		],
+		false,
+	),
+	Job: o(
+		[
+			{ json: 'id', js: 'id', typ: 0 },
+			{ json: 'name', js: 'name', typ: '' },
+		],
+		false,
+	),
+	Link: o(
+		[
+			{ json: 'id', js: 'id', typ: 0 },
+			{ json: 'title', js: 'title', typ: '' },
+			{ json: 'url', js: 'url', typ: '' },
+		],
+		false,
+	),
+	Skills: o([{ json: 'data', js: 'data', typ: a(r('DAT')) }], false),
+	DAT: o(
+		[
+			{ json: 'id', js: 'id', typ: 0 },
+			{ json: 'attributes', js: 'attributes', typ: r('TentacledAttributes') },
+		],
+		false,
+	),
+	TentacledAttributes: o(
+		[
+			{ json: 'name', js: 'name', typ: '' },
+			{ json: 'category', js: 'category', typ: u(undefined, r('Category')) },
+			{ json: 'createdAt', js: 'createdAt', typ: Date },
+			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
+			{ json: 'publishedAt', js: 'publishedAt', typ: Date },
+			{ json: 'icon', js: 'icon', typ: u(undefined, r('OgpImg')) },
+		],
+		false,
+	),
+	ProfileImg: o([{ json: 'data', js: 'data', typ: r('ProfileImgData') }], false),
+	ProfileImgData: o(
+		[
+			{ json: 'id', js: 'id', typ: 0 },
+			{ json: 'attributes', js: 'attributes', typ: r('StickyAttributes') },
+		],
+		false,
+	),
+	StickyAttributes: o(
+		[
+			{ json: 'name', js: 'name', typ: '' },
+			{ json: 'alternativeText', js: 'alternativeText', typ: '' },
+			{ json: 'caption', js: 'caption', typ: '' },
+			{ json: 'width', js: 'width', typ: 0 },
+			{ json: 'height', js: 'height', typ: 0 },
+			{ json: 'formats', js: 'formats', typ: r('FluffyFormats') },
+			{ json: 'hash', js: 'hash', typ: '' },
+			{ json: 'ext', js: 'ext', typ: '' },
+			{ json: 'mime', js: 'mime', typ: '' },
+			{ json: 'size', js: 'size', typ: 3.14 },
+			{ json: 'url', js: 'url', typ: '' },
+			{ json: 'previewUrl', js: 'previewUrl', typ: null },
+			{ json: 'provider', js: 'provider', typ: '' },
+			{ json: 'provider_metadata', js: 'provider_metadata', typ: r('ProviderMetadata') },
+			{ json: 'createdAt', js: 'createdAt', typ: Date },
+			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
+			{ json: 'related', js: 'related', typ: r('Related') },
+		],
+		false,
+	),
+	FluffyFormats: o(
+		[
+			{ json: 'small', js: 'small', typ: r('Small') },
+			{ json: 'thumbnail', js: 'thumbnail', typ: r('Small') },
+		],
+		false,
+	),
 	Related: o([{ json: 'data', js: 'data', typ: a(r('Datum')) }], false),
 	Datum: o(
 		[
 			{ json: 'id', js: 'id', typ: 0 },
-			{ json: 'attributes', js: 'attributes', typ: r('DatumAttributes') },
+			{ json: 'attributes', js: 'attributes', typ: r('IndigoAttributes') },
 		],
 		false,
 	),
-	DatumAttributes: o(
+	IndigoAttributes: o(
 		[
 			{ json: '__type', js: '__type', typ: '' },
 			{ json: 'createdAt', js: 'createdAt', typ: Date },
 			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
 			{ json: 'publishedAt', js: 'publishedAt', typ: Date },
 			{ json: 'copy_right', js: 'copy_right', typ: u(undefined, '') },
-			{ json: 'path', js: 'path', typ: u(undefined, '') },
-			{ json: 'title', js: 'title', typ: u(undefined, '') },
-			{ json: 'description', js: 'description', typ: u(undefined, '') },
-			{ json: 'heading', js: 'heading', typ: u(undefined, '') },
-			{ json: 'contents', js: 'contents', typ: u(undefined, '') },
-			{ json: 'catch_copy', js: 'catch_copy', typ: u(undefined, '') },
 			{ json: 'job', js: 'job', typ: u(undefined, '') },
 			{ json: 'name', js: 'name', typ: u(undefined, '') },
 			{ json: 'name_kana', js: 'name_kana', typ: u(undefined, '') },
@@ -407,6 +560,16 @@ const typeMap: any = {
 		],
 		false,
 	),
+	Sn: o(
+		[
+			{ json: 'id', js: 'id', typ: 0 },
+			{ json: 'url', js: 'url', typ: '' },
+			{ json: 'sns', js: 'sns', typ: r('Sns') },
+		],
+		false,
+	),
+	Sns: o([{ json: 'data', js: 'data', typ: r('DAT') }], false),
 	Meta: o([], false),
 	ResourceType: ['image'],
+	Category: ['lang', 'tool'],
 };
