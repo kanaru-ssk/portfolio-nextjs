@@ -117,10 +117,10 @@ export interface Link {
 }
 
 export interface Skills {
-	data: DAT[];
+	data: Skill[];
 }
 
-export interface DAT {
+export interface Skill {
 	id: number;
 	attributes: TentacledAttributes;
 }
@@ -201,7 +201,7 @@ export interface Sn {
 }
 
 export interface Sns {
-	data: DAT;
+	data: Skill;
 }
 
 export interface Meta {}
@@ -482,8 +482,8 @@ const typeMap: any = {
 		],
 		false,
 	),
-	Skills: o([{ json: 'data', js: 'data', typ: a(r('DAT')) }], false),
-	DAT: o(
+	Skills: o([{ json: 'data', js: 'data', typ: a(r('Skill')) }], false),
+	Skill: o(
 		[
 			{ json: 'id', js: 'id', typ: 0 },
 			{ json: 'attributes', js: 'attributes', typ: r('TentacledAttributes') },
@@ -568,7 +568,7 @@ const typeMap: any = {
 		],
 		false,
 	),
-	Sns: o([{ json: 'data', js: 'data', typ: r('DAT') }], false),
+	Sns: o([{ json: 'data', js: 'data', typ: r('Skill') }], false),
 	Meta: o([], false),
 	ResourceType: ['image'],
 	Category: ['lang', 'tool'],
