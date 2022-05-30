@@ -3,7 +3,7 @@ import Head from 'next/head';
 const EditorJSHtml = require('editorjs-html');
 
 // lib
-import { fetchAPI } from 'libs/api';
+import { fetchAPI } from 'libs/strapi';
 import { CommonRes, Common } from 'types/common';
 import { AboutPageRes, AboutPage } from 'types/aboutPage';
 import { ContactPageRes, ContactPage } from 'types/contactPage';

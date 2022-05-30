@@ -2,7 +2,7 @@ import type { NextPage, GetStaticProps } from 'next';
 import Head from 'next/head';
 
 // lib
-import { fetchAPI } from 'libs/api';
+import { fetchAPI } from 'libs/strapi';
 import { CommonRes, Common } from 'types/common';
 import { AboutPageRes, AboutPage, Skills } from 'types/aboutPage';
 import { WorksRes } from 'types/works';
