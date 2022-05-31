@@ -7,6 +7,9 @@ const config = {
 
 		return config;
 	},
+	images: {
+		domains: ['res.cloudinary.com'],
+	},
 };
 
 module.exports = config;
