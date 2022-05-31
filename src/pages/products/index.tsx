@@ -43,7 +43,7 @@ const Products: NextPage<Props> = ({ common, about, products, productsRes, works
 				<title>{products.basic_seo.title}</title>
 				<meta name="description" content={products.basic_seo.description} />
 			</Head>
-			<Header logo={common.header_logo.data.attributes.url} />
+			<Header />
 			<main className="p-4">
 				<div className="h-20"></div>
 
@@ -51,13 +51,7 @@ const Products: NextPage<Props> = ({ common, about, products, productsRes, works
 					return <div key={key} dangerouslySetInnerHTML={{ __html: value }}></div>;
 				})}
 			</main>
-			<Footer
-				logo={common.logo_white.data.attributes.url}
-				copyRight={common.copy_right}
-				snsLinks={about.sns}
-				productsRes={productsRes}
-				worksRes={worksRes}
-			/>
+			<Footer copyRight={common.copy_right} snsLinks={about.sns} productsRes={productsRes} worksRes={worksRes} />
 		</>
 	);
 };

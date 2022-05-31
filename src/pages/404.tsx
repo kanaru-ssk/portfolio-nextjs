@@ -24,7 +24,7 @@ type Props = {
 const Custom404: NextPage<Props> = ({ common, about, productsRes, worksRes }: Props) => {
 	return (
 		<>
-			<Header logo={common.header_logo.data.attributes.url} />
+			<Header />
 			<main className="p-4">
 				<div className="h-20"></div>
 				<h1>404 Not Found</h1>
@@ -33,13 +33,7 @@ const Custom404: NextPage<Props> = ({ common, about, productsRes, worksRes }: Pr
 					<A title="トップページに戻る" url="/" />
 				</div>
 			</main>
-			<Footer
-				logo={common.logo_white.data.attributes.url}
-				copyRight={common.copy_right}
-				snsLinks={about.sns}
-				productsRes={productsRes}
-				worksRes={worksRes}
-			/>
+			<Footer copyRight={common.copy_right} snsLinks={about.sns} productsRes={productsRes} worksRes={worksRes} />
 		</>
 	);
 };

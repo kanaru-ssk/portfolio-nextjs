@@ -8,17 +8,16 @@ import OfficialSns from './OfficialSns';
 import Copy from './Copy';
 
 type Props = {
-	logo: string;
 	copyRight: string;
 	snsLinks: Sn[];
 	productsRes: ProductsRes;
 	worksRes: WorksRes;
 };
 
-const Footer = ({ logo, copyRight, snsLinks, productsRes, worksRes }: Props) => {
+const Footer = ({ copyRight, snsLinks, productsRes, worksRes }: Props) => {
 	return (
 		<footer className="w-full bg-black text-white">
-			<Logo logo={logo} />
+			<Logo />
 			<SiteMap productsRes={productsRes} worksRes={worksRes} />
 			<OfficialSns snsLinks={snsLinks} />
 			<Copy copyRight={copyRight} />

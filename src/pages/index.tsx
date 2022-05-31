@@ -55,7 +55,7 @@ const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Pr
 				<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 			</Head>
 
-			<Header logo={common.header_logo.data.attributes.url} />
+			<Header />
 
 			<main className="p-4">
 				<FirstView catchCopy={top.catch_copy} />
@@ -73,13 +73,7 @@ const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Pr
 				</div>
 			</main>
 
-			<Footer
-				logo={common.logo_white.data.attributes.url}
-				copyRight={common.copy_right}
-				snsLinks={about.sns}
-				productsRes={productsRes}
-				worksRes={worksRes}
-			/>
+			<Footer copyRight={common.copy_right} snsLinks={about.sns} productsRes={productsRes} worksRes={worksRes} />
 		</>
 	);
 };

@@ -43,7 +43,7 @@ const About: NextPage<Props> = ({ common, about, skills, productsRes, worksRes }
 				<title>{about.basic_seo.title}</title>
 				<meta name="description" content={about.basic_seo.description} />
 			</Head>
-			<Header logo={common.header_logo.data.attributes.url} />
+			<Header />
 			<main className="p-4">
 				<div className="h-20"></div>
 				<div className="py-8">
@@ -83,13 +83,7 @@ const About: NextPage<Props> = ({ common, about, skills, productsRes, worksRes }
 					<ContactButton />
 				</div>
 			</main>
-			<Footer
-				logo={common.logo_white.data.attributes.url}
-				copyRight={common.copy_right}
-				snsLinks={about.sns}
-				productsRes={productsRes}
-				worksRes={worksRes}
-			/>
+			<Footer copyRight={common.copy_right} snsLinks={about.sns} productsRes={productsRes} worksRes={worksRes} />
 		</>
 	);
 };

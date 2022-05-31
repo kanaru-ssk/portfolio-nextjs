@@ -49,7 +49,7 @@ const Contact: NextPage<Props> = ({ common, about, contact, productsRes, worksRe
 				<title>{contact.basic_seo.title}</title>
 				<meta name="description" content={contact.basic_seo.description} />
 			</Head>
-			<Header logo={common.header_logo.data.attributes.url} />
+			<Header />
 			<main className="p-4">
 				<div className="h-20"></div>
 
@@ -61,13 +61,7 @@ const Contact: NextPage<Props> = ({ common, about, contact, productsRes, worksRe
 				{isSendSuccess && <SendSuccess />}
 				{isSendSuccess === false && <SendFaile />}
 			</main>
-			<Footer
-				logo={common.logo_white.data.attributes.url}
-				copyRight={common.copy_right}
-				snsLinks={about.sns}
-				productsRes={productsRes}
-				worksRes={worksRes}
-			/>
+			<Footer copyRight={common.copy_right} snsLinks={about.sns} productsRes={productsRes} worksRes={worksRes} />
 		</>
 	);
 };
