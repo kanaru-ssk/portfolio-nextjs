@@ -25,7 +25,9 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html lang="ja">
-				<Head />
+				<Head>
+					<meta name="theme-color" content="#232C93" />
+				</Head>
 				<body>
 					<Main />
 					<NextScript />
