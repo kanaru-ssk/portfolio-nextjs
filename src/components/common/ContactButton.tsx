@@ -5,7 +5,7 @@ const ContactButton = () => {
 		<div className="text-center py-2">
 			<Link href="/contact">
 				<a>
-					<div className="inline-block rounded-full border border-solid border-black px-4 py-1 hover:bg-black hover:text-white">
+					<div className="inline-block rounded-full border border-black px-4 py-1 hover:bg-black hover:text-white">
 						お問い合わせ
 					</div>
 				</a>
