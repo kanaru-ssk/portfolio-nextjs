@@ -11,7 +11,7 @@ type Props = {
 	note: string;
 };
 
-const OneBio = ({ date, title, jobs, skills, links, note }: Props) => {
+const Biography = ({ date, title, jobs, skills, links, note }: Props) => {
 	const langs = skills.data.filter((value) => {
 		return value.attributes.category === 'lang';
 	});
@@ -83,4 +83,4 @@ const OneBio = ({ date, title, jobs, skills, links, note }: Props) => {
 	);
 };
 
-export default OneBio;
+export default Biography;
