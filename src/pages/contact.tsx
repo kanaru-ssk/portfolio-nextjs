@@ -1,20 +1,23 @@
 import type { NextPage, GetStaticProps } from 'next';
 import Head from 'next/head';
-const EditorJSHtml = require('editorjs-html');
+import { useState } from 'react';
 
 // lib
 import { fetchAPI } from 'libs/strapi';
 import { CommonRes, Common } from 'types/common';
 import { AboutPageRes, AboutPage } from 'types/aboutPage';
 import { ContactPageRes, ContactPage } from 'types/contactPage';
-import { Works, WorksRes } from 'types/works';
+import { WorksRes } from 'types/works';
 import { ProductsRes } from 'types/products';
 
 // components
 import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
+import Form from 'components/contact/Form';
+import SendSuccess from 'components/contact/SendSuccess';
+import SendFaile from 'components/contact/SendFaile';
 
-export const config = { amp: true };
+// export const config = { amp: true };
 
 type Props = {
 	common: Common;
@@ -25,7 +28,11 @@ type Props = {
 };
 
 const Contact: NextPage<Props> = ({ common, about, contact, productsRes, worksRes }: Props) => {
+	const [isSendSuccess, setIsSendSuccess] = useState<boolean | null>(null);
+
+	const EditorJSHtml = require('editorjs-html');
 	const contents: string[] = EditorJSHtml().parse(JSON.parse(contact.contents));
+
 	return (
 		<>
 			<Head>
@@ -49,6 +56,10 @@ const Contact: NextPage<Props> = ({ common, about, contact, productsRes, worksRe
 				{contents.map((value, key) => {
 					return <div key={key} dangerouslySetInnerHTML={{ __html: value }}></div>;
 				})}
+
+				{isSendSuccess === null && <Form setIsSendSuccess={setIsSendSuccess} />}
+				{isSendSuccess && <SendSuccess />}
+				{isSendSuccess === false && <SendFaile />}
 			</main>
 			<Footer
 				logo={common.logo_white.data.attributes.url}
