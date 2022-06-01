@@ -18,10 +18,12 @@ export interface ContactPageResData {
 }
 
 export interface ContactPage {
-	contents: string;
 	createdAt: Date;
 	updatedAt: Date;
 	publishedAt: Date;
+	form_text: string;
+	success_text: string;
+	error_text: string;
 	basic_seo: BasicSEO;
 }
 
@@ -253,10 +255,12 @@ const typeMap: any = {
 	),
 	ContactPage: o(
 		[
-			{ json: 'contents', js: 'contents', typ: '' },
 			{ json: 'createdAt', js: 'createdAt', typ: Date },
 			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
 			{ json: 'publishedAt', js: 'publishedAt', typ: Date },
+			{ json: 'form_text', js: 'form_text', typ: '' },
+			{ json: 'success_text', js: 'success_text', typ: '' },
+			{ json: 'error_text', js: 'error_text', typ: '' },
 			{ json: 'basic_seo', js: 'basic_seo', typ: r('BasicSEO') },
 		],
 		false,

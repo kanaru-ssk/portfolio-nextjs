@@ -15,9 +15,7 @@ import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 import Form from 'components/contact/Form';
 import SendSuccess from 'components/contact/SendSuccess';
-import SendFaile from 'components/contact/SendFaile';
-
-// export const config = { amp: true };
+import SendError from 'components/contact/SendError';
 
 type Props = {
 	common: Common;
@@ -27,11 +25,11 @@ type Props = {
 	worksRes: WorksRes;
 };
 
+type SendStatus = 'Entering' | 'Unsend' | 'Sending' | 'Success' | 'Error';
+
 const Contact: NextPage<Props> = ({ common, about, contact, productsRes, worksRes }: Props) => {
 	const [isSendSuccess, setIsSendSuccess] = useState<boolean | null>(null);
-
-	const EditorJSHtml = require('editorjs-html');
-	const contents: string[] = EditorJSHtml().parse(JSON.parse(contact.contents));
+	const [sendStatus, setSendStatus] = useState<SendStatus>('Entering');
 
 	return (
 		<>
@@ -53,13 +51,13 @@ const Contact: NextPage<Props> = ({ common, about, contact, productsRes, worksRe
 			<main className="p-4">
 				<div className="h-20"></div>
 
-				{contents.map((value, key) => {
-					return <div key={key} dangerouslySetInnerHTML={{ __html: value }}></div>;
-				})}
+				<h1>contact</h1>
 
-				{isSendSuccess === null && <Form setIsSendSuccess={setIsSendSuccess} />}
-				{isSendSuccess && <SendSuccess />}
-				{isSendSuccess === false && <SendFaile />}
+				{(sendStatus === 'Entering' || sendStatus === 'Unsend' || sendStatus === 'Sending') && (
+					<Form sendStatus={sendStatus} setSendStatus={setSendStatus} text={contact.form_text} />
+				)}
+				{sendStatus === 'Success' && <SendSuccess text={contact.success_text} />}
+				{sendStatus === 'Error' && <SendError text={contact.error_text} />}
 			</main>
 			<Footer copyRight={common.copy_right} snsLinks={about.sns} productsRes={productsRes} worksRes={worksRes} />
 		</>
