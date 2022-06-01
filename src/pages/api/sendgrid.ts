@@ -23,15 +23,19 @@ const handler = (req: NextApiRequest, res: NextApiResponse<any>) => {
 			subject: 'お問合せ',
 			text:
 				'お問合せを受け付けました。\n\n' +
+				'メールアドレス : ' +
+				req.body.mail +
 				'本文 : \n' +
 				req.body.message +
-				'\n\n' +
+				'\n\n\n' +
 				'自動返信メール : \n' +
+				'----------------------------------------\n' +
 				'お問合せを受け付けました。回答をお待ちください。\n\n' +
 				'セキュリティの関係上、お問い合わせ内容は自動返信メールに記載しておりません。\n\n' +
 				'佐々木哉瑠\n' +
 				'mail : ' +
-				process.env.CONTACT_MAIL_ADDRESS,
+				process.env.CONTACT_MAIL_ADDRESS +
+				'----------------------------------------\n',
 		};
 
 		(async () => {
