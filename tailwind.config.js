@@ -8,6 +8,7 @@ module.exports = {
 			gray: '#ddd',
 			'gray-100': '#595959',
 			blue: '#232C93',
+			red: '#b00',
 		},
 		fontFamily: {
 			sans: ['Nunito Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],

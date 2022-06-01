@@ -1,32 +1,33 @@
 import { useState, useEffect } from 'react';
 
 import Text from 'components/common/Text';
-import { send } from 'process';
 
-type SendStatus = 'Entering' | 'Unsend' | 'Sending' | 'Success' | 'Error';
+type ViewStatus = 'Form' | 'Success' | 'Error';
+type InputStatus = 'Entering' | 'Ready' | 'Sending';
 
 type Props = {
-	sendStatus: SendStatus;
-	setSendStatus: React.Dispatch<React.SetStateAction<SendStatus>>;
+	viewStatus: ViewStatus;
+	setViewStatus: React.Dispatch<React.SetStateAction<ViewStatus>>;
 	text: string;
 };
 
-const Form = ({ sendStatus, setSendStatus, text }: Props) => {
+const Form = ({ setViewStatus, text }: Props) => {
+	const [inputStatus, setInputStatus] = useState<InputStatus>('Entering');
 	const [email, setEmail] = useState<string>('');
 	const [message, setMessage] = useState<string>('');
 
 	useEffect(() => {
 		const emailFormat = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
 		if (emailFormat.test(email) && message !== '') {
-			setSendStatus('Unsend');
+			setInputStatus('Ready');
 		} else {
-			setSendStatus('Entering');
+			setInputStatus('Entering');
 		}
-	}, [email, message, setSendStatus]);
+	}, [email, message, setInputStatus]);
 
 	const onSubmitHundler = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		setSendStatus('Sending');
+		setInputStatus('Sending');
 		const res = await fetch('/api/sendgrid', {
 			body: JSON.stringify({
 				email: email,
@@ -42,9 +43,12 @@ const Form = ({ sendStatus, setSendStatus, text }: Props) => {
 		const result = await res.json();
 
 		if (result.isSendSuccess) {
-			setSendStatus('Success');
+			setViewStatus('Success');
 		} else {
-			setSendStatus('Error');
+			setViewStatus('Error');
+			setInputStatus('Entering');
+			setEmail('');
+			setMessage('');
 		}
 	};
 
@@ -54,6 +58,7 @@ const Form = ({ sendStatus, setSendStatus, text }: Props) => {
 			<div className="py-2">
 				<div className="py-2">メールアドレス</div>
 				<input
+					value={email}
 					onChange={(e) => {
 						setEmail(e.target.value);
 					}}
@@ -67,6 +72,7 @@ const Form = ({ sendStatus, setSendStatus, text }: Props) => {
 			<div className="py-2">
 				<div className="py-2">お問い合わせ内容</div>
 				<textarea
+					value={message}
 					onChange={(e) => {
 						setMessage(e.target.value);
 					}}
@@ -77,19 +83,19 @@ const Form = ({ sendStatus, setSendStatus, text }: Props) => {
 			</div>
 
 			<div className="py-4 text-center">
-				{sendStatus === 'Entering' && (
+				{inputStatus === 'Entering' && (
 					<button className="border border-gray text-gray-100 rounded-full h-12 px-16" type="submit">
 						送信
 					</button>
 				)}
 
-				{sendStatus === 'Unsend' && (
+				{inputStatus === 'Ready' && (
 					<button className="border rounded-full h-12 px-16 hover:bg-black hover:text-white" type="submit">
 						送信
 					</button>
 				)}
 
-				{sendStatus === 'Sending' && (
+				{inputStatus === 'Sending' && (
 					<button className="border rounded-full h-12 px-16" type="submit">
 						<svg width="24" height="24" viewBox="0 0 38 38" stroke="#232C93">
 							<g fill="none" fillRule="evenodd">

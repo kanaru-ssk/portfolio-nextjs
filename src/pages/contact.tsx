@@ -25,11 +25,10 @@ type Props = {
 	worksRes: WorksRes;
 };
 
-type SendStatus = 'Entering' | 'Unsend' | 'Sending' | 'Success' | 'Error';
+type ViewStatus = 'Form' | 'Success' | 'Error';
 
 const Contact: NextPage<Props> = ({ common, about, contact, productsRes, worksRes }: Props) => {
-	const [isSendSuccess, setIsSendSuccess] = useState<boolean | null>(null);
-	const [sendStatus, setSendStatus] = useState<SendStatus>('Entering');
+	const [viewStatus, setViewStatus] = useState<ViewStatus>('Form');
 
 	return (
 		<>
@@ -53,11 +52,16 @@ const Contact: NextPage<Props> = ({ common, about, contact, productsRes, worksRe
 
 				<h1>contact</h1>
 
-				{(sendStatus === 'Entering' || sendStatus === 'Unsend' || sendStatus === 'Sending') && (
-					<Form sendStatus={sendStatus} setSendStatus={setSendStatus} text={contact.form_text} />
+				{viewStatus === 'Form' && (
+					<Form viewStatus={viewStatus} setViewStatus={setViewStatus} text={contact.form_text} />
 				)}
-				{sendStatus === 'Success' && <SendSuccess text={contact.success_text} />}
-				{sendStatus === 'Error' && <SendError text={contact.error_text} />}
+				{viewStatus === 'Success' && <SendSuccess text={contact.success_text} />}
+				{viewStatus === 'Error' && (
+					<>
+						<Form viewStatus={viewStatus} setViewStatus={setViewStatus} text={contact.form_text} />
+						<SendError text={contact.error_text} />
+					</>
+				)}
 			</main>
 			<Footer copyRight={common.copy_right} snsLinks={about.sns} productsRes={productsRes} worksRes={worksRes} />
 		</>
