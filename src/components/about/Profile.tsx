@@ -1,3 +1,5 @@
+import Text from 'components/common/Text';
+
 type Props = {
 	profileImg: string;
 	name: string;
@@ -7,11 +9,6 @@ type Props = {
 };
 
 const Profile = ({ profileImg, name, nameKana, job, profileText }: Props) => {
-	// \n -> <br />>
-	const lbToBr = (txt: string): (string | JSX.Element)[] => {
-		return txt.split(/(\n)/g).map((value, key) => (value === '\n' ? <br key={key} /> : value));
-	};
-
 	return (
 		<>
 			<div className="flex items-center gap-8 py-4">
@@ -22,7 +19,9 @@ const Profile = ({ profileImg, name, nameKana, job, profileText }: Props) => {
 					<div>{nameKana}</div>
 				</div>
 			</div>
-			<p className="py-4">{lbToBr(profileText)}</p>
+			<p className="py-4">
+				<Text text={profileText} />
+			</p>
 		</>
 	);
 };
