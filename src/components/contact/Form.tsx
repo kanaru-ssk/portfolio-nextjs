@@ -22,7 +22,7 @@ const Form = ({ sendStatus, setSendStatus, text }: Props) => {
 		} else {
 			setSendStatus('Entering');
 		}
-	}, [email, message]);
+	}, [email, message, setSendStatus]);
 
 	const onSubmitHundler = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
