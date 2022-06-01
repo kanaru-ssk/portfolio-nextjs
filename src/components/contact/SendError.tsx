@@ -4,7 +4,7 @@ type Props = {
 	text: string;
 };
 
-const SendSuccess = ({ text }: Props) => {
+const SendError = ({ text }: Props) => {
 	return (
 		<div>
 			<Text text={text} />
@@ -12,4 +12,4 @@ const SendSuccess = ({ text }: Props) => {
 	);
 };
 
-export default SendSuccess;
+export default SendError;
