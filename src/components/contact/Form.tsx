@@ -78,7 +78,7 @@ const Form = ({ sendStatus, setSendStatus, text }: Props) => {
 
 			<div className="py-4 text-center">
 				{sendStatus === 'Entering' && (
-					<button className="border border-gray text-gray rounded-full h-12 px-16" type="submit">
+					<button className="border border-gray text-gray-100 rounded-full h-12 px-16" type="submit">
 						送信
 					</button>
 				)}
