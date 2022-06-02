@@ -25,16 +25,17 @@ export interface Work {
 	updatedAt: Date;
 	publishedAt: Date;
 	basic_seo: BasicSEO;
+	eye_catch: EyeCatch;
 }
 
 export interface BasicSEO {
 	id: number;
 	title: string;
 	description: string;
-	ogp_img: OgpImg;
+	ogp_img: EyeCatch;
 }
 
-export interface OgpImg {
+export interface EyeCatch {
 	data: Data;
 }
 
@@ -51,8 +52,8 @@ export interface DataAttributes {
 	height: number;
 	formats: Formats;
 	hash: string;
-	ext: string;
-	mime: string;
+	ext: EXT;
+	mime: MIME;
 	size: number;
 	url: string;
 	previewUrl: null;
@@ -60,6 +61,11 @@ export interface DataAttributes {
 	provider_metadata: ProviderMetadata;
 	createdAt: Date;
 	updatedAt: Date;
+	related?: Related;
+}
+
+export enum EXT {
+	PNG = '.png',
 }
 
 export interface Formats {
@@ -70,10 +76,10 @@ export interface Formats {
 }
 
 export interface Large {
-	ext: string;
+	ext: EXT;
 	url: string;
 	hash: string;
-	mime: string;
+	mime: MIME;
 	name: string;
 	path: null;
 	size: number;
@@ -82,9 +88,45 @@ export interface Large {
 	provider_metadata: ProviderMetadata;
 }
 
+export enum MIME {
+	ImagePNG = 'image/png',
+}
+
 export interface ProviderMetadata {
 	public_id: string;
-	resource_type: string;
+	resource_type: ResourceType;
+}
+
+export enum ResourceType {
+	Image = 'image',
+}
+
+export interface Related {
+	data: RelatedDatum[];
+}
+
+export interface RelatedDatum {
+	id: number;
+	attributes: FluffyAttributes;
+}
+
+export interface FluffyAttributes {
+	__type: string;
+	createdAt: Date;
+	updatedAt: Date;
+	publishedAt: Date;
+	copy_right?: string;
+	catch_copy?: string;
+	contents?: string;
+	form_text?: string;
+	success_text?: string;
+	error_text?: string;
+	path?: string;
+	heading?: string;
+	job?: string;
+	name?: string;
+	name_kana?: string;
+	profile_text?: string;
 }
 
 export interface Meta {
@@ -271,6 +313,7 @@ const typeMap: any = {
 			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
 			{ json: 'publishedAt', js: 'publishedAt', typ: Date },
 			{ json: 'basic_seo', js: 'basic_seo', typ: r('BasicSEO') },
+			{ json: 'eye_catch', js: 'eye_catch', typ: r('EyeCatch') },
 		],
 		false,
 	),
@@ -279,11 +322,11 @@ const typeMap: any = {
 			{ json: 'id', js: 'id', typ: 0 },
 			{ json: 'title', js: 'title', typ: '' },
 			{ json: 'description', js: 'description', typ: '' },
-			{ json: 'ogp_img', js: 'ogp_img', typ: r('OgpImg') },
+			{ json: 'ogp_img', js: 'ogp_img', typ: r('EyeCatch') },
 		],
 		false,
 	),
-	OgpImg: o([{ json: 'data', js: 'data', typ: r('Data') }], false),
+	EyeCatch: o([{ json: 'data', js: 'data', typ: r('Data') }], false),
 	Data: o(
 		[
 			{ json: 'id', js: 'id', typ: 0 },
@@ -300,8 +343,8 @@ const typeMap: any = {
 			{ json: 'height', js: 'height', typ: 0 },
 			{ json: 'formats', js: 'formats', typ: r('Formats') },
 			{ json: 'hash', js: 'hash', typ: '' },
-			{ json: 'ext', js: 'ext', typ: '' },
-			{ json: 'mime', js: 'mime', typ: '' },
+			{ json: 'ext', js: 'ext', typ: r('EXT') },
+			{ json: 'mime', js: 'mime', typ: r('MIME') },
 			{ json: 'size', js: 'size', typ: 3.14 },
 			{ json: 'url', js: 'url', typ: '' },
 			{ json: 'previewUrl', js: 'previewUrl', typ: null },
@@ -309,6 +352,7 @@ const typeMap: any = {
 			{ json: 'provider_metadata', js: 'provider_metadata', typ: r('ProviderMetadata') },
 			{ json: 'createdAt', js: 'createdAt', typ: Date },
 			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
+			{ json: 'related', js: 'related', typ: u(undefined, r('Related')) },
 		],
 		false,
 	),
@@ -323,10 +367,10 @@ const typeMap: any = {
 	),
 	Large: o(
 		[
-			{ json: 'ext', js: 'ext', typ: '' },
+			{ json: 'ext', js: 'ext', typ: r('EXT') },
 			{ json: 'url', js: 'url', typ: '' },
 			{ json: 'hash', js: 'hash', typ: '' },
-			{ json: 'mime', js: 'mime', typ: '' },
+			{ json: 'mime', js: 'mime', typ: r('MIME') },
 			{ json: 'name', js: 'name', typ: '' },
 			{ json: 'path', js: 'path', typ: null },
 			{ json: 'size', js: 'size', typ: 3.14 },
@@ -339,7 +383,36 @@ const typeMap: any = {
 	ProviderMetadata: o(
 		[
 			{ json: 'public_id', js: 'public_id', typ: '' },
-			{ json: 'resource_type', js: 'resource_type', typ: '' },
+			{ json: 'resource_type', js: 'resource_type', typ: r('ResourceType') },
+		],
+		false,
+	),
+	Related: o([{ json: 'data', js: 'data', typ: a(r('RelatedDatum')) }], false),
+	RelatedDatum: o(
+		[
+			{ json: 'id', js: 'id', typ: 0 },
+			{ json: 'attributes', js: 'attributes', typ: r('FluffyAttributes') },
+		],
+		false,
+	),
+	FluffyAttributes: o(
+		[
+			{ json: '__type', js: '__type', typ: '' },
+			{ json: 'createdAt', js: 'createdAt', typ: Date },
+			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
+			{ json: 'publishedAt', js: 'publishedAt', typ: Date },
+			{ json: 'copy_right', js: 'copy_right', typ: u(undefined, '') },
+			{ json: 'catch_copy', js: 'catch_copy', typ: u(undefined, '') },
+			{ json: 'contents', js: 'contents', typ: u(undefined, '') },
+			{ json: 'form_text', js: 'form_text', typ: u(undefined, '') },
+			{ json: 'success_text', js: 'success_text', typ: u(undefined, '') },
+			{ json: 'error_text', js: 'error_text', typ: u(undefined, '') },
+			{ json: 'path', js: 'path', typ: u(undefined, '') },
+			{ json: 'heading', js: 'heading', typ: u(undefined, '') },
+			{ json: 'job', js: 'job', typ: u(undefined, '') },
+			{ json: 'name', js: 'name', typ: u(undefined, '') },
+			{ json: 'name_kana', js: 'name_kana', typ: u(undefined, '') },
+			{ json: 'profile_text', js: 'profile_text', typ: u(undefined, '') },
 		],
 		false,
 	),
@@ -353,4 +426,7 @@ const typeMap: any = {
 		],
 		false,
 	),
+	EXT: ['.png'],
+	MIME: ['image/png'],
+	ResourceType: ['image'],
 };

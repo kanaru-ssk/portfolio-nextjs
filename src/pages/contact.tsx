@@ -11,7 +11,6 @@ import { WorksRes } from 'types/works';
 import { ProductsRes } from 'types/products';
 
 // components
-import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 import Form from 'components/contact/Form';
 import SendSuccess from 'components/contact/SendSuccess';
@@ -46,7 +45,7 @@ const Contact: NextPage<Props> = ({ common, about, contact, productsRes, worksRe
 				<title>{contact.basic_seo.title}</title>
 				<meta name="description" content={contact.basic_seo.description} />
 			</Head>
-			<Header />
+
 			<main className="p-4">
 				<div className="h-20"></div>
 

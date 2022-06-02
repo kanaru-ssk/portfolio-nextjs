@@ -8,7 +8,6 @@ import { WorksRes } from 'types/works';
 import { ProductsRes } from 'types/products';
 
 // components
-import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 import A from 'components/common/A';
 
@@ -24,7 +23,6 @@ type Props = {
 const Custom404: NextPage<Props> = ({ common, about, productsRes, worksRes }: Props) => {
 	return (
 		<>
-			<Header />
 			<main className="p-4">
 				<div className="h-20"></div>
 				<h1>404 Not Found</h1>

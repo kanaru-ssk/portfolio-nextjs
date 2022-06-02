@@ -10,7 +10,6 @@ import { WorksRes } from 'types/works';
 import { ProductsRes } from 'types/products';
 
 // components
-import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 
 export const config = { amp: true };
@@ -42,7 +41,7 @@ const Works: NextPage<Props> = ({ common, about, works, productsRes, worksRes }:
 				<title>{works.basic_seo.title}</title>
 				<meta name="description" content={works.basic_seo.description} />
 			</Head>
-			<Header />
+
 			<main className="p-4">
 				<div className="h-20"></div>
 

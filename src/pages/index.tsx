@@ -10,7 +10,6 @@ import { WorksRes } from 'types/works';
 import { ProductsRes } from 'types/products';
 
 // components
-import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 import ContactButton from 'components/common/ContactButton';
 import FirstView from 'components/top/FirstView';
@@ -55,8 +54,6 @@ const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Pr
 				<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 			</Head>
 
-			<Header />
-
 			<main className="p-4">
 				<FirstView catchCopy={top.catch_copy} />
 				<AboutSection
@@ -66,7 +63,25 @@ const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Pr
 					job={about.job}
 					profileText={about.profile_text}
 				/>
-				<ProductsSection />
+
+				<ProductsSection productsRes={productsRes} />
+
+				<h2>works</h2>
+				<div>
+					{worksRes.data.map((value) => {
+						return (
+							<div key={value.id}>
+								<amp-img
+									src={value.attributes.eye_catch.data.attributes.url}
+									width="400"
+									height="210"
+									alt="works"
+								/>
+								<div>{value.attributes.heading}</div>
+							</div>
+						);
+					})}
+				</div>
 
 				<div className="py-8">
 					<ContactButton />
@@ -91,8 +106,12 @@ export const getStaticProps: GetStaticProps = async () => {
 			biography: { populate: '*' },
 		},
 	});
-	const productsRes: ProductsRes = await fetchAPI('products');
-	const worksRes: WorksRes = await fetchAPI('works');
+	const productsRes: ProductsRes = await fetchAPI('products', {
+		populate: { basic_seo: { populate: '*' }, eye_catch: { populate: '*' } },
+	});
+	const worksRes: WorksRes = await fetchAPI('works', {
+		populate: { basic_seo: { populate: '*' }, eye_catch: { populate: '*' } },
+	});
 
 	const common: Common = commonRes.data.attributes;
 	const top: TopPage = topRes.data.attributes;

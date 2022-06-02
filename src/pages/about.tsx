@@ -9,7 +9,6 @@ import { WorksRes } from 'types/works';
 import { ProductsRes } from 'types/products';
 
 // components
-import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 import ContactButton from 'components/common/ContactButton';
 import Profile from 'components/about/Profile';
@@ -43,7 +42,7 @@ const About: NextPage<Props> = ({ common, about, skills, productsRes, worksRes }
 				<title>{about.basic_seo.title}</title>
 				<meta name="description" content={about.basic_seo.description} />
 			</Head>
-			<Header />
+
 			<main className="p-4">
 				<div className="h-20"></div>
 				<div className="py-8">

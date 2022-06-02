@@ -10,7 +10,6 @@ import { WorksRes } from 'types/works';
 import { ProductsRes } from 'types/products';
 
 // components
-import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 
 export const config = { amp: true };
@@ -32,7 +31,6 @@ const Products: NextPage<Props> = ({ common, about, products, productsRes, works
 				<link rel="canonical" href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + '/products'} />
 				<link rel="icon" href={common.favicon.data.attributes.url} />
 
-				{/* ogp */}
 				<meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
 				<meta property="og:type" content="website" />
 				<meta property="og:image" content={products.basic_seo.ogp_img.data.attributes.url} />
@@ -43,7 +41,7 @@ const Products: NextPage<Props> = ({ common, about, products, productsRes, works
 				<title>{products.basic_seo.title}</title>
 				<meta name="description" content={products.basic_seo.description} />
 			</Head>
-			<Header />
+
 			<main className="p-4">
 				<div className="h-20"></div>
 

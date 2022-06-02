@@ -8,16 +8,18 @@
 // match the expected interface, even if the JSON is valid.
 
 export interface ProductsPageRes {
-	data: ProductsPageResData;
+	data: Datum;
 	meta: Meta;
 }
 
-export interface ProductsPageResData {
+export interface Datum {
 	id: number;
 	attributes: ProductsPage;
 }
 
 export interface ProductsPage {
+	path: string;
+	heading: string;
 	contents: string;
 	createdAt: Date;
 	updatedAt: Date;
@@ -33,15 +35,15 @@ export interface BasicSEO {
 }
 
 export interface OgpImg {
-	data: OgpImgData;
+	data: Data;
 }
 
-export interface OgpImgData {
+export interface Data {
 	id: number;
-	attributes: FluffyAttributes;
+	attributes: DataAttributes;
 }
 
-export interface FluffyAttributes {
+export interface DataAttributes {
 	name: string;
 	alternativeText: string;
 	caption: string;
@@ -85,7 +87,16 @@ export interface ProviderMetadata {
 	resource_type: string;
 }
 
-export interface Meta {}
+export interface Meta {
+	pagination: Pagination;
+}
+
+export interface Pagination {
+	page: number;
+	pageSize: number;
+	pageCount: number;
+	total: number;
+}
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
@@ -239,12 +250,12 @@ function r(name: string) {
 const typeMap: any = {
 	ProductsPageRes: o(
 		[
-			{ json: 'data', js: 'data', typ: r('ProductsPageResData') },
+			{ json: 'data', js: 'data', typ: a(r('Datum')) },
 			{ json: 'meta', js: 'meta', typ: r('Meta') },
 		],
 		false,
 	),
-	ProductsPageResData: o(
+	Datum: o(
 		[
 			{ json: 'id', js: 'id', typ: 0 },
 			{ json: 'attributes', js: 'attributes', typ: r('ProductsPage') },
@@ -253,6 +264,8 @@ const typeMap: any = {
 	),
 	ProductsPage: o(
 		[
+			{ json: 'path', js: 'path', typ: '' },
+			{ json: 'heading', js: 'heading', typ: '' },
 			{ json: 'contents', js: 'contents', typ: '' },
 			{ json: 'createdAt', js: 'createdAt', typ: Date },
 			{ json: 'updatedAt', js: 'updatedAt', typ: Date },
@@ -270,15 +283,15 @@ const typeMap: any = {
 		],
 		false,
 	),
-	OgpImg: o([{ json: 'data', js: 'data', typ: r('OgpImgData') }], false),
-	OgpImgData: o(
+	OgpImg: o([{ json: 'data', js: 'data', typ: r('Data') }], false),
+	Data: o(
 		[
 			{ json: 'id', js: 'id', typ: 0 },
-			{ json: 'attributes', js: 'attributes', typ: r('FluffyAttributes') },
+			{ json: 'attributes', js: 'attributes', typ: r('DataAttributes') },
 		],
 		false,
 	),
-	FluffyAttributes: o(
+	DataAttributes: o(
 		[
 			{ json: 'name', js: 'name', typ: '' },
 			{ json: 'alternativeText', js: 'alternativeText', typ: '' },
@@ -330,5 +343,14 @@ const typeMap: any = {
 		],
 		false,
 	),
-	Meta: o([], false),
+	Meta: o([{ json: 'pagination', js: 'pagination', typ: r('Pagination') }], false),
+	Pagination: o(
+		[
+			{ json: 'page', js: 'page', typ: 0 },
+			{ json: 'pageSize', js: 'pageSize', typ: 0 },
+			{ json: 'pageCount', js: 'pageCount', typ: 0 },
+			{ json: 'total', js: 'total', typ: 0 },
+		],
+		false,
+	),
 };

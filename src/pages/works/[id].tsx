@@ -9,7 +9,6 @@ import { ProductsRes } from 'types/products';
 import { WorksRes, Works, Work } from 'types/works';
 
 // components
-import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 
 export const config = { amp: true };
@@ -43,7 +42,6 @@ const WorksArticle: NextPage<Props> = ({ common, about, work, productsRes, works
 				<meta name="description" content={work.basic_seo.description} />
 			</Head>
 
-			<Header />
 			<main className="p-4">
 				<div className="h-20"></div>
 
@@ -59,7 +57,7 @@ const WorksArticle: NextPage<Props> = ({ common, about, work, productsRes, works
 export default WorksArticle;
 
 export const getStaticPaths = async () => {
-	const worksRes: WorksRes = await fetchAPI('works');
+	const worksRes: WorksRes = await fetchAPI('works', { populate: { basic_seo: { populate: '*' } } });
 	const paths = worksRes.data.map((works: Works) => `/works/${works.attributes.path}`);
 	return { paths, fallback: false };
 };
