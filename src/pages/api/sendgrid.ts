@@ -12,11 +12,12 @@ const handler = (req: NextApiRequest, res: NextApiResponse<any>) => {
 			subject: '【自動返信】お問合せありがとうございました。',
 			text:
 				'お問合せを受け付けました。回答をお待ちください。\n\n' +
-				'セキュリティの関係上、お問い合わせ内容は自動返信メールに記載しておりません。\n\n' +
+				'セキュリティの関係上、お問い合わせ内容は自動返信メールに記載しておりません。\n\n\n' +
 				'佐々木哉瑠\n' +
 				'mail : ' +
 				process.env.CONTACT_MAIL_ADDRESS,
 		};
+
 		const toContact: MailDataRequired = {
 			to: process.env.CONTACT_MAIL_ADDRESS,
 			from: process.env.FORM_MAIL_ADDRESS,
@@ -24,18 +25,20 @@ const handler = (req: NextApiRequest, res: NextApiResponse<any>) => {
 			text:
 				'お問合せを受け付けました。\n\n' +
 				'メールアドレス : ' +
-				req.body.mail +
+				req.body.email +
+				'\n' +
 				'本文 : \n' +
 				req.body.message +
 				'\n\n\n' +
-				'自動返信メール : \n' +
+				'自動返信メール内容 : \n' +
 				'----------------------------------------\n' +
 				'お問合せを受け付けました。回答をお待ちください。\n\n' +
-				'セキュリティの関係上、お問い合わせ内容は自動返信メールに記載しておりません。\n\n' +
+				'セキュリティの関係上、お問い合わせ内容は自動返信メールに記載しておりません。\n\n\n' +
 				'佐々木哉瑠\n' +
 				'mail : ' +
 				process.env.CONTACT_MAIL_ADDRESS +
-				'----------------------------------------\n',
+				'\n' +
+				'----------------------------------------',
 		};
 
 		(async () => {
