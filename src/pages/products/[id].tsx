@@ -74,7 +74,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		},
 	});
 	const productsRes: ProductsRes = await fetchAPI('products', {
-		filter: { path: params!.id },
+		filters: { path: { $eq: params!.id } },
 		populate: { basic_seo: { populate: '*' } },
 	});
 	const worksRes: WorksRes = await fetchAPI('works');

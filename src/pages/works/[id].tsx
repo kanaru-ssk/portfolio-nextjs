@@ -74,15 +74,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	});
 	const productsRes: ProductsRes = await fetchAPI('products');
 	const worksRes: WorksRes = await fetchAPI('works', {
-		filter: { path: params!.id },
+		filters: { path: { $eq: params!.id } },
 		populate: { basic_seo: { populate: '*' } },
 	});
 
 	const common: Common = commonRes.data.attributes;
 	const about: AboutPage = aboutRes.data.attributes;
-	const work: Work | undefined = worksRes.data.find((value) => {
-		return value.attributes.path === params!.id;
-	})?.attributes;
+	const work: Work = worksRes.data[0].attributes;
 
 	return {
 		props: {
