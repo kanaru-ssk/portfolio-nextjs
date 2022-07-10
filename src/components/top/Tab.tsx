@@ -8,7 +8,7 @@ const Tab = () => {
   const [tabStatus, setTabStatus] = useState<TabStatus>("about");
   return (
     <div>
-      <nav className="flex h-12 justify-evenly">
+      <nav className="sticky top-12 flex h-12 justify-evenly bg-white md:top-20">
         <TabMenu
           name="about"
           tabStatus={tabStatus}
