@@ -1,12 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
 
 import type { NextPage, GetStaticProps } from "next";
 
 import Footer from "components/common/Footer";
-import AboutSection from "components/top/AboutSection";
 import FirstView from "components/top/FirstView";
-import ProductsSection from "components/top/ProductsSection";
+import Tab from "components/top/Tab";
 import { fetchAPI } from "libs/strapi";
 import { AboutPageRes, AboutPage } from "types/aboutPage";
 import { CommonRes, Common } from "types/common";
@@ -65,7 +63,7 @@ const Home: NextPage<Props> = ({
         />
       </Head>
 
-      <main className="px-4">
+      <main>
         <div className="h-12 md:h-20"></div>
         <FirstView
           catchCopy={top.catch_copy}
@@ -75,34 +73,7 @@ const Home: NextPage<Props> = ({
           job={about.job}
         />
 
-        <AboutSection
-          profileImg={about.profile_img.data.attributes.url}
-          name={about.name}
-          nameKana={about.name_kana}
-          job={about.job}
-          profileText={about.profile_text}
-        />
-
-        <ProductsSection productsRes={productsRes} />
-
-        <h2>works</h2>
-        <div>
-          {worksRes.data.map((value) => {
-            return (
-              <div key={value.id}>
-                <Image
-                  src={value.attributes.eye_catch.data.attributes.url}
-                  width="400"
-                  height="210"
-                  alt="works"
-                />
-                <div>{value.attributes.heading}</div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="py-8"></div>
+        <Tab />
       </main>
 
       <Footer
