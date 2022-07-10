@@ -6,7 +6,7 @@ type Props = {
 
 const MoreButton = ({ url }: Props) => {
   return (
-    <div className="text-center py-2">
+    <div className="py-2 text-center">
       <Link href={url}>
         <a>
           <div className="inline-block rounded-full border border-solid border-black px-4 py-1 hover:bg-black hover:text-white">

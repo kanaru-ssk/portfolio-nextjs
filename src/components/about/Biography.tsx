@@ -18,10 +18,10 @@ const Biography = ({ date, title, jobs, skills, links, note }: Props) => {
     return value.attributes.category === "tool";
   });
   return (
-    <div className="py-4 border-y border-gray">
+    <div className="border-y border-gray py-4">
       <div>{date}</div>
       <div className="pl-8">
-        <h3 className="font-bold pb-2">{title}</h3>
+        <h3 className="pb-2 font-bold">{title}</h3>
         <div className="py-1">
           <div>担当 :</div>
           <ul>

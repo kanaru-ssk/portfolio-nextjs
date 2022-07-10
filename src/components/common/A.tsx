@@ -10,7 +10,7 @@ const A = ({ title, url }: Props) => {
     <Link href={url}>
       <a className="text-blue underline">
         <svg
-          className="inline mr-4"
+          className="mr-4 inline"
           width="7"
           height="12"
           viewBox="0 0 7 12"

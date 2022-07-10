@@ -4,7 +4,7 @@ import Menu from "./Menu";
 
 const Header = () => {
   return (
-    <header className="z-10 fixed flex justify-between items-center w-full h-20 px-4 bg-white">
+    <header className="fixed z-10 flex h-20 w-full items-center justify-between bg-white px-4">
       <Link href="/">
         <a title="トップページへ">
           <svg width="64" height="32">

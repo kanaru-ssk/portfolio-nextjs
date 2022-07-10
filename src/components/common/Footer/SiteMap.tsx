@@ -11,7 +11,7 @@ type Props = {
 
 const SiteMap = ({ productsRes, worksRes }: Props) => {
   return (
-    <div className="flex flex-wrap gap-8 justify-center px-4 py-8">
+    <div className="flex flex-wrap justify-center gap-8 px-4 py-8">
       <div className="w-36">
         <MenuLink path="about" />
       </div>

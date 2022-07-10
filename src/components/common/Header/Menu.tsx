@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Menu = () => {
   return (
-    <ul className="flex justify-right items-center list-none">
+    <ul className="justify-right flex list-none items-center">
       <li className="p-2 text-base">
         <Link href="/about">
           <a>about</a>
