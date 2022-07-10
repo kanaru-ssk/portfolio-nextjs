@@ -1,5 +1,4 @@
 import React from "react";
-
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import A from "components/common/A";

@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply box-border font-sans text-sm font-light leading-6 tracking-wider;
-  }
-  main {
-    @apply mx-auto max-w-3xl;
-  }
-  h1 {
-    @apply py-4 text-2xl;
-  }
-  h2 {
-    @apply py-2 text-xl;
-  }
+	body {
+		@apply text-sm box-border font-sans font-light tracking-wider leading-6;
+	}
+	main {
+		@apply mx-auto max-w-3xl;
+	}
+	h1 {
+		@apply text-2xl py-4;
+	}
+	h2 {
+		@apply text-xl py-2;
+	}
 }
