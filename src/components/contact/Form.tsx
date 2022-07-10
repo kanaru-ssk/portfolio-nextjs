@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import Text from 'components/common/Text';
+import Text from "components/common/Text";
 
-type ViewStatus = 'Form' | 'Success' | 'Error';
-type InputStatus = 'Entering' | 'Ready' | 'Sending';
+type ViewStatus = "Form" | "Success" | "Error";
+type InputStatus = "Entering" | "Ready" | "Sending";
 
 type Props = {
   setViewStatus: React.Dispatch<React.SetStateAction<ViewStatus>>;
@@ -11,43 +11,44 @@ type Props = {
 };
 
 const Form = ({ setViewStatus, text }: Props) => {
-  const [inputStatus, setInputStatus] = useState<InputStatus>('Entering');
-  const [email, setEmail] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [inputStatus, setInputStatus] = useState<InputStatus>("Entering");
+  const [email, setEmail] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
-    const emailFormat = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
-    if (emailFormat.test(email) && message !== '') {
-      setInputStatus('Ready');
+    const emailFormat =
+      /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
+    if (emailFormat.test(email) && message !== "") {
+      setInputStatus("Ready");
     } else {
-      setInputStatus('Entering');
+      setInputStatus("Entering");
     }
   }, [email, message, setInputStatus]);
 
   const onSubmitHundler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setInputStatus('Sending');
-    const res = await fetch('/api/sendgrid', {
+    setInputStatus("Sending");
+    const res = await fetch("/api/sendgrid", {
       body: JSON.stringify({
         email: email,
 
         message: message,
       }),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      method: 'POST',
+      method: "POST",
     });
 
     const result = await res.json();
 
     if (result.isSendSuccess) {
-      setViewStatus('Success');
+      setViewStatus("Success");
     } else {
-      setViewStatus('Error');
-      setInputStatus('Entering');
-      setEmail('');
-      setMessage('');
+      setViewStatus("Error");
+      setInputStatus("Entering");
+      setEmail("");
+      setMessage("");
     }
   };
 
@@ -61,7 +62,7 @@ const Form = ({ setViewStatus, text }: Props) => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-          className="block border h-12 p-2 w-full"
+          className="block h-12 w-full border p-2"
           type="email"
           placeholder="name@example.com"
           required
@@ -75,27 +76,33 @@ const Form = ({ setViewStatus, text }: Props) => {
           onChange={(e) => {
             setMessage(e.target.value);
           }}
-          className="block border h-24 p-2 w-full"
+          className="block h-24 w-full border p-2"
           placeholder="お問い合わせ内容を入力してください。"
           required
         ></textarea>
       </div>
 
       <div className="py-4 text-center">
-        {inputStatus === 'Entering' && (
-          <button className="border border-gray text-gray-100 rounded-full h-12 px-16" type="submit">
+        {inputStatus === "Entering" && (
+          <button
+            className="h-12 rounded-full border border-gray px-16 text-dark-gray"
+            type="submit"
+          >
             送信
           </button>
         )}
 
-        {inputStatus === 'Ready' && (
-          <button className="border rounded-full h-12 px-16 hover:bg-black hover:text-white" type="submit">
+        {inputStatus === "Ready" && (
+          <button
+            className="h-12 rounded-full border px-16 hover:bg-black hover:text-white"
+            type="submit"
+          >
             送信
           </button>
         )}
 
-        {inputStatus === 'Sending' && (
-          <button className="border rounded-full h-12 px-16" type="submit">
+        {inputStatus === "Sending" && (
+          <button className="h-12 rounded-full border px-16" type="submit">
             <svg width="24" height="24" viewBox="0 0 38 38" stroke="#232C93">
               <g fill="none" fillRule="evenodd">
                 <g transform="translate(1 1)" strokeWidth="2">

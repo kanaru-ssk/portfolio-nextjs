@@ -1,16 +1,13 @@
 import Image from "next/image";
 
-import Text from "components/common/Text";
-
 type Props = {
   profileImg: string;
   name: string;
   nameKana: string;
   job: string;
-  profileText: string;
 };
 
-const Profile = ({ profileImg, name, nameKana, job, profileText }: Props) => {
+const Profile = ({ profileImg, name, nameKana, job }: Props) => {
   return (
     <>
       <div className="flex items-center gap-8 py-4">
@@ -27,9 +24,6 @@ const Profile = ({ profileImg, name, nameKana, job, profileText }: Props) => {
           <div>{nameKana}</div>
         </div>
       </div>
-      <p className="py-4">
-        <Text text={profileText} />
-      </p>
     </>
   );
 };
