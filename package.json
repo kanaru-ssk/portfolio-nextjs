@@ -4,11 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "yarn build-css && next build",
-    "start": "yarn build-css && next start",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint",
-    "watch-css": "postcss src/styles/globals.css --config postcss.config.js -o src/styles/output.css -w",
-    "build-css": "postcss src/styles/globals.css --config postcss.config.js -o src/styles/output.css",
     "postbuild": "next-sitemap",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
