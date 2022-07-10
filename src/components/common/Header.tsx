@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import Menu from "./Menu";
-
 const Header = () => {
   return (
     <header className="fixed z-10 flex h-20 w-full items-center justify-between bg-white px-4">
@@ -19,8 +17,6 @@ const Header = () => {
           </svg>
         </a>
       </Link>
-
-      <Menu />
     </header>
   );
 };
