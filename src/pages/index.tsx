@@ -3,7 +3,6 @@ import Image from "next/image";
 
 import type { NextPage, GetStaticProps } from "next";
 
-import ContactButton from "components/common/ContactButton";
 import Footer from "components/common/Footer";
 import AboutSection from "components/top/AboutSection";
 import FirstView from "components/top/FirstView";
@@ -66,8 +65,16 @@ const Home: NextPage<Props> = ({
         />
       </Head>
 
-      <main className="p-4">
-        <FirstView catchCopy={top.catch_copy} />
+      <main className="px-4">
+        <div className="h-12 md:h-20"></div>
+        <FirstView
+          catchCopy={top.catch_copy}
+          profileImg={about.profile_img.data.attributes.url}
+          name={about.name}
+          nameKana={about.name_kana}
+          job={about.job}
+        />
+
         <AboutSection
           profileImg={about.profile_img.data.attributes.url}
           name={about.name}
@@ -95,9 +102,7 @@ const Home: NextPage<Props> = ({
           })}
         </div>
 
-        <div className="py-8">
-          <ContactButton />
-        </div>
+        <div className="py-8"></div>
       </main>
 
       <Footer
