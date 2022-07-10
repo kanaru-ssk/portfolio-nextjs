@@ -1,5 +1,6 @@
 import type { NextPage, GetStaticProps } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
 
 // lib
 import { fetchAPI } from 'libs/strapi';
@@ -69,7 +70,7 @@ const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Pr
           {worksRes.data.map((value) => {
             return (
               <div key={value.id}>
-                <amp-img src={value.attributes.eye_catch.data.attributes.url} width="400" height="210" alt="works" />
+                <Image src={value.attributes.eye_catch.data.attributes.url} width="400" height="210" alt="works" />
                 <div>{value.attributes.heading}</div>
               </div>
             );
