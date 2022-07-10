@@ -12,7 +12,7 @@ type Props = {
 
 const FirstView = ({ catchCopy, profileImg, name, nameKana, job }: Props) => {
   return (
-    <div className="py-12">
+    <div className="py-4 px-4">
       <Profile
         profileImg={profileImg}
         name={name}
