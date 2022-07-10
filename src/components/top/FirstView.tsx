@@ -1,6 +1,6 @@
+import ContactButton from "components/common/ContactButton";
 import Text from "components/common/Text";
 import Profile from "components/top/Profile";
-import ContactButton from "components/common/ContactButton";
 
 type Props = {
   profileImg: string;

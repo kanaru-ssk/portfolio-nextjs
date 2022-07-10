@@ -85,7 +85,7 @@ const Form = ({ setViewStatus, text }: Props) => {
       <div className="py-4 text-center">
         {inputStatus === "Entering" && (
           <button
-            className="text-dark-gray h-12 rounded-full border border-gray px-16"
+            className="h-12 rounded-full border border-gray px-16 text-dark-gray"
             type="submit"
           >
             送信
