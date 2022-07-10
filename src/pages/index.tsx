@@ -1,21 +1,19 @@
-import type { NextPage, GetStaticProps } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
+import Head from "next/head";
+import Image from "next/image";
 
-// lib
-import { fetchAPI } from 'libs/strapi';
-import { CommonRes, Common } from 'types/common';
-import { TopPageRes, TopPage } from 'types/topPage';
-import { AboutPageRes, AboutPage } from 'types/aboutPage';
-import { WorksRes } from 'types/works';
-import { ProductsRes } from 'types/products';
+import type { NextPage, GetStaticProps } from "next";
 
-// components
-import Footer from 'components/common/Footer';
-import ContactButton from 'components/common/ContactButton';
-import FirstView from 'components/top/FirstView';
-import AboutSection from 'components/top/AboutSection';
-import ProductsSection from 'components/top/ProductsSection';
+import ContactButton from "components/common/ContactButton";
+import Footer from "components/common/Footer";
+import AboutSection from "components/top/AboutSection";
+import FirstView from "components/top/FirstView";
+import ProductsSection from "components/top/ProductsSection";
+import { fetchAPI } from "libs/strapi";
+import { AboutPageRes, AboutPage } from "types/aboutPage";
+import { CommonRes, Common } from "types/common";
+import { ProductsRes } from "types/products";
+import { TopPageRes, TopPage } from "types/topPage";
+import { WorksRes } from "types/works";
 
 type Props = {
   common: Common;
@@ -25,11 +23,17 @@ type Props = {
   worksRes: WorksRes;
 };
 
-const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Props) => {
+const Home: NextPage<Props> = ({
+  common,
+  top,
+  about,
+  productsRes,
+  worksRes,
+}: Props) => {
   const schemaData = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: '佐々木哉瑠',
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "佐々木哉瑠",
     url: process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN,
     logo: common.header_logo.data.attributes.url,
   };
@@ -37,12 +41,18 @@ const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Pr
   return (
     <>
       <Head>
-        <link rel="canonical" href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN} />
+        <link
+          rel="canonical"
+          href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN}
+        />
         <link rel="icon" href={common.favicon.data.attributes.url} />
 
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={top.basic_seo.ogp_img.data.attributes.url} />
+        <meta
+          property="og:image"
+          content={top.basic_seo.ogp_img.data.attributes.url}
+        />
         <meta property="og:title" content={top.basic_seo.title} />
         <meta property="og:description" content={top.basic_seo.description} />
         <meta name="twitter:card" content="summary" />
@@ -50,7 +60,10 @@ const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Pr
         <title>{top.basic_seo.title}</title>
         <meta name="description" content={top.basic_seo.description} />
 
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
       </Head>
 
       <main className="p-4">
@@ -70,7 +83,12 @@ const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Pr
           {worksRes.data.map((value) => {
             return (
               <div key={value.id}>
-                <Image src={value.attributes.eye_catch.data.attributes.url} width="400" height="210" alt="works" />
+                <Image
+                  src={value.attributes.eye_catch.data.attributes.url}
+                  width="400"
+                  height="210"
+                  alt="works"
+                />
                 <div>{value.attributes.heading}</div>
               </div>
             );
@@ -82,7 +100,12 @@ const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Pr
         </div>
       </main>
 
-      <Footer copyRight={common.copy_right} snsLinks={about.sns} productsRes={productsRes} worksRes={worksRes} />
+      <Footer
+        copyRight={common.copy_right}
+        snsLinks={about.sns}
+        productsRes={productsRes}
+        worksRes={worksRes}
+      />
     </>
   );
 };
@@ -90,21 +113,23 @@ const Home: NextPage<Props> = ({ common, top, about, productsRes, worksRes }: Pr
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const commonRes: CommonRes = await fetchAPI('common', { populate: '*' });
-  const topRes: TopPageRes = await fetchAPI('top-page', { populate: { basic_seo: { populate: '*' } } });
-  const aboutRes: AboutPageRes = await fetchAPI('about-page', {
+  const commonRes: CommonRes = await fetchAPI("common", { populate: "*" });
+  const topRes: TopPageRes = await fetchAPI("top-page", {
+    populate: { basic_seo: { populate: "*" } },
+  });
+  const aboutRes: AboutPageRes = await fetchAPI("about-page", {
     populate: {
-      profile_img: { populate: '*' },
-      basic_seo: { populate: '*' },
-      sns: { populate: { sns: { populate: '*' } } },
-      biography: { populate: '*' },
+      profile_img: { populate: "*" },
+      basic_seo: { populate: "*" },
+      sns: { populate: { sns: { populate: "*" } } },
+      biography: { populate: "*" },
     },
   });
-  const productsRes: ProductsRes = await fetchAPI('products', {
-    populate: { basic_seo: { populate: '*' }, eye_catch: { populate: '*' } },
+  const productsRes: ProductsRes = await fetchAPI("products", {
+    populate: { basic_seo: { populate: "*" }, eye_catch: { populate: "*" } },
   });
-  const worksRes: WorksRes = await fetchAPI('works', {
-    populate: { basic_seo: { populate: '*' }, eye_catch: { populate: '*' } },
+  const worksRes: WorksRes = await fetchAPI("works", {
+    populate: { basic_seo: { populate: "*" }, eye_catch: { populate: "*" } },
   });
 
   const common: Common = commonRes.data.attributes;
