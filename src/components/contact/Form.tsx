@@ -62,7 +62,7 @@ const Form = ({ setViewStatus, text }: Props) => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-          className="block border h-12 p-2 w-full"
+          className="block h-12 w-full border p-2"
           type="email"
           placeholder="name@example.com"
           required
@@ -76,7 +76,7 @@ const Form = ({ setViewStatus, text }: Props) => {
           onChange={(e) => {
             setMessage(e.target.value);
           }}
-          className="block border h-24 p-2 w-full"
+          className="block h-24 w-full border p-2"
           placeholder="お問い合わせ内容を入力してください。"
           required
         ></textarea>
@@ -85,7 +85,7 @@ const Form = ({ setViewStatus, text }: Props) => {
       <div className="py-4 text-center">
         {inputStatus === "Entering" && (
           <button
-            className="border border-gray text-gray-100 rounded-full h-12 px-16"
+            className="h-12 rounded-full border border-gray px-16 text-gray-100"
             type="submit"
           >
             送信
@@ -94,7 +94,7 @@ const Form = ({ setViewStatus, text }: Props) => {
 
         {inputStatus === "Ready" && (
           <button
-            className="border rounded-full h-12 px-16 hover:bg-black hover:text-white"
+            className="h-12 rounded-full border px-16 hover:bg-black hover:text-white"
             type="submit"
           >
             送信
@@ -102,7 +102,7 @@ const Form = ({ setViewStatus, text }: Props) => {
         )}
 
         {inputStatus === "Sending" && (
-          <button className="border rounded-full h-12 px-16" type="submit">
+          <button className="h-12 rounded-full border px-16" type="submit">
             <svg width="24" height="24" viewBox="0 0 38 38" stroke="#232C93">
               <g fill="none" fillRule="evenodd">
                 <g transform="translate(1 1)" strokeWidth="2">

@@ -6,7 +6,7 @@ type Props = {
 
 const FirstView = ({ catchCopy }: Props) => {
   return (
-    <div className="flex flex-col justify-center h-screen">
+    <div className="flex h-screen flex-col justify-center">
       <Text text={catchCopy} />
     </div>
   );

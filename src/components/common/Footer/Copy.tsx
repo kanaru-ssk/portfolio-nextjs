@@ -3,7 +3,7 @@ type Props = {
 };
 
 const Copy = ({ copyRight }: Props) => {
-  return <div className="text-center py-8">&copy; {copyRight}</div>;
+  return <div className="py-8 text-center">&copy; {copyRight}</div>;
 };
 
 export default Copy;
