@@ -11,84 +11,82 @@ import { WorksRes, Works, Work } from 'types/works';
 // components
 import Footer from 'components/common/Footer';
 
-export const config = { amp: true };
-
 type Props = {
-	common: Common;
-	about: AboutPage;
-	work: Work;
-	productsRes: ProductsRes;
-	worksRes: WorksRes;
+  common: Common;
+  about: AboutPage;
+  work: Work;
+  productsRes: ProductsRes;
+  worksRes: WorksRes;
 };
 
 const WorksArticle: NextPage<Props> = ({ common, about, work, productsRes, worksRes }: Props) => {
-	const EditorJSHtml = require('editorjs-html');
-	const contents: string[] = EditorJSHtml().parse(JSON.parse(work.contents));
-	return (
-		<>
-			<Head>
-				<link rel="canonical" href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + '/works'} />
-				<link rel="icon" href={common.favicon.data.attributes.url} />
+  const EditorJSHtml = require('editorjs-html');
+  const contents: string[] = EditorJSHtml().parse(JSON.parse(work.contents));
+  return (
+    <>
+      <Head>
+        <link rel="canonical" href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + '/works'} />
+        <link rel="icon" href={common.favicon.data.attributes.url} />
 
-				{/* ogp */}
-				<meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
-				<meta property="og:type" content="website" />
-				<meta property="og:image" content={work.basic_seo.ogp_img.data.attributes.url} />
-				<meta property="og:title" content={work.basic_seo.title} />
-				<meta property="og:description" content={work.basic_seo.description} />
-				<meta name="twitter:card" content="summary" />
+        {/* ogp */}
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={work.basic_seo.ogp_img.data.attributes.url} />
+        <meta property="og:title" content={work.basic_seo.title} />
+        <meta property="og:description" content={work.basic_seo.description} />
+        <meta name="twitter:card" content="summary" />
 
-				<title>{work.basic_seo.title}</title>
-				<meta name="description" content={work.basic_seo.description} />
-			</Head>
+        <title>{work.basic_seo.title}</title>
+        <meta name="description" content={work.basic_seo.description} />
+      </Head>
 
-			<main className="p-4">
-				<div className="h-20"></div>
+      <main className="p-4">
+        <div className="h-20"></div>
 
-				{contents.map((value, key) => {
-					return <div key={key} dangerouslySetInnerHTML={{ __html: value }}></div>;
-				})}
-			</main>
-			<Footer copyRight={common.copy_right} snsLinks={about.sns} productsRes={productsRes} worksRes={worksRes} />
-		</>
-	);
+        {contents.map((value, key) => {
+          return <div key={key} dangerouslySetInnerHTML={{ __html: value }}></div>;
+        })}
+      </main>
+      <Footer copyRight={common.copy_right} snsLinks={about.sns} productsRes={productsRes} worksRes={worksRes} />
+    </>
+  );
 };
 
 export default WorksArticle;
 
 export const getStaticPaths = async () => {
-	const worksRes: WorksRes = await fetchAPI('works', { populate: { basic_seo: { populate: '*' } } });
-	const paths = worksRes.data.map((works: Works) => `/works/${works.attributes.path}`);
-	return { paths, fallback: false };
+  const worksRes: WorksRes = await fetchAPI('works', { populate: { basic_seo: { populate: '*' } } });
+  const paths = worksRes.data.map((works: Works) => `/works/${works.attributes.path}`);
+  return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const commonRes: CommonRes = await fetchAPI('common', { populate: '*' });
-	const aboutRes: AboutPageRes = await fetchAPI('about-page', {
-		populate: {
-			profile_img: { populate: '*' },
-			basic_seo: { populate: '*' },
-			sns: { populate: { sns: { populate: '*' } } },
-			biography: { populate: '*' },
-		},
-	});
-	const productsRes: ProductsRes = await fetchAPI('products');
-	const worksRes: WorksRes = await fetchAPI('works', {
-		filters: { path: { $eq: params!.id } },
-		populate: { basic_seo: { populate: '*' } },
-	});
+  const commonRes: CommonRes = await fetchAPI('common', { populate: '*' });
+  const aboutRes: AboutPageRes = await fetchAPI('about-page', {
+    populate: {
+      profile_img: { populate: '*' },
+      basic_seo: { populate: '*' },
+      sns: { populate: { sns: { populate: '*' } } },
+      biography: { populate: '*' },
+    },
+  });
+  const productsRes: ProductsRes = await fetchAPI('products');
+  const worksRes: WorksRes = await fetchAPI('works', {
+    filters: { path: { $eq: params!.id } },
+    populate: { basic_seo: { populate: '*' } },
+  });
 
-	const common: Common = commonRes.data.attributes;
-	const about: AboutPage = aboutRes.data.attributes;
-	const work: Work = worksRes.data[0].attributes;
+  const common: Common = commonRes.data.attributes;
+  const about: AboutPage = aboutRes.data.attributes;
+  const work: Work = worksRes.data[0].attributes;
 
-	return {
-		props: {
-			common,
-			about,
-			work,
-			productsRes,
-			worksRes,
-		},
-	};
+  return {
+    props: {
+      common,
+      about,
+      work,
+      productsRes,
+      worksRes,
+    },
+  };
 };
