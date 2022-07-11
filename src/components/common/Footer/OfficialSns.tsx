@@ -8,9 +8,7 @@ type Props = {
 
 const OfficialSns = ({ snsLinks }: Props) => {
   return (
-    <ul className="justify-left flex list-none items-center p-4">
-      <li className="p-2 text-base">official SNS :</li>
-
+    <ul className="flex list-none items-center justify-center p-4">
       {snsLinks.map((value) => {
         return (
           <SnsLink

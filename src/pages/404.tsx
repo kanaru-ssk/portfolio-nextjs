@@ -31,12 +31,7 @@ const Custom404: NextPage<Props> = ({
           <A title="トップページに戻る" url="/" />
         </div>
       </main>
-      <Footer
-        copyRight={common.copy_right}
-        snsLinks={about.sns}
-        productsRes={productsRes}
-        worksRes={worksRes}
-      />
+      <Footer copyRight={common.copy_right} snsLinks={about.sns} />
     </>
   );
 };

@@ -1,49 +1,18 @@
 import MenuLink from "./MenuLink";
-import PageLink from "./PageLink";
 
-import { ProductsRes } from "types/products";
-import { WorksRes } from "types/works";
-
-type Props = {
-  worksRes: WorksRes;
-  productsRes: ProductsRes;
-};
-
-const SiteMap = ({ productsRes, worksRes }: Props) => {
+const SiteMap = () => {
   return (
     <div className="flex flex-wrap justify-center gap-8 px-4 py-8">
-      <div className="w-36">
+      <div className="w-36 text-center">
         <MenuLink path="about" />
       </div>
-      <div className="w-36">
-        <MenuLink path="products" />
-        <ul className="py-2">
-          {productsRes.data.map((value) => {
-            return (
-              <PageLink
-                title={value.attributes.heading}
-                path={"products/" + value.attributes.path}
-                key={value.id}
-              />
-            );
-          })}
-        </ul>
-      </div>
-      <div className="w-36">
+      <div className="w-36 text-center">
         <MenuLink path="works" />
-        <ul className="py-2">
-          {worksRes.data.map((value) => {
-            return (
-              <PageLink
-                title={value.attributes.heading}
-                path={"works/" + value.attributes.path}
-                key={value.id}
-              />
-            );
-          })}
-        </ul>
       </div>
-      <div className="w-36">
+      <div className="w-36 text-center">
+        <MenuLink path="blog" />
+      </div>
+      <div className="w-36 text-center">
         <MenuLink path="contact" />
       </div>
     </div>

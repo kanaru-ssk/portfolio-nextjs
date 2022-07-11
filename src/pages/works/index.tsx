@@ -51,12 +51,7 @@ const Works: NextPage<Props> = ({
       <main className="p-4">
         <div className="h-20"></div>
       </main>
-      <Footer
-        copyRight={common.copy_right}
-        snsLinks={about.sns}
-        productsRes={productsRes}
-        worksRes={worksRes}
-      />
+      <Footer copyRight={common.copy_right} snsLinks={about.sns} />
     </>
   );
 };

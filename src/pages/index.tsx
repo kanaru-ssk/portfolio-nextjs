@@ -65,6 +65,7 @@ const Home: NextPage<Props> = ({
 
       <main>
         <div className="h-12 md:h-20"></div>
+
         <FirstView
           catchCopy={top.catch_copy}
           profileImg={about.profile_img.data.attributes.url}
@@ -76,12 +77,7 @@ const Home: NextPage<Props> = ({
         <Tab />
       </main>
 
-      <Footer
-        copyRight={common.copy_right}
-        snsLinks={about.sns}
-        productsRes={productsRes}
-        worksRes={worksRes}
-      />
+      <Footer copyRight={common.copy_right} snsLinks={about.sns} />
     </>
   );
 };

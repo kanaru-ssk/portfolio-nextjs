@@ -90,12 +90,7 @@ const About: NextPage<Props> = ({
           <ContactButton />
         </div>
       </main>
-      <Footer
-        copyRight={common.copy_right}
-        snsLinks={about.sns}
-        productsRes={productsRes}
-        worksRes={worksRes}
-      />
+      <Footer copyRight={common.copy_right} snsLinks={about.sns} />
     </>
   );
 };
