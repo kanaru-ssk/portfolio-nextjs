@@ -6,7 +6,6 @@ import Biography from "components/about/Biography";
 import Profile from "components/about/Profile";
 import Skill from "components/about/Skill";
 import ContactButton from "components/common/ContactButton";
-import Footer from "components/common/Footer";
 import { fetchAPI } from "libs/strapi";
 import { AboutPageRes, AboutPage, Skills } from "types/aboutPage";
 import { CommonRes, Common } from "types/common";
@@ -90,7 +89,6 @@ const About: NextPage<Props> = ({
           <ContactButton />
         </div>
       </main>
-      <Footer copyRight={common.copy_right} snsLinks={about.sns} />
     </>
   );
 };

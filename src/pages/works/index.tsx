@@ -2,7 +2,6 @@ import Head from "next/head";
 
 import type { NextPage, GetStaticProps } from "next";
 
-import Footer from "components/common/Footer";
 import { fetchAPI } from "libs/strapi";
 import { AboutPageRes, AboutPage } from "types/aboutPage";
 import { CommonRes, Common } from "types/common";
@@ -51,7 +50,6 @@ const Works: NextPage<Props> = ({
       <main className="p-4">
         <div className="h-20"></div>
       </main>
-      <Footer copyRight={common.copy_right} snsLinks={about.sns} />
     </>
   );
 };

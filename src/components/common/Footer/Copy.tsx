@@ -1,8 +1,5 @@
-type Props = {
-  copyRight: string;
-};
-
-const Copy = ({ copyRight }: Props) => {
+const Copy = () => {
+  const copyRight = "2022 Kanaru";
   return <div className="text-center">&copy; {copyRight}</div>;
 };
 

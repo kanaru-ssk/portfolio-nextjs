@@ -4,7 +4,6 @@ import Head from "next/head";
 
 import type { NextPage, GetStaticProps } from "next";
 
-import Footer from "components/common/Footer";
 import Form from "components/contact/Form";
 import SendError from "components/contact/SendError";
 import SendSuccess from "components/contact/SendSuccess";
@@ -78,7 +77,6 @@ const Contact: NextPage<Props> = ({
           </>
         )}
       </main>
-      <Footer copyRight={common.copy_right} snsLinks={about.sns} />
     </>
   );
 };
