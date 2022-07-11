@@ -17,7 +17,7 @@ const Tab = ({ name, path, tabStatus }: Props) => {
         router.replace(path, path, { shallow: true });
       }}
       className={
-        `${path === tabStatus ? "border-blue " : "border-gray "}` +
+        `${path === tabStatus ? "border-blue font-bold " : "border-gray "}` +
         "w-full cursor-pointer border-b py-3 text-center text-base sm:hover:bg-light-gray"
       }
     >
