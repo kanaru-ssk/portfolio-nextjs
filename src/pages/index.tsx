@@ -10,23 +10,11 @@ import Contact from "components/Contact";
 import ContactButton from "components/common/ContactButton";
 import FirstView from "components/top/FirstView";
 import Tab from "components/top/Tab";
-import { fetchAPI } from "libs/strapi";
 import { client } from "libs/wordpress";
-import { AboutPageRes, AboutPage } from "types/aboutPage";
-import { CommonRes, Common } from "types/common";
-import { TopPageRes, TopPage } from "types/topPage";
-import {
-  TopWordpressRes,
-  PostsNode,
-  PagesNode,
-  CategoriesNode,
-  GeneralSettings,
-} from "types/topWordpressRes";
+import { WpTopRes, PostsNode, About, GeneralSettings } from "types/wpTop";
 
 type Props = {
-  common: Common;
-  top: TopPage;
-  about: AboutPage;
+  about: About;
   general: GeneralSettings;
   aboutContent: string;
   blogPosts: PostsNode[];
@@ -34,8 +22,6 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({
-  common,
-  top,
   about,
   general,
   aboutContent,
@@ -47,7 +33,7 @@ const Home: NextPage<Props> = ({
     "@type": "Organization",
     name: "佐々木哉瑠",
     url: process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN,
-    logo: common.header_logo.data.attributes.url,
+    logo: process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + "/img/logo.svg",
   };
 
   const router = useRouter();
@@ -65,14 +51,11 @@ const Home: NextPage<Props> = ({
           rel="canonical"
           href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN}
         />
-        <link rel="icon" href={common.favicon.data.attributes.url} />
+        <link rel="icon" href="/favicon.svg" />
 
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:type" content="website" />
-        <meta
-          property="og:image"
-          content={top.basic_seo.ogp_img.data.attributes.url}
-        />
+        <meta property="og:image" content="/img/ogp.png" />
         <meta property="og:title" content={general.title} />
         <meta property="og:description" content={general.description} />
         <meta name="twitter:card" content="summary" />
@@ -94,17 +77,17 @@ const Home: NextPage<Props> = ({
         ) : (
           <>
             <FirstView
-              catchCopy={top.catch_copy}
-              profileImg={about.profile_img.data.attributes.url}
-              name={about.name}
-              nameKana={about.name_kana}
-              job={about.job}
+              catchCopy={about.profile.bio}
+              profileImg={about.profile.icon.sourceUrl}
+              name={about.profile.name}
+              nameKana={about.profile.nameKana}
+              job={about.profile.job}
             />
 
             <ContactButton setIsShowContact={setIsShowContact} />
 
             <Tab
-              aboutContent={aboutContent}
+              aboutContent={about.content}
               blogPosts={blogPosts}
               worksPosts={worksPosts}
             />
@@ -118,30 +101,11 @@ const Home: NextPage<Props> = ({
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const commonRes: CommonRes = await fetchAPI("common", { populate: "*" });
-  const topRes: TopPageRes = await fetchAPI("top-page", {
-    populate: { basic_seo: { populate: "*" } },
-  });
-  const aboutRes: AboutPageRes = await fetchAPI("about-page", {
-    populate: {
-      profile_img: { populate: "*" },
-      basic_seo: { populate: "*" },
-      sns: { populate: { sns: { populate: "*" } } },
-      biography: { populate: "*" },
-    },
-  });
-
   const GET_ALL_POSTS = gql`
-    query getPost {
+    query topQuery {
       generalSettings {
         title
         description
-      }
-      pages {
-        nodes {
-          title
-          content
-        }
       }
       posts(first: 20) {
         nodes {
@@ -150,7 +114,7 @@ export const getStaticProps: GetStaticProps = async () => {
           date
           featuredImage {
             node {
-              link
+              sourceUrl
             }
           }
           categories {
@@ -158,20 +122,30 @@ export const getStaticProps: GetStaticProps = async () => {
               name
             }
           }
+          slug
+        }
+      }
+      pageBy(pageId: 2) {
+        content
+        profile {
+          bio
+          job
+          name
+          nameKana
+          icon {
+            sourceUrl
+          }
         }
       }
     }
   `;
 
-  const response = await client.query<TopWordpressRes>({
+  const response = await client.query<WpTopRes>({
     query: GET_ALL_POSTS,
   });
   const general = response.data.generalSettings;
-  const pages: PagesNode[] = response.data.pages.nodes;
-  const aboutPage: PagesNode | undefined = pages.find((value) => {
-    return value.title === "about";
-  });
-  const aboutContent: string = aboutPage ? aboutPage.content : "";
+  const about: About = response.data.pageBy;
+
   const posts: PostsNode[] = response.data.posts.nodes;
 
   const blogPosts: PostsNode[] = posts.filter((value) => {
@@ -181,18 +155,12 @@ export const getStaticProps: GetStaticProps = async () => {
     return value.categories.nodes[0].name === "works";
   });
 
-  const common: Common = commonRes.data.attributes;
-  const top: TopPage = topRes.data.attributes;
-  const about: AboutPage = aboutRes.data.attributes;
   return {
     props: {
-      common,
-      top,
       about,
       general,
       blogPosts,
       worksPosts,
-      aboutContent,
     },
   };
 };

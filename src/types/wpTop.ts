@@ -1,12 +1,7 @@
-// export interface TopWordpressRes {
-//   data: Data;
-//   extensions: Extensions;
-// }
-
-export interface TopWordpressRes {
+export interface WpTopRes {
   generalSettings: GeneralSettings;
-  pages: Pages;
   posts: Posts;
+  pageBy: About;
 }
 
 export interface GeneralSettings {
@@ -14,13 +9,21 @@ export interface GeneralSettings {
   description: string;
 }
 
-export interface Pages {
-  nodes: PagesNode[];
+export interface About {
+  content: string;
+  profile: Profile;
 }
 
-export interface PagesNode {
-  title: string;
-  content: string;
+export interface Profile {
+  bio: string;
+  job: string;
+  name: string;
+  nameKana: string;
+  icon: Icon;
+}
+
+export interface Icon {
+  sourceUrl: string;
 }
 
 export interface Posts {
@@ -33,6 +36,7 @@ export interface PostsNode {
   date: Date;
   featuredImage: FeaturedImage | null;
   categories: Categories;
+  slug: string;
 }
 
 export interface Categories {
@@ -46,11 +50,7 @@ export interface CategoriesNode {
 export type Name = "blog" | "works";
 
 export interface FeaturedImage {
-  node: FeaturedImageNode;
-}
-
-export interface FeaturedImageNode {
-  link: string;
+  node: Icon;
 }
 
 export interface Extensions {

@@ -1,5 +1,3 @@
-import { PostsNode, PagesNode } from "types/topWordpressRes";
-
 type Props = {
   aboutContent: string;
 };

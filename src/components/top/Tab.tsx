@@ -7,7 +7,7 @@ import TabMenu from "./TabMenu";
 import About from "components/About";
 import Blog from "components/Blog";
 import Works from "components/Works";
-import { PostsNode, PagesNode } from "types/topWordpressRes";
+import { PostsNode } from "types/wpTop";
 
 type TabStatus = "/about" | "/works" | "/blog";
 
@@ -32,7 +32,7 @@ const Tab = ({ aboutContent, blogPosts, worksPosts }: Props) => {
 
   return (
     <div>
-      <nav className="sticky top-12 flex h-12 justify-evenly bg-white md:top-20">
+      <nav className="sticky top-12 z-10 flex h-12 justify-evenly bg-white md:top-20">
         <TabMenu name="about" path="/about" tabStatus={tabStatus} />
         <TabMenu name="works" path="/works" tabStatus={tabStatus} />
         <TabMenu name="blog" path="/blog" tabStatus={tabStatus} />
