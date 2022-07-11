@@ -1,7 +1,6 @@
 import type { NextPage, GetStaticProps } from "next";
 
 import A from "components/common/A";
-import Footer from "components/common/Footer";
 import { fetchAPI } from "libs/strapi";
 import { AboutPageRes, AboutPage } from "types/aboutPage";
 import { CommonRes, Common } from "types/common";
@@ -31,12 +30,6 @@ const Custom404: NextPage<Props> = ({
           <A title="トップページに戻る" url="/" />
         </div>
       </main>
-      <Footer
-        copyRight={common.copy_right}
-        snsLinks={about.sns}
-        productsRes={productsRes}
-        worksRes={worksRes}
-      />
     </>
   );
 };

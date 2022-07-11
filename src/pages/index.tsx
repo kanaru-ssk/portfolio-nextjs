@@ -1,13 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
 
 import type { NextPage, GetStaticProps } from "next";
 
-import ContactButton from "components/common/ContactButton";
-import Footer from "components/common/Footer";
-import AboutSection from "components/top/AboutSection";
 import FirstView from "components/top/FirstView";
-import ProductsSection from "components/top/ProductsSection";
+import Tab from "components/top/Tab";
 import { fetchAPI } from "libs/strapi";
 import { AboutPageRes, AboutPage } from "types/aboutPage";
 import { CommonRes, Common } from "types/common";
@@ -23,13 +19,7 @@ type Props = {
   worksRes: WorksRes;
 };
 
-const Home: NextPage<Props> = ({
-  common,
-  top,
-  about,
-  productsRes,
-  worksRes,
-}: Props) => {
+const Home: NextPage<Props> = ({ common, top, about }: Props) => {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -66,46 +56,19 @@ const Home: NextPage<Props> = ({
         />
       </Head>
 
-      <main className="p-4">
-        <FirstView catchCopy={top.catch_copy} />
-        <AboutSection
+      <main>
+        <div className="h-12 md:h-20"></div>
+
+        <FirstView
+          catchCopy={top.catch_copy}
           profileImg={about.profile_img.data.attributes.url}
           name={about.name}
           nameKana={about.name_kana}
           job={about.job}
-          profileText={about.profile_text}
         />
 
-        <ProductsSection productsRes={productsRes} />
-
-        <h2>works</h2>
-        <div>
-          {worksRes.data.map((value) => {
-            return (
-              <div key={value.id}>
-                <Image
-                  src={value.attributes.eye_catch.data.attributes.url}
-                  width="400"
-                  height="210"
-                  alt="works"
-                />
-                <div>{value.attributes.heading}</div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="py-8">
-          <ContactButton />
-        </div>
+        <Tab />
       </main>
-
-      <Footer
-        copyRight={common.copy_right}
-        snsLinks={about.sns}
-        productsRes={productsRes}
-        worksRes={worksRes}
-      />
     </>
   );
 };
