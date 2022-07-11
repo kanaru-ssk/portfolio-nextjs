@@ -1,19 +1,24 @@
-type TabStatus = "about" | "works" | "blog";
+import { useRouter } from "next/router";
+
+type TabStatus = "/about" | "/works" | "/blog";
 
 type Props = {
-  name: TabStatus;
+  name: string;
+  path: TabStatus;
   tabStatus: TabStatus;
-  setTabStatus: React.Dispatch<React.SetStateAction<TabStatus>>;
 };
 
-const Tab = ({ name, tabStatus, setTabStatus }: Props) => {
+const Tab = ({ name, path, tabStatus }: Props) => {
+  const router = useRouter();
   return (
     <label
       htmlFor={"radio-" + name}
-      onClick={() => setTabStatus(name)}
+      onClick={() => {
+        router.replace(path, path, { shallow: true });
+      }}
       className={
-        `${name === tabStatus ? "border-blue " : "border-gray "}` +
-        "w-full cursor-pointer border-b py-3 text-center text-base hover:bg-light-gray"
+        `${path === tabStatus ? "border-blue font-bold " : "border-gray "}` +
+        "w-full cursor-pointer border-b py-3 text-center text-base sm:hover:bg-light-gray"
       }
     >
       <input type="radio" name="menu" id={"radio-" + name} className="hidden" />

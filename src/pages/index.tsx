@@ -1,7 +1,12 @@
+import { useEffect, useState } from "react";
+
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import type { NextPage, GetStaticProps } from "next";
 
+import Contact from "components/Contact";
+import ContactButton from "components/common/ContactButton";
 import FirstView from "components/top/FirstView";
 import Tab from "components/top/Tab";
 import { fetchAPI } from "libs/strapi";
@@ -27,6 +32,14 @@ const Home: NextPage<Props> = ({ common, top, about }: Props) => {
     url: process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN,
     logo: common.header_logo.data.attributes.url,
   };
+
+  const router = useRouter();
+
+  const [isShowContact, setIsShowContact] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsShowContact(router.asPath === "/contact");
+  }, [router.asPath]);
 
   return (
     <>
@@ -59,15 +72,23 @@ const Home: NextPage<Props> = ({ common, top, about }: Props) => {
       <main>
         <div className="h-12 md:h-20"></div>
 
-        <FirstView
-          catchCopy={top.catch_copy}
-          profileImg={about.profile_img.data.attributes.url}
-          name={about.name}
-          nameKana={about.name_kana}
-          job={about.job}
-        />
+        {isShowContact ? (
+          <Contact setIsShowContact={setIsShowContact} />
+        ) : (
+          <>
+            <FirstView
+              catchCopy={top.catch_copy}
+              profileImg={about.profile_img.data.attributes.url}
+              name={about.name}
+              nameKana={about.name_kana}
+              job={about.job}
+            />
 
-        <Tab />
+            <ContactButton setIsShowContact={setIsShowContact} />
+
+            <Tab />
+          </>
+        )}
       </main>
     </>
   );

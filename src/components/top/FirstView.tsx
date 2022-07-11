@@ -20,10 +20,6 @@ const FirstView = ({ catchCopy, profileImg, name, nameKana, job }: Props) => {
         job={job}
       />
       <Text text={catchCopy} />
-
-      <div className="py-4">
-        <ContactButton />
-      </div>
     </div>
   );
 };

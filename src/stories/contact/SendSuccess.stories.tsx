@@ -2,7 +2,7 @@ import React from "react";
 
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import SendSuccess from "components/contact/SendSuccess";
+import SendSuccess from "components/Contact/SendSuccess";
 
 export default {
   component: SendSuccess,

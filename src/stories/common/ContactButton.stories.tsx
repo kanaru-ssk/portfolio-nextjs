@@ -12,6 +12,8 @@ export default {
   },
 } as ComponentMeta<typeof ContactButton>;
 
-const Template: ComponentStory<typeof ContactButton> = () => <ContactButton />;
+const Template: ComponentStory<typeof ContactButton> = (args) => (
+  <ContactButton {...args} />
+);
 
 export const Default = Template.bind({});

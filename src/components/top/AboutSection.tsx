@@ -1,5 +1,5 @@
-import Profile from "components/about/Profile";
 import MoreButton from "components/common/MoreButton";
+import Profile from "components/common/Profile";
 
 type Props = {
   profileImg: string;
