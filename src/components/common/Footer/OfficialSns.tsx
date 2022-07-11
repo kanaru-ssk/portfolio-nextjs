@@ -22,7 +22,7 @@ const OfficialSns = () => {
     },
     {
       url: "https://www.facebook.com/profile.php?id=100074385632441",
-      snsName: "Instagram",
+      snsName: "Facebook",
       snsIcon:
         "https://res.cloudinary.com/dyrvpjmrd/image/upload/v1653659341/facebook_f90d55fb71.svg",
     },
