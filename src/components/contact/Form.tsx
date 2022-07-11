@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
 
-import Text from "components/common/Text";
-
 type ViewStatus = "Form" | "Success" | "Error";
 type InputStatus = "Entering" | "Ready" | "Sending";
 
 type Props = {
   setViewStatus: React.Dispatch<React.SetStateAction<ViewStatus>>;
-  text: string;
 };
 
-const Form = ({ setViewStatus, text }: Props) => {
+const Form = ({ setViewStatus }: Props) => {
   const [inputStatus, setInputStatus] = useState<InputStatus>("Entering");
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
@@ -54,7 +51,6 @@ const Form = ({ setViewStatus, text }: Props) => {
 
   return (
     <form onSubmit={onSubmitHundler} className="py-4">
-      <Text text={text} />
       <div className="py-2">
         <div className="py-2">メールアドレス</div>
         <input
@@ -62,9 +58,9 @@ const Form = ({ setViewStatus, text }: Props) => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-          className="block h-12 w-full border p-2"
+          className="block h-12 w-full rounded border border-dark-gray p-2"
           type="email"
-          placeholder="name@example.com"
+          placeholder="example@example.com"
           required
         />
       </div>
@@ -76,7 +72,7 @@ const Form = ({ setViewStatus, text }: Props) => {
           onChange={(e) => {
             setMessage(e.target.value);
           }}
-          className="block h-24 w-full border p-2"
+          className="block  h-24 w-full rounded border border-dark-gray p-2"
           placeholder="お問い合わせ内容を入力してください。"
           required
         ></textarea>
