@@ -11,6 +11,3 @@ export default {
 const Template: ComponentStory<typeof Form> = (args) => <Form {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-  text: "テスト",
-};
