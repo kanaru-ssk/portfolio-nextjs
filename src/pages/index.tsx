@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { gql } from "@apollo/client";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -10,21 +11,37 @@ import ContactButton from "components/common/ContactButton";
 import FirstView from "components/top/FirstView";
 import Tab from "components/top/Tab";
 import { fetchAPI } from "libs/strapi";
+import { client } from "libs/wordpress";
 import { AboutPageRes, AboutPage } from "types/aboutPage";
 import { CommonRes, Common } from "types/common";
-import { ProductsRes } from "types/products";
 import { TopPageRes, TopPage } from "types/topPage";
-import { WorksRes } from "types/works";
+import {
+  TopWordpressRes,
+  PostsNode,
+  PagesNode,
+  CategoriesNode,
+  GeneralSettings,
+} from "types/topWordpressRes";
 
 type Props = {
   common: Common;
   top: TopPage;
   about: AboutPage;
-  productsRes: ProductsRes;
-  worksRes: WorksRes;
+  general: GeneralSettings;
+  aboutContent: string;
+  blogPosts: PostsNode[];
+  worksPosts: PostsNode[];
 };
 
-const Home: NextPage<Props> = ({ common, top, about }: Props) => {
+const Home: NextPage<Props> = ({
+  common,
+  top,
+  about,
+  general,
+  aboutContent,
+  blogPosts,
+  worksPosts,
+}: Props) => {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -56,12 +73,12 @@ const Home: NextPage<Props> = ({ common, top, about }: Props) => {
           property="og:image"
           content={top.basic_seo.ogp_img.data.attributes.url}
         />
-        <meta property="og:title" content={top.basic_seo.title} />
-        <meta property="og:description" content={top.basic_seo.description} />
+        <meta property="og:title" content={general.title} />
+        <meta property="og:description" content={general.description} />
         <meta name="twitter:card" content="summary" />
 
-        <title>{top.basic_seo.title}</title>
-        <meta name="description" content={top.basic_seo.description} />
+        <title>{general.title}</title>
+        <meta name="description" content={general.description} />
 
         <script
           type="application/ld+json"
@@ -86,7 +103,11 @@ const Home: NextPage<Props> = ({ common, top, about }: Props) => {
 
             <ContactButton setIsShowContact={setIsShowContact} />
 
-            <Tab />
+            <Tab
+              aboutContent={aboutContent}
+              blogPosts={blogPosts}
+              worksPosts={worksPosts}
+            />
           </>
         )}
       </main>
@@ -109,11 +130,55 @@ export const getStaticProps: GetStaticProps = async () => {
       biography: { populate: "*" },
     },
   });
-  const productsRes: ProductsRes = await fetchAPI("products", {
-    populate: { basic_seo: { populate: "*" }, eye_catch: { populate: "*" } },
+
+  const GET_ALL_POSTS = gql`
+    query getPost {
+      generalSettings {
+        title
+        description
+      }
+      pages {
+        nodes {
+          title
+          content
+        }
+      }
+      posts(first: 20) {
+        nodes {
+          id
+          title
+          date
+          featuredImage {
+            node {
+              link
+            }
+          }
+          categories {
+            nodes {
+              name
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await client.query<TopWordpressRes>({
+    query: GET_ALL_POSTS,
   });
-  const worksRes: WorksRes = await fetchAPI("works", {
-    populate: { basic_seo: { populate: "*" }, eye_catch: { populate: "*" } },
+  const general = response.data.generalSettings;
+  const pages: PagesNode[] = response.data.pages.nodes;
+  const aboutPage: PagesNode | undefined = pages.find((value) => {
+    return value.title === "about";
+  });
+  const aboutContent: string = aboutPage ? aboutPage.content : "";
+  const posts: PostsNode[] = response.data.posts.nodes;
+
+  const blogPosts: PostsNode[] = posts.filter((value) => {
+    return value.categories.nodes[0].name === "blog";
+  });
+  const worksPosts: PostsNode[] = posts.filter((value) => {
+    return value.categories.nodes[0].name === "works";
   });
 
   const common: Common = commonRes.data.attributes;
@@ -124,8 +189,10 @@ export const getStaticProps: GetStaticProps = async () => {
       common,
       top,
       about,
-      productsRes,
-      worksRes,
+      general,
+      blogPosts,
+      worksPosts,
+      aboutContent,
     },
   };
 };
