@@ -2,6 +2,10 @@ import { useState } from "react";
 
 import TabMenu from "./TabMenu";
 
+import About from "components/About";
+import Blog from "components/Blog";
+import Works from "components/Works";
+
 type TabStatus = "about" | "works" | "blog";
 
 const Tab = () => {
@@ -26,9 +30,9 @@ const Tab = () => {
         />
       </nav>
 
-      {tabStatus === "about" && <div>about</div>}
-      {tabStatus === "works" && <div>works</div>}
-      {tabStatus === "blog" && <div>blog</div>}
+      {tabStatus === "about" && <About />}
+      {tabStatus === "works" && <Works />}
+      {tabStatus === "blog" && <Blog />}
     </div>
   );
 };

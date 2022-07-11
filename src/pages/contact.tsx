@@ -4,9 +4,9 @@ import Head from "next/head";
 
 import type { NextPage, GetStaticProps } from "next";
 
-import Form from "components/contact/Form";
-import SendError from "components/contact/SendError";
-import SendSuccess from "components/contact/SendSuccess";
+import Form from "components/Contact/Form";
+import SendError from "components/Contact/SendError";
+import SendSuccess from "components/Contact/SendSuccess";
 import { fetchAPI } from "libs/strapi";
 import { AboutPageRes, AboutPage } from "types/aboutPage";
 import { CommonRes, Common } from "types/common";

@@ -2,10 +2,10 @@ import Head from "next/head";
 
 import type { NextPage, GetStaticProps } from "next";
 
-import Biography from "components/about/Biography";
-import Profile from "components/about/Profile";
-import Skill from "components/about/Skill";
+import Biography from "components/About/Biography";
+import Skill from "components/About/Skill";
 import ContactButton from "components/common/ContactButton";
+import Profile from "components/common/Profile";
 import { fetchAPI } from "libs/strapi";
 import { AboutPageRes, AboutPage, Skills } from "types/aboutPage";
 import { CommonRes, Common } from "types/common";
