@@ -2,7 +2,6 @@ import Head from "next/head";
 
 import type { NextPage, GetStaticProps } from "next";
 
-import Footer from "components/common/Footer";
 import FirstView from "components/top/FirstView";
 import Tab from "components/top/Tab";
 import { fetchAPI } from "libs/strapi";
@@ -20,13 +19,7 @@ type Props = {
   worksRes: WorksRes;
 };
 
-const Home: NextPage<Props> = ({
-  common,
-  top,
-  about,
-  productsRes,
-  worksRes,
-}: Props) => {
+const Home: NextPage<Props> = ({ common, top, about }: Props) => {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -65,6 +58,7 @@ const Home: NextPage<Props> = ({
 
       <main>
         <div className="h-12 md:h-20"></div>
+
         <FirstView
           catchCopy={top.catch_copy}
           profileImg={about.profile_img.data.attributes.url}
@@ -75,13 +69,6 @@ const Home: NextPage<Props> = ({
 
         <Tab />
       </main>
-
-      <Footer
-        copyRight={common.copy_right}
-        snsLinks={about.sns}
-        productsRes={productsRes}
-        worksRes={worksRes}
-      />
     </>
   );
 };

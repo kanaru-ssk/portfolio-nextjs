@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Logo = () => {
   return (
-    <div className="py-16">
+    <div className="py-8">
       <Link href="/">
         <a title="トップページへ">
           <svg className="m-auto" width="96" height="48">
