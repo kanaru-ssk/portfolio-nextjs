@@ -10,8 +10,8 @@
     @apply mx-auto max-w-3xl;
   }
 
-  article h1 {
-    @apply my-4 py-4 text-2xl font-bold;
+  h1 {
+    @apply my-8 border-b-2 border-gray py-4 text-2xl font-bold;
   }
   article h2 {
     @apply my-4 bg-light-gray p-3 text-2xl font-bold;

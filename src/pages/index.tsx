@@ -59,7 +59,7 @@ const Home: NextPage<Props> = ({
         <meta property="og:description" content={general.description} />
         <meta name="twitter:card" content="summary" />
 
-        <title>{general.title}</title>
+        <title>{"Kanaru | " + general.title}</title>
         <meta name="description" content={general.description} />
 
         <script
