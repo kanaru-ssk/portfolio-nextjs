@@ -20,7 +20,6 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
           rel="canonical"
           href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + "/blog/"}
         />
-        <link rel="icon" href="/favicon.svg" />
 
         {/* ogp */}
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />

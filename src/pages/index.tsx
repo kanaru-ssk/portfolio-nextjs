@@ -50,7 +50,6 @@ const Home: NextPage<Props> = ({
           rel="canonical"
           href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN}
         />
-        <link rel="icon" href="/favicon.svg" />
 
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:type" content="website" />
