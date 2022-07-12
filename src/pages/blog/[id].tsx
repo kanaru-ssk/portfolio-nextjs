@@ -18,7 +18,9 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
       <Head>
         <link
           rel="canonical"
-          href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + "/blog/"}
+          href={
+            process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + "/blog/" + post.slug
+          }
         />
 
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
