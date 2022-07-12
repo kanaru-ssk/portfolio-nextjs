@@ -1,9 +1,11 @@
+import Content from "components/common/Content";
+
 type Props = {
   aboutContent: string;
 };
 
 const About = ({ aboutContent }: Props) => {
-  return <div dangerouslySetInnerHTML={{ __html: aboutContent }}></div>;
+  return <Content source={aboutContent} />;
 };
 
 export default About;
