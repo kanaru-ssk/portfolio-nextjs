@@ -43,7 +43,7 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
       </Head>
 
       <main className="p-4">
-        <div className="h-20"></div>
+        <div className="h-12 md:h-20"></div>
         <h1>{post.title}</h1>
         <Content html={post.content} />
       </main>
