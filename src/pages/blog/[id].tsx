@@ -33,17 +33,13 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
           property="og:title"
           content={post.seo.title ? post.seo.title + " | Kanaru" : "Kanaru"}
         />
-        <meta
-          property="og:description"
-          content={post.seo.description ? post.seo.description : ""}
-        />
+        <meta property="og:description" content={post.seo.description} />
         <meta name="twitter:card" content="summary" />
 
-        <title>{post.seo.title + " | Kanaru"}</title>
-        <meta
-          name="description"
-          content={post.seo.description ? post.seo.description : ""}
-        />
+        <title>
+          {post.seo.title ? post.seo.title + " | Kanaru" : "Kanaru"}
+        </title>
+        <meta name="description" content={post.seo.description} />
       </Head>
 
       <main className="p-4">
