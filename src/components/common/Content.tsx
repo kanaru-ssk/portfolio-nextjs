@@ -1,12 +1,9 @@
-import parse, { HTMLReactParserOptions } from "html-react-parser";
-
 type Props = {
-  source: string;
-  options?: HTMLReactParserOptions;
+  html: string;
 };
 
-const Content = ({ source, options }: Props) => {
-  return <article>{parse(source, options)}</article>;
+const Content = ({ html }: Props) => {
+  return <article dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 export default Content;
