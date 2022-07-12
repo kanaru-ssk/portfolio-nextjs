@@ -3,15 +3,17 @@ export interface WpPostRes {
 }
 
 export interface Post {
-  seo: SEO;
+  title: string;
   slug: string;
+  date: Date;
   content: string;
+  seo: SEO;
 }
 
 export interface SEO {
-  description: string | null;
-  title: string | null;
-  ogpImg: OgpImg | null;
+  description: string;
+  title: string;
+  ogpImg: OgpImg;
 }
 
 export interface OgpImg {

@@ -6,9 +6,9 @@ type Props = {
 
 const SendSuccess = ({ text }: Props) => {
   return (
-    <div>
+    <p>
       <Text text={text} />
-    </div>
+    </p>
   );
 };
 

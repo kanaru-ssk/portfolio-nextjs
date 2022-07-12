@@ -1,8 +1,8 @@
-export interface WpBlogPathRes {
-  posts: Posts;
+export interface WpPostPathsRes {
+  posts: Paths;
 }
 
-export interface Posts {
+export interface Paths {
   nodes: Node[];
 }
 

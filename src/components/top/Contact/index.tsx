@@ -2,10 +2,10 @@ import { useState } from "react";
 
 import { useRouter } from "next/router";
 
-import Form from "components/Contact/Form";
-import SendError from "components/Contact/SendError";
-import SendSuccess from "components/Contact/SendSuccess";
 import HeaderLogo from "components/common/HeaderLogo";
+import Form from "components/top/Contact/Form";
+import SendError from "components/top/Contact/SendError";
+import SendSuccess from "components/top/Contact/SendSuccess";
 
 type ViewStatus = "Form" | "Success" | "Error";
 

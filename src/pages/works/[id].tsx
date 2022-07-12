@@ -3,9 +3,10 @@ import Head from "next/head";
 
 import type { NextPage, GetStaticProps } from "next";
 
+import Content from "components/common/Content";
 import { client } from "libs/wordpress";
-import { WpBlogPathRes } from "types/wpBlogPath";
 import { WpPostRes, Post } from "types/wpPost";
+import { WpPostPathsRes } from "types/wpPostPaths";
 
 type Props = {
   post: Post;
@@ -30,7 +31,7 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
         />
         <meta
           property="og:title"
-          content={post.seo.title ? post.seo.title : ""}
+          content={post.seo.title ? post.seo.title + " | Kanaru" : "Kanaru"}
         />
         <meta
           property="og:description"
@@ -38,7 +39,7 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
         />
         <meta name="twitter:card" content="summary" />
 
-        <title>{post.seo.title}</title>
+        <title>{post.seo.title + " | Kanaru"}</title>
         <meta
           name="description"
           content={post.seo.description ? post.seo.description : ""}
@@ -47,7 +48,8 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
 
       <main className="p-4">
         <div className="h-20"></div>
-        <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
+        <h1>{post.title}</h1>
+        <Content html={post.content} />
       </main>
     </>
   );
@@ -57,7 +59,7 @@ export default WorksArticle;
 
 export const getStaticPaths = async () => {
   const GET_WORKS_PATH = gql`
-    query getWorks {
+    query getWorksPaths {
       posts(first: 9999, where: { categoryName: "works" }) {
         nodes {
           slug
@@ -66,7 +68,7 @@ export const getStaticPaths = async () => {
     }
   `;
 
-  const response = await client.query<WpBlogPathRes>({
+  const response = await client.query<WpPostPathsRes>({
     query: GET_WORKS_PATH,
   });
 
@@ -79,6 +81,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const GET_POST = gql`
     query getPost {
       postBy(slug: "${params!.id}") {
+        title
+        slug
+        date
+        content
         seo {
           description
           title
@@ -86,8 +92,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             sourceUrl
           }
         }
-        slug
-        content
       }
     }
   `;

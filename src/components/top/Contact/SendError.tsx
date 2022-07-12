@@ -6,9 +6,9 @@ type Props = {
 
 const SendError = ({ text }: Props) => {
   return (
-    <div className="text-red">
+    <p className="text-red">
       <Text text={text} />
-    </div>
+    </p>
   );
 };
 

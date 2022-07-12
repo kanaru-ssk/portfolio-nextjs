@@ -8,10 +8,6 @@ type Props = {
 };
 
 const Blog = ({ blogPosts }: Props) => {
-  blogPosts.map((value) => {
-    console.log(value.featuredImage?.node.sourceUrl);
-  });
-
   return (
     <div>
       {blogPosts.map((value) => {

@@ -2,7 +2,7 @@ import React from "react";
 
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Form from "components/Contact/Form";
+import Form from "components/top/Contact/Form";
 
 export default {
   component: Form,

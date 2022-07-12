@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 
-import TabMenu from "./TabMenu";
+import About from "./About";
+import Blog from "./Blog";
+import Menu from "./Menu";
+import Works from "./Works";
 
-import About from "components/About";
-import Blog from "components/Blog";
-import Works from "components/Works";
 import { PostsNode } from "types/wpTop";
 
 type TabStatus = "/about" | "/works" | "/blog";
@@ -33,12 +33,12 @@ const Tab = ({ aboutContent, blogPosts, worksPosts }: Props) => {
   return (
     <div>
       <nav className="sticky top-12 z-10 flex h-12 justify-evenly bg-white md:top-20">
-        <TabMenu name="about" path="/about" tabStatus={tabStatus} />
-        <TabMenu name="works" path="/works" tabStatus={tabStatus} />
-        <TabMenu name="blog" path="/blog" tabStatus={tabStatus} />
+        <Menu name="about" path="/about" tabStatus={tabStatus} />
+        <Menu name="works" path="/works" tabStatus={tabStatus} />
+        <Menu name="blog" path="/blog" tabStatus={tabStatus} />
       </nav>
 
-      {tabStatus === "/about" && <About aboutContent={aboutContent} />}
+      {tabStatus === "/about" && <About html={aboutContent} />}
       {tabStatus === "/works" && <Works worksPosts={worksPosts} />}
       {tabStatus === "/blog" && <Blog blogPosts={blogPosts} />}
     </div>

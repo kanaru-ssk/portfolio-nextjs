@@ -6,9 +6,9 @@ import { useRouter } from "next/router";
 
 import type { NextPage, GetStaticProps } from "next";
 
-import Contact from "components/Contact";
-import ContactButton from "components/common/ContactButton";
-import FirstView from "components/top/FirstView";
+import Contact from "components/top/Contact";
+import ContactButton from "components/top/ContactButton";
+import Profile from "components/top/Profile";
 import Tab from "components/top/Tab";
 import { client } from "libs/wordpress";
 import { WpTopRes, PostsNode, About, GeneralSettings } from "types/wpTop";
@@ -24,7 +24,6 @@ type Props = {
 const Home: NextPage<Props> = ({
   about,
   general,
-  aboutContent,
   blogPosts,
   worksPosts,
 }: Props) => {
@@ -60,7 +59,7 @@ const Home: NextPage<Props> = ({
         <meta property="og:description" content={general.description} />
         <meta name="twitter:card" content="summary" />
 
-        <title>{general.title}</title>
+        <title>{"Kanaru | " + general.title}</title>
         <meta name="description" content={general.description} />
 
         <script
@@ -76,7 +75,7 @@ const Home: NextPage<Props> = ({
           <Contact setIsShowContact={setIsShowContact} />
         ) : (
           <>
-            <FirstView
+            <Profile
               catchCopy={about.profile.bio}
               profileImg={about.profile.icon.sourceUrl}
               name={about.profile.name}
