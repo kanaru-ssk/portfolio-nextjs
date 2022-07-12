@@ -54,9 +54,9 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
 export default WorksArticle;
 
 export const getStaticPaths = async () => {
-  const GET_WORKS_PATH = gql`
-    query getWorksPaths {
-      posts(first: 9999, where: { categoryName: "works" }) {
+  const GET_BLOG_PATH = gql`
+    query getBlogPaths {
+      posts(first: 9999, where: { categoryName: "blog" }) {
         nodes {
           slug
         }
@@ -65,10 +65,10 @@ export const getStaticPaths = async () => {
   `;
 
   const response = await client.query<WpPostPathsRes>({
-    query: GET_WORKS_PATH,
+    query: GET_BLOG_PATH,
   });
 
-  const paths = response.data.posts.nodes.map((post) => `/works/${post.slug}`);
+  const paths = response.data.posts.nodes.map((post) => `/blog/${post.slug}`);
 
   return { paths, fallback: false };
 };
