@@ -42,7 +42,7 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
         <meta name="description" content={post.seo.description} />
       </Head>
 
-      <main className="p-4">
+      <main className="px-4">
         <div className="h-12 md:h-20"></div>
         <h1>{post.title}</h1>
         <Content html={post.content} />

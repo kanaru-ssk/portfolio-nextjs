@@ -10,7 +10,7 @@ const Custom404: NextPage = () => {
         <title>404 | Kanaru</title>
       </Head>
 
-      <main className="p-4 pb-8">
+      <main>
         <div className="h-12 md:h-20"></div>
         <h1>404 Not Found</h1>
         <p className="pb-8">
