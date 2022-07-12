@@ -21,7 +21,6 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
           href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + "/blog/"}
         />
 
-        {/* ogp */}
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:type" content="website" />
         <meta
