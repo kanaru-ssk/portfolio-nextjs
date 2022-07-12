@@ -2,7 +2,7 @@ import React from "react";
 
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import ContactButton from "components/common/ContactButton";
+import ContactButton from "components/top/ContactButton";
 
 export default {
   component: ContactButton,

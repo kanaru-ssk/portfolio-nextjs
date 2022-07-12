@@ -1,15 +1,18 @@
 import Image from "next/image";
 
+import Text from "components/common/Text";
+
 type Props = {
   profileImg: string;
   name: string;
   nameKana: string;
   job: string;
+  catchCopy: string;
 };
 
-const Profile = ({ profileImg, name, nameKana, job }: Props) => {
+const Profile = ({ catchCopy, profileImg, name, nameKana, job }: Props) => {
   return (
-    <>
+    <div className="py-4 px-4">
       <div className="flex items-center gap-8 py-4">
         <Image
           className="rounded-full"
@@ -24,7 +27,10 @@ const Profile = ({ profileImg, name, nameKana, job }: Props) => {
           <div>{nameKana}</div>
         </div>
       </div>
-    </>
+      <div className="tracking-wide">
+        <Text text={catchCopy} />
+      </div>
+    </div>
   );
 };
 

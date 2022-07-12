@@ -4,11 +4,12 @@
 
 @layer base {
   body {
-    @apply box-border font-sans font-light leading-7 tracking-wider;
+    @apply box-border font-sans font-light leading-7;
   }
   main {
     @apply mx-auto max-w-3xl;
   }
+
   article h1 {
     @apply my-4 py-4 text-2xl font-bold;
   }
@@ -25,6 +26,52 @@
     @apply mb-7;
   }
   article a {
-    @apply text-blue underline;
+    @apply text-blue underline hover:text-dark-gray;
   }
+  article ul {
+    @apply mb-7 ml-4 list-disc;
+  }
+  article ol {
+    @apply ml-4 list-decimal;
+  }
+  article img {
+    @apply mb-7;
+  }
+  article strong {
+    @apply font-bold;
+  }
+}
+
+.wp-block-code {
+  @apply whitespace-pre-wrap border border-gray bg-light-gray p-4;
+}
+
+.toc {
+  @apply my-8 mx-auto table border border-gray py-4 px-8;
+}
+
+.toc-title {
+  @apply block p-2 text-center text-lg after:ml-2 after:text-sm after:content-["[開く]"];
+}
+
+.toc-checkbox {
+  @apply hidden;
+}
+
+.toc-content {
+  visibility: hidden;
+  height: 0;
+  opacity: 0.2;
+  transition: all 0.5s ease-out;
+}
+
+.toc-checkbox:checked ~ .toc-content {
+  visibility: visible;
+  padding-top: 0.6em;
+  height: 100%;
+  opacity: 1;
+}
+
+.toc-checkbox:checked + .toc-title::after {
+  content: "[閉じる]";
 }

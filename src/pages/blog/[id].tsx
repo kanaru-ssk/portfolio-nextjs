@@ -48,8 +48,7 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
 
       <main className="p-4">
         <div className="h-20"></div>
-        <Content source={post.content} />
-        {/* <div dangerouslySetInnerHTML={{ __html: post.content }}></div> */}
+        <Content html={post.content} />
       </main>
     </>
   );

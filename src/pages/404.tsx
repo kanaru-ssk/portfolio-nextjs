@@ -1,6 +1,6 @@
-import type { NextPage } from "next";
+import Link from "next/link";
 
-import A from "components/common/A";
+import type { NextPage } from "next";
 
 const Custom404: NextPage = () => {
   return (
@@ -10,7 +10,9 @@ const Custom404: NextPage = () => {
         <h1>404 Not Found</h1>
         <p>申し訳ございません。お探しのページは見つかりませんでした。</p>
         <div className="py-8">
-          <A title="トップページに戻る" url="/" />
+          <Link href="/">
+            <a>トップページに戻る</a>
+          </Link>
         </div>
       </main>
     </>
