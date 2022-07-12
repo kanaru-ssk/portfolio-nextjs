@@ -18,11 +18,11 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
       <Head>
         <link
           rel="canonical"
-          href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + "/blog/"}
+          href={
+            process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + "/blog/" + post.slug
+          }
         />
-        <link rel="icon" href="/favicon.svg" />
 
-        {/* ogp */}
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:type" content="website" />
         <meta
@@ -42,8 +42,8 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
         <meta name="description" content={post.seo.description} />
       </Head>
 
-      <main className="p-4">
-        <div className="h-20"></div>
+      <main className="px-4">
+        <div className="h-12 md:h-20"></div>
         <h1>{post.title}</h1>
         <Content html={post.content} />
       </main>
