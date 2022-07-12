@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 
 import type { NextPage } from "next";
@@ -5,6 +6,10 @@ import type { NextPage } from "next";
 const Custom404: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>404 | Kanaru</title>
+      </Head>
+
       <main className="p-4">
         <div className="h-20"></div>
         <h1>404 Not Found</h1>
