@@ -90,7 +90,7 @@ const Form = ({ setViewStatus }: Props) => {
 
         {inputStatus === "Ready" && (
           <button
-            className="h-12 rounded-full border px-16 hover:bg-black hover:text-white"
+            className="h-12 rounded-full border px-16 sm:hover:bg-black sm:hover:text-white"
             type="submit"
           >
             送信

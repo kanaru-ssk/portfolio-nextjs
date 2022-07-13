@@ -17,7 +17,7 @@ const Custom404: NextPage = () => {
           申し訳ございません。お探しのページは見つかりませんでした。
         </p>
         <Link href="/">
-          <a className="text-blue underline hover:text-dark-gray">
+          <a className="text-blue underline sm:hover:text-dark-gray">
             トップページに戻る
           </a>
         </Link>
