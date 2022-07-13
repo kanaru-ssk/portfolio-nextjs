@@ -13,7 +13,7 @@ const ContactButton = ({ setIsShowContact }: Props) => {
           setIsShowContact(true);
           router.push("/contact", "/contact", { shallow: true });
         }}
-        className="w-full rounded-full bg-gray px-4 py-1 hover:bg-light-gray hover:text-dark-gray"
+        className="w-full rounded-full bg-gray px-4 py-1 sm:hover:bg-light-gray sm:hover:text-dark-gray"
       >
         contact
       </button>
