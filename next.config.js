@@ -68,7 +68,7 @@ const config = {
       },
       {
         source:
-          "https://kanaru.jp/blog/github-actions%e3%81%a7vps%e3%81%ab%e8%87%aa%e5%8b%95%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4%e3%81%97%e3%81%9f%e6%99%82%e3%81%ae%e3%83%a1%e3%83%a2/",
+          "/blog/github-actions%e3%81%a7vps%e3%81%ab%e8%87%aa%e5%8b%95%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4%e3%81%97%e3%81%9f%e6%99%82%e3%81%ae%e3%83%a1%e3%83%a2/",
         destination: "/blog/deploy-vps-with-github-actions/",
         permanent: true,
       },
