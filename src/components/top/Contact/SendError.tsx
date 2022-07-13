@@ -1,15 +1,9 @@
-import Text from "components/common/Text";
-
 type Props = {
   text: string;
 };
 
 const SendError = ({ text }: Props) => {
-  return (
-    <p className="text-red">
-      <Text text={text} />
-    </p>
-  );
+  return <p className="whitespace-pre-wrap text-red">{text} </p>;
 };
 
 export default SendError;
