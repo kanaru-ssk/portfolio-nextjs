@@ -6,9 +6,6 @@ import ContactButton from "components/top/ContactButton";
 
 export default {
   component: ContactButton,
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
 } as ComponentMeta<typeof ContactButton>;
 
 const Template: ComponentStory<typeof ContactButton> = (args) => (
