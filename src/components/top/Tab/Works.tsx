@@ -15,7 +15,7 @@ const Works = ({ worksPosts }: Props) => {
           <li className="h-[50vw] w-1/2" key={value.id}>
             <Link href={"/works/" + value.slug} key={value.id}>
               <a>
-                <div className="relative h-full w-full">
+                <div className="relative h-full max-h-96 w-full sm:hover:opacity-50">
                   <Image
                     src={
                       value.featuredImage?.node.sourceUrl

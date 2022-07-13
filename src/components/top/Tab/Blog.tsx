@@ -14,7 +14,7 @@ const Blog = ({ blogPosts }: Props) => {
         return (
           <Link href={"/blog/" + value.slug} key={value.id}>
             <a>
-              <div className="item-center flex h-24 px-4 py-3">
+              <div className="flex h-24 px-4 py-3 sm:hover:bg-light-gray">
                 <div className="h-[72px] w-32">
                   <Image
                     src={
