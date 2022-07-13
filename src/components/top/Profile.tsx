@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-import Text from "components/common/Text";
-
 type Props = {
   profileImg: string;
   name: string;
@@ -27,9 +25,7 @@ const Profile = ({ catchCopy, profileImg, name, nameKana, job }: Props) => {
           <div>{nameKana}</div>
         </div>
       </div>
-      <div className="tracking-wide">
-        <Text text={catchCopy} />
-      </div>
+      <div className="whitespace-pre-wrap tracking-wide">{catchCopy}</div>
     </div>
   );
 };

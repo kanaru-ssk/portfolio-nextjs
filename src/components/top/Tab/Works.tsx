@@ -13,7 +13,7 @@ const Works = ({ worksPosts }: Props) => {
       {worksPosts.map((value) => {
         return (
           <li className="h-[50vw] w-1/2" key={value.id}>
-            <Link href={"/works/" + value.slug} key={value.id}>
+            <Link href={"/works/" + value.slug} key={value.id} prefetch={false}>
               <a>
                 <div className="relative h-full max-h-96 w-full sm:hover:opacity-50">
                   <Image
