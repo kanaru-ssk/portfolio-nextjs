@@ -1,6 +1,7 @@
-import SnsLink from "./SnsLink";
+import Image from "next/image";
+import Link from "next/link";
 
-const OfficialSns = () => {
+const Sns = () => {
   const snsLinks = [
     {
       url: "https://twitter.com/kanaru_dev",
@@ -32,16 +33,26 @@ const OfficialSns = () => {
     <ul className="flex list-none items-center justify-center p-4">
       {snsLinks.map((value) => {
         return (
-          <SnsLink
-            key={value.snsName}
-            snsName={value.snsName}
-            iconUrl={value.snsIcon}
-            profileUrl={value.url}
-          />
+          <li key={value.snsName} className="p-2 text-base">
+            <Link href={value.url}>
+              <a
+                title={
+                  "佐々木哉瑠の" + value.snsName + "プロフィールへのリンク"
+                }
+              >
+                <Image
+                  src={value.snsIcon}
+                  width="32"
+                  height="20"
+                  alt="sns-link"
+                />
+              </a>
+            </Link>
+          </li>
         );
       })}
     </ul>
   );
 };
 
-export default OfficialSns;
+export default Sns;
