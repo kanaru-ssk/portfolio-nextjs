@@ -1,19 +1,15 @@
-import Document, { Head, Html, Main, NextScript } from "next/document";
+import { Html, Head, Main, NextScript } from "next/document";
 
-class MyDocument extends Document {
-  render() {
-    return (
-      <Html lang="ja">
-        <Head>
-          <link rel="icon" href="/favicon.svg" />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
-}
+const Document = () => {
+  return (
+    <Html lang="ja">
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+};
 
-export default MyDocument;
+export default Document;

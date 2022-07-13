@@ -1,5 +1,4 @@
 const path = require("path");
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -16,17 +15,12 @@ module.exports = {
       },
     },
   ],
-  webpackFinal(config) {
-    config.resolve.modules = [
-      ...(config.resolve.modules || []),
+  webpackFinal: async (baseConfig) => {
+    baseConfig.resolve.modules = [
+      ...(baseConfig.resolve.modules || []),
       path.resolve(__dirname, "../src"),
     ];
-
-    config.resolve.plugins = [
-      ...(config.resolve.plugins || []),
-      new TsconfigPathsPlugin(),
-    ];
-    return config;
+    return baseConfig;
   },
   framework: "@storybook/react",
   core: {

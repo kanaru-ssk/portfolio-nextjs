@@ -1,4 +1,4 @@
-import MenuLink from "./MenuLink";
+import Link from "next/link";
 
 const SiteMap = () => {
   const pages = [
@@ -13,7 +13,9 @@ const SiteMap = () => {
       {pages.map((value) => {
         return (
           <li key={value.path} className="w-36 text-center">
-            <MenuLink path={value.path} />
+            <Link href={"/" + value.path}>
+              <a className="text-base font-medium">{value.path}</a>
+            </Link>
           </li>
         );
       })}

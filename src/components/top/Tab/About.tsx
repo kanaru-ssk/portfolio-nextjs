@@ -1,5 +1,3 @@
-import Content from "components/common/Content";
-
 type Props = {
   html: string;
 };
@@ -7,7 +5,7 @@ type Props = {
 const About = ({ html }: Props) => {
   return (
     <div className="p-4">
-      <Content html={html} />
+      <article dangerouslySetInnerHTML={{ __html: html }} />
     </div>
   );
 };

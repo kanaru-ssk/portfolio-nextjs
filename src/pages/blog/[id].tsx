@@ -3,7 +3,6 @@ import Head from "next/head";
 
 import type { NextPage, GetStaticProps } from "next";
 
-import Content from "components/common/Content";
 import { client } from "libs/wordpress";
 import { WpPostRes, Post } from "types/wpPost";
 import { WpPostPathsRes } from "types/wpPostPaths";
@@ -45,7 +44,7 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
       <main className="px-4">
         <div className="h-12 md:h-20"></div>
         <h1>{post.title}</h1>
-        <Content html={post.content} />
+        <article dangerouslySetInnerHTML={{ __html: post.content }} />
       </main>
     </>
   );

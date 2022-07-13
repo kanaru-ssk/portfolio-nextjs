@@ -41,11 +41,11 @@ const Contact = ({ setIsShowContact }: Props) => {
       <h1>お問い合わせ</h1>
 
       {viewStatus === "Form" && <Form setViewStatus={setViewStatus} />}
-      {viewStatus === "Success" && <SendSuccess text="送信完了" />}
+      {viewStatus === "Success" && <SendSuccess />}
       {viewStatus === "Error" && (
         <>
+          <SendError />
           <Form setViewStatus={setViewStatus} />
-          <SendError text="送信失敗" />
         </>
       )}
     </div>

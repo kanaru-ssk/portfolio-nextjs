@@ -12,10 +12,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
-        <meta
-          name="viewport"
-          content="initial-scale=1.0, width=device-width, maximum-scale=1.0"
-        />
+        <link rel="icon" href="/favicon.svg" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="theme-color" content="#232C93" />
       </Head>
 

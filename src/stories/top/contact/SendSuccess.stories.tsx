@@ -8,11 +8,6 @@ export default {
   component: SendSuccess,
 } as ComponentMeta<typeof SendSuccess>;
 
-const Template: ComponentStory<typeof SendSuccess> = (args) => (
-  <SendSuccess {...args} />
-);
+const Template: ComponentStory<typeof SendSuccess> = () => <SendSuccess />;
 
 export const Default = Template.bind({});
-Default.args = {
-  text: "テスト",
-};
