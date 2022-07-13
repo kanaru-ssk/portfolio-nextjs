@@ -12,7 +12,7 @@ const Blog = ({ blogPosts }: Props) => {
     <div>
       {blogPosts.map((value) => {
         return (
-          <Link href={"/blog/" + value.slug} key={value.id}>
+          <Link href={"/blog/" + value.slug} key={value.id} prefetch={false}>
             <a>
               <div className="flex h-24 px-4 py-3 sm:hover:bg-light-gray">
                 <div className="h-[72px] w-32">
