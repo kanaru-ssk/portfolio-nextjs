@@ -35,3 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 
 src/styles/dist.css
+
+public/sitemap*.xml
