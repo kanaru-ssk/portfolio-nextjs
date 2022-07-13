@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "yarn build:css && next build",
     "start": "next start",
     "lint": "next lint --dir src",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
     "lint:fix": "yarn lint --fix && yarn format",
+    "build:css": "tailwindcss -i src/styles/globals.css -o src/styles/dist.css  --minify",
     "postbuild": "next-sitemap",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
