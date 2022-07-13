@@ -30,7 +30,7 @@ const Blog = ({ blogPosts }: Props) => {
 
                 <div className="relative flex-auto pl-4">
                   <div className="leading-5 line-clamp-2">{value.title}</div>
-                  <div className="absolute bottom-0 right-0 text-right text-xs">
+                  <div className="absolute bottom-0 right-0 text-xs">
                     {value.date.toString()}
                   </div>
                 </div>
