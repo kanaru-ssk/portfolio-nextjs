@@ -80,7 +80,7 @@ const Home: NextPage<Props> = ({
               bio={about.profile.bio}
               profileImg={about.profile.icon.sourceUrl}
               name={about.profile.name}
-              nameKana={about.profile.nameKana}
+              nameRoman={about.profile.nameRoman}
               job={about.profile.job}
             />
             <ContactButton setIsContact={setIsContact} />
@@ -129,7 +129,7 @@ export const getStaticProps: GetStaticProps = async () => {
           bio
           job
           name
-          nameKana
+          nameRoman
           icon {
             sourceUrl
           }

@@ -18,7 +18,7 @@ export interface Profile {
   bio: string;
   job: string;
   name: string;
-  nameKana: string;
+  nameRoman: string;
   icon: Icon;
 }
 

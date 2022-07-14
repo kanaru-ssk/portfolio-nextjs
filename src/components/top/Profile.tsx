@@ -3,12 +3,12 @@ import Image from "next/image";
 type Props = {
   profileImg: string;
   name: string;
-  nameKana: string;
+  nameRoman: string;
   job: string;
   bio: string;
 };
 
-const Profile = ({ bio, profileImg, name, nameKana, job }: Props) => {
+const Profile = ({ bio, profileImg, name, nameRoman, job }: Props) => {
   return (
     <div className="py-4 px-4">
       <div className="flex items-center gap-8 py-4">
@@ -22,7 +22,7 @@ const Profile = ({ bio, profileImg, name, nameKana, job }: Props) => {
         <div>
           <div>{job}</div>
           <div className="text-xl">{name}</div>
-          <div>{nameKana}</div>
+          <div>{nameRoman}</div>
         </div>
       </div>
       <div className="whitespace-pre-wrap tracking-wide">{bio}</div>
