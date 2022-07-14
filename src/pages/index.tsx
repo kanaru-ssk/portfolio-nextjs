@@ -72,7 +72,7 @@ const Home: NextPage<Props> = ({
 
       <main>
         {isContact ? (
-          <Contact setIsContact={setIsContact} />
+          <Contact />
         ) : (
           <>
             <Profile
