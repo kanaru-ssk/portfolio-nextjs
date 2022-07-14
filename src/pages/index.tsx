@@ -111,11 +111,13 @@ export const getStaticProps: GetStaticProps = async () => {
           date
           featuredImage {
             node {
+              id
               sourceUrl
             }
           }
           categories {
             nodes {
+              id
               name
             }
           }
@@ -123,6 +125,7 @@ export const getStaticProps: GetStaticProps = async () => {
         }
       }
       pageBy(pageId: 2) {
+        id
         content
         profile {
           bio

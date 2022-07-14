@@ -10,6 +10,7 @@ export interface GeneralSettings {
 }
 
 export interface AboutPage {
+  id: string;
   content: string;
   profile: Profile;
 }
@@ -19,10 +20,11 @@ export interface Profile {
   job: string;
   name: string;
   nameRoman: string;
-  profileImg: Img;
+  profileImg: ProfileImg;
 }
 
-export interface Img {
+export interface ProfileImg {
+  id: string;
   sourceUrl: string;
 }
 
@@ -44,13 +46,14 @@ export interface Categories {
 }
 
 export interface CategoriesNode {
+  id: string;
   name: Name;
 }
 
 export type Name = "blog" | "works";
 
 export interface FeaturedImage {
-  node: Img;
+  node: ProfileImg;
 }
 
 export interface Extensions {
