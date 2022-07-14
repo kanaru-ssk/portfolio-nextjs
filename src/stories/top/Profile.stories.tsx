@@ -17,6 +17,5 @@ Default.args = {
   name: "佐々木 哉瑠",
   nameKana: "Sasaki Kanaru",
   job: "webエンジニア",
-  catchCopy:
-    "はじめまして、webエンジニアの佐々木哉瑠です。\nホームページ制作、webアプリ開発を承っています。",
+  bio: "はじめまして、webエンジニアの佐々木哉瑠です。\nホームページ制作、webアプリ開発を承っています。",
 };

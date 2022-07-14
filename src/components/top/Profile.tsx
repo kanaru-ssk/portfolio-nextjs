@@ -5,10 +5,10 @@ type Props = {
   name: string;
   nameKana: string;
   job: string;
-  catchCopy: string;
+  bio: string;
 };
 
-const Profile = ({ catchCopy, profileImg, name, nameKana, job }: Props) => {
+const Profile = ({ bio, profileImg, name, nameKana, job }: Props) => {
   return (
     <div className="py-4 px-4">
       <div className="flex items-center gap-8 py-4">
@@ -25,7 +25,7 @@ const Profile = ({ catchCopy, profileImg, name, nameKana, job }: Props) => {
           <div>{nameKana}</div>
         </div>
       </div>
-      <div className="whitespace-pre-wrap tracking-wide">{catchCopy}</div>
+      <div className="whitespace-pre-wrap tracking-wide">{bio}</div>
     </div>
   );
 };

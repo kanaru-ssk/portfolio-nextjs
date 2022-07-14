@@ -77,15 +77,13 @@ const Home: NextPage<Props> = ({
         ) : (
           <>
             <Profile
-              catchCopy={about.profile.bio}
+              bio={about.profile.bio}
               profileImg={about.profile.icon.sourceUrl}
               name={about.profile.name}
               nameKana={about.profile.nameKana}
               job={about.profile.job}
             />
-
             <ContactButton setIsContact={setIsContact} />
-
             <Tab
               aboutContent={about.content}
               blogPosts={blogPosts}
