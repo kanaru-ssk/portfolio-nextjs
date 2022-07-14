@@ -7,9 +7,10 @@ import Blog from "./Blog";
 import Menu from "./Menu";
 import Works from "./Works";
 
+import Loading from "components/common/Loading";
 import { PostsNode } from "types/wpTop";
 
-type TabStatus = "/about" | "/works" | "/blog";
+export type TabStatus = "/" | "/works" | "/blog";
 
 type Props = {
   aboutContent: string;
@@ -19,11 +20,11 @@ type Props = {
 
 const Tab = ({ aboutContent, blogPosts, worksPosts }: Props) => {
   const router = useRouter();
-  const [tabStatus, setTabStatus] = useState<TabStatus>("/about");
+  const [tabStatus, setTabStatus] = useState<TabStatus | undefined>(undefined);
 
   useEffect(() => {
     if (
-      router.asPath === "/about" ||
+      router.asPath === "/" ||
       router.asPath === "/works" ||
       router.asPath === "/blog"
     )
@@ -33,12 +34,13 @@ const Tab = ({ aboutContent, blogPosts, worksPosts }: Props) => {
   return (
     <div>
       <nav className="sticky top-12 z-10 flex h-12 justify-evenly bg-white md:top-20">
-        <Menu name="about" path="/about" tabStatus={tabStatus} />
+        <Menu name="about" path="/" tabStatus={tabStatus} />
         <Menu name="works" path="/works" tabStatus={tabStatus} />
         <Menu name="blog" path="/blog" tabStatus={tabStatus} />
       </nav>
 
-      {tabStatus === "/about" && <About html={aboutContent} />}
+      {!tabStatus && <Loading />}
+      {tabStatus === "/" && <About html={aboutContent} />}
       {tabStatus === "/works" && <Works worksPosts={worksPosts} />}
       {tabStatus === "/blog" && <Blog blogPosts={blogPosts} />}
     </div>
