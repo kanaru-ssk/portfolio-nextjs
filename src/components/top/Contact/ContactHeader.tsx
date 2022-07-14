@@ -20,7 +20,7 @@ const Contact = () => {
         </svg>
       </button>
       <HeaderLogo />
-      <div className="h-4 w-14"></div>
+      <div className="w-14"></div>
     </header>
   );
 };
