@@ -36,10 +36,10 @@ const Home: NextPage<Props> = ({
   };
 
   const router = useRouter();
-  const [isShowContact, setIsShowContact] = useState<boolean>(false);
+  const [isContact, setIsContact] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsShowContact(router.asPath === "/contact");
+    setIsContact(router.asPath === "/contact");
   }, [router.asPath]);
 
   return (
@@ -74,8 +74,8 @@ const Home: NextPage<Props> = ({
       <main>
         <div className="h-12 md:h-20"></div>
 
-        {isShowContact ? (
-          <Contact setIsShowContact={setIsShowContact} />
+        {isContact ? (
+          <Contact setIsContact={setIsContact} />
         ) : (
           <>
             <Profile
@@ -86,7 +86,7 @@ const Home: NextPage<Props> = ({
               job={about.profile.job}
             />
 
-            <ContactButton setIsShowContact={setIsShowContact} />
+            <ContactButton setIsContact={setIsContact} />
 
             <Tab
               aboutContent={about.content}

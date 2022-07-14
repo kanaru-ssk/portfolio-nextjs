@@ -10,10 +10,10 @@ import SendSuccess from "components/top/Contact/SendSuccess";
 type ViewStatus = "Form" | "Success" | "Error";
 
 type Props = {
-  setIsShowContact: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsContact: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Contact = ({ setIsShowContact }: Props) => {
+const Contact = ({ setIsContact }: Props) => {
   const router = useRouter();
   const [viewStatus, setViewStatus] = useState<ViewStatus>("Form");
   return (
@@ -21,7 +21,7 @@ const Contact = ({ setIsShowContact }: Props) => {
       <div className="fixed top-0 left-0 z-20 flex h-12 w-full items-center justify-between bg-white px-4">
         <button
           onClick={() => {
-            setIsShowContact(false);
+            setIsContact(false);
             router.back();
           }}
         >
