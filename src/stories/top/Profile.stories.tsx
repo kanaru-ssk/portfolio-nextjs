@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import Profile from "components/top/Profile";
