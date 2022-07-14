@@ -27,7 +27,7 @@ const Home: NextPage<Props> = ({
   blogPosts,
   worksPosts,
 }: Props) => {
-  const schemaData = {
+  const logoStructuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "佐々木哉瑠",
@@ -36,7 +36,6 @@ const Home: NextPage<Props> = ({
   };
 
   const router = useRouter();
-
   const [isShowContact, setIsShowContact] = useState<boolean>(false);
 
   useEffect(() => {
@@ -66,7 +65,9 @@ const Home: NextPage<Props> = ({
 
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(logoStructuredData),
+          }}
         />
       </Head>
 
