@@ -58,6 +58,7 @@ export const getStaticPaths = async () => {
     query getWorksPaths {
       posts(first: 9999, where: { categoryName: "works" }) {
         nodes {
+          id
           slug
         }
       }
@@ -77,6 +78,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const GET_POST = gql`
     query getPost {
       postBy(slug: "${params!.id}") {
+        id
         title
         slug
         date
