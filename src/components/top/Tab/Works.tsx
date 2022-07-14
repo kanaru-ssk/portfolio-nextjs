@@ -20,7 +20,7 @@ const Works = ({ worksPosts }: Props) => {
                     src={
                       value.featuredImage?.node.sourceUrl
                         ? value.featuredImage.node.sourceUrl
-                        : "/img/ogp.webp"
+                        : "/img/404.webp"
                     }
                     width="384"
                     height="384"
