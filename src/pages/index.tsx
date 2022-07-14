@@ -11,10 +11,10 @@ import ContactButton from "components/top/ContactButton";
 import Profile from "components/top/Profile";
 import Tab from "components/top/Tab";
 import { client } from "libs/wordpress";
-import { WpTopRes, PostsNode, About, GeneralSettings } from "types/wpTop";
+import { WpTopRes, PostsNode, AboutPage, GeneralSettings } from "types/wpTop";
 
 type Props = {
-  about: About;
+  about: AboutPage;
   general: GeneralSettings;
   aboutContent: string;
   blogPosts: PostsNode[];
@@ -145,7 +145,7 @@ export const getStaticProps: GetStaticProps = async () => {
     query: GET_ALL_POSTS,
   });
   const general = response.data.generalSettings;
-  const about: About = response.data.pageBy;
+  const about: AboutPage = response.data.pageBy;
 
   const posts: PostsNode[] = response.data.posts.nodes;
 

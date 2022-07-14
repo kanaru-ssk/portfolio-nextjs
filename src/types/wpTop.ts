@@ -1,7 +1,7 @@
 export interface WpTopRes {
   generalSettings: GeneralSettings;
   posts: Posts;
-  pageBy: About;
+  pageBy: AboutPage;
 }
 
 export interface GeneralSettings {
@@ -9,7 +9,7 @@ export interface GeneralSettings {
   description: string;
 }
 
-export interface About {
+export interface AboutPage {
   content: string;
   profile: Profile;
 }
