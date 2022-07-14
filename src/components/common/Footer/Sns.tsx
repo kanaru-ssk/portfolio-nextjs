@@ -61,11 +61,7 @@ const Sns = () => {
         return (
           <li key={value.snsName} className="p-4 text-base">
             <Link href={value.url} prefetch={false}>
-              <a
-                title={
-                  "佐々木哉瑠の" + value.snsName + "プロフィールへのリンク"
-                }
-              >
+              <a title={"go to " + value.snsName + " profile"}>
                 {value.snsIcon}
               </a>
             </Link>
