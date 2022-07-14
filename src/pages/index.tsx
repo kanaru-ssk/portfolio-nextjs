@@ -72,8 +72,6 @@ const Home: NextPage<Props> = ({
       </Head>
 
       <main>
-        <div className="h-12 md:h-20"></div>
-
         {isContact ? (
           <Contact setIsContact={setIsContact} />
         ) : (
