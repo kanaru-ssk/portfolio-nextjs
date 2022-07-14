@@ -26,7 +26,9 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content={post.seo.ogpImg ? post.seo.ogpImg.sourceUrl : "/img/ogp.png"}
+          content={
+            post.seo.ogpImg ? post.seo.ogpImg.sourceUrl : "/img/ogp.webp"
+          }
         />
         <meta
           property="og:title"

@@ -52,7 +52,7 @@ const Home: NextPage<Props> = ({
 
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/img/ogp.png" />
+        <meta property="og:image" content="/img/ogp.webp" />
         <meta
           property="og:title"
           content={general.title ? "Kanaru | " + general.title : "Kanaru"}
