@@ -15,7 +15,7 @@ const FormInput = ({ email, setEmail, message, setMessage }: Props) => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-          className="block h-12 w-full rounded border border-dark-gray p-2"
+          className="w-full rounded border border-dark-gray p-3 focus:outline-blue"
           type="email"
           placeholder="example@example.com"
           required
@@ -29,7 +29,7 @@ const FormInput = ({ email, setEmail, message, setMessage }: Props) => {
           onChange={(e) => {
             setMessage(e.target.value);
           }}
-          className="block  h-24 w-full rounded border border-dark-gray p-2"
+          className="h-48 w-full rounded border border-dark-gray p-3 focus:outline-blue"
           placeholder="お問い合わせ内容を入力してください。"
           required
         ></textarea>
