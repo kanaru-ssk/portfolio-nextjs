@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const SendSuccess = () => {
   return (
     <article>
@@ -10,6 +12,11 @@ const SendSuccess = () => {
         完了メールが届かない場合、処理が正常に行われていない可能性があります。
         大変お手数ですが、再度ご連絡の手続きをお願い致します。
       </p>
+      <Link href="/">
+        <a className="text-blue underline sm:hover:text-dark-gray">
+          トップページに戻る
+        </a>
+      </Link>
     </article>
   );
 };
