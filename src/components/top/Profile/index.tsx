@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import ContactButton from "./ContactButton";
+
 type Props = {
   profileImg: string;
   name: string;
@@ -26,6 +28,7 @@ const Profile = ({ bio, profileImg, name, nameRoman, job }: Props) => {
         </div>
       </div>
       <div className="whitespace-pre-wrap tracking-wide">{bio}</div>
+      <ContactButton />
     </div>
   );
 };

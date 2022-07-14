@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import type { NextPage, GetStaticProps } from "next";
 
 import Contact from "components/top/Contact";
-import ContactButton from "components/top/ContactButton";
 import Profile from "components/top/Profile";
 import Tab from "components/top/Tab";
 import { client } from "libs/wordpress";
@@ -83,7 +82,7 @@ const Home: NextPage<Props> = ({
               nameRoman={about.profile.nameRoman}
               job={about.profile.job}
             />
-            <ContactButton />
+
             <Tab
               aboutContent={about.content}
               blogPosts={blogPosts}

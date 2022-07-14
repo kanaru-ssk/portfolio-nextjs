@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 const ContactButton = () => {
   const router = useRouter();
   return (
-    <div className="p-4 text-center">
+    <div className="pt-4 text-center">
       <button
         onClick={() => {
           router.push("/contact", "/contact", { shallow: true });
