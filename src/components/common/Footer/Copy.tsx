@@ -1,6 +1,5 @@
 const Copy = () => {
-  const copyRight = "2022 Kanaru";
-  return <div className="text-center">&copy; {copyRight}</div>;
+  return <div className="text-center">&copy; 2022 Kanaru</div>;
 };
 
 export default Copy;
