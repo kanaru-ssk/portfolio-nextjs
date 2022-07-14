@@ -13,7 +13,7 @@ type Props = {
 const Profile = ({ bio, profileImg, name, nameRoman, job }: Props) => {
   return (
     <div className="py-4 px-4">
-      <div className="flex items-center gap-8 py-4">
+      <div className="flex items-center gap-8 py-4 md:justify-center">
         <Image
           className="rounded-full"
           src={profileImg}
@@ -27,7 +27,9 @@ const Profile = ({ bio, profileImg, name, nameRoman, job }: Props) => {
           <div>{nameRoman}</div>
         </div>
       </div>
-      <div className="whitespace-pre-wrap tracking-wide">{bio}</div>
+      <div className="whitespace-pre-wrap tracking-wide md:text-center">
+        {bio}
+      </div>
       <ContactButton />
     </div>
   );
