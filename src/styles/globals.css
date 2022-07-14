@@ -9,9 +9,11 @@
   main {
     @apply mx-auto max-w-3xl pb-12;
   }
-
   h1 {
     @apply my-8 border-b-2 border-gray py-4 text-2xl font-bold;
+  }
+  button {
+    @apply font-light tracking-wider;
   }
   article h2 {
     @apply my-4 bg-light-gray p-3 text-2xl font-bold;

@@ -11,19 +11,17 @@ type Props = {
 const Tab = ({ name, path, tabStatus }: Props) => {
   const router = useRouter();
   return (
-    <label
-      htmlFor={"radio-" + name}
+    <button
       onClick={() => {
         router.replace(path, path, { shallow: true });
       }}
       className={
         `${path === tabStatus ? "border-blue font-bold " : "border-gray "}` +
-        "w-full cursor-pointer border-b py-3 text-center text-base sm:hover:bg-light-gray"
+        "w-full border-b sm:hover:bg-light-gray"
       }
     >
-      <input type="radio" name="menu" id={"radio-" + name} className="hidden" />
       {name}
-    </label>
+    </button>
   );
 };
 
