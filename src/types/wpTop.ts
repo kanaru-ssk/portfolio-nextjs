@@ -19,10 +19,10 @@ export interface Profile {
   job: string;
   name: string;
   nameRoman: string;
-  icon: Icon;
+  profileImg: Img;
 }
 
-export interface Icon {
+export interface Img {
   sourceUrl: string;
 }
 
@@ -50,7 +50,7 @@ export interface CategoriesNode {
 export type Name = "blog" | "works";
 
 export interface FeaturedImage {
-  node: Icon;
+  node: Img;
 }
 
 export interface Extensions {

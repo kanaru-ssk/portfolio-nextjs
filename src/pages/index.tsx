@@ -78,7 +78,7 @@ const Home: NextPage<Props> = ({
           <>
             <Profile
               bio={about.profile.bio}
-              profileImg={about.profile.icon.sourceUrl}
+              profileImg={about.profile.profileImg.sourceUrl}
               name={about.profile.name}
               nameRoman={about.profile.nameRoman}
               job={about.profile.job}
@@ -130,7 +130,7 @@ export const getStaticProps: GetStaticProps = async () => {
           job
           name
           nameRoman
-          icon {
+          profileImg {
             sourceUrl
           }
         }
