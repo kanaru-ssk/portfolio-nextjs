@@ -26,6 +26,23 @@ const config = {
     return [
       {
         source:
+          "/works/%e8%a1%8c%e3%81%8d%e3%81%9f%e3%81%84%e3%81%a8%e3%81%93%e3%83%aa%e3%82%b9%e3%83%88/",
+        destination: "/works/go-list/",
+        permanent: true,
+      },
+      {
+        source: "/works/kanaru-official/",
+        destination: "/works/kanaru-hp/",
+        permanent: true,
+      },
+      {
+        source:
+          "/works/%e5%ae%ae%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e5%8d%92%e5%b1%95web%e3%82%b5%e3%82%a4%e3%83%88-2021%e5%b9%b4%e5%ba%a6/",
+        destination: "/works/myu-sotuten2021/",
+        permanent: true,
+      },
+      {
+        source:
           "/blog/svgcss%e3%82%a2%e3%83%8b%e3%83%a1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%a7%e6%ad%a9%e3%81%8f%e4%ba%ba%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%9f/",
         destination: "/blog/svg-animation/",
         permanent: true,
