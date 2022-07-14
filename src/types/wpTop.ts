@@ -1,7 +1,7 @@
 export interface WpTopRes {
   generalSettings: GeneralSettings;
   posts: Posts;
-  pageBy: About;
+  pageBy: AboutPage;
 }
 
 export interface GeneralSettings {
@@ -9,7 +9,7 @@ export interface GeneralSettings {
   description: string;
 }
 
-export interface About {
+export interface AboutPage {
   content: string;
   profile: Profile;
 }
@@ -18,11 +18,11 @@ export interface Profile {
   bio: string;
   job: string;
   name: string;
-  nameKana: string;
-  icon: Icon;
+  nameRoman: string;
+  profileImg: Img;
 }
 
-export interface Icon {
+export interface Img {
   sourceUrl: string;
 }
 
@@ -50,7 +50,7 @@ export interface CategoriesNode {
 export type Name = "blog" | "works";
 
 export interface FeaturedImage {
-  node: Icon;
+  node: Img;
 }
 
 export interface Extensions {

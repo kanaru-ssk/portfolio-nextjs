@@ -7,14 +7,13 @@ import { useRouter } from "next/router";
 import type { NextPage, GetStaticProps } from "next";
 
 import Contact from "components/top/Contact";
-import ContactButton from "components/top/ContactButton";
 import Profile from "components/top/Profile";
 import Tab from "components/top/Tab";
 import { client } from "libs/wordpress";
-import { WpTopRes, PostsNode, About, GeneralSettings } from "types/wpTop";
+import { WpTopRes, PostsNode, AboutPage, GeneralSettings } from "types/wpTop";
 
 type Props = {
-  about: About;
+  about: AboutPage;
   general: GeneralSettings;
   aboutContent: string;
   blogPosts: PostsNode[];
@@ -27,7 +26,7 @@ const Home: NextPage<Props> = ({
   blogPosts,
   worksPosts,
 }: Props) => {
-  const schemaData = {
+  const logoStructuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "佐々木哉瑠",
@@ -36,11 +35,10 @@ const Home: NextPage<Props> = ({
   };
 
   const router = useRouter();
-
-  const [isShowContact, setIsShowContact] = useState<boolean>(false);
+  const [isContact, setIsContact] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsShowContact(router.asPath === "/contact");
+    setIsContact(router.asPath === "/contact");
   }, [router.asPath]);
 
   return (
@@ -53,7 +51,7 @@ const Home: NextPage<Props> = ({
 
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/img/ogp.png" />
+        <meta property="og:image" content="/img/ogp.webp" />
         <meta
           property="og:title"
           content={general.title ? "Kanaru | " + general.title : "Kanaru"}
@@ -66,26 +64,24 @@ const Home: NextPage<Props> = ({
 
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(logoStructuredData),
+          }}
         />
       </Head>
 
       <main>
-        <div className="h-12 md:h-20"></div>
-
-        {isShowContact ? (
-          <Contact setIsShowContact={setIsShowContact} />
+        {isContact ? (
+          <Contact />
         ) : (
           <>
             <Profile
-              catchCopy={about.profile.bio}
-              profileImg={about.profile.icon.sourceUrl}
+              bio={about.profile.bio}
+              profileImg={about.profile.profileImg.sourceUrl}
               name={about.profile.name}
-              nameKana={about.profile.nameKana}
+              nameRoman={about.profile.nameRoman}
               job={about.profile.job}
             />
-
-            <ContactButton setIsShowContact={setIsShowContact} />
 
             <Tab
               aboutContent={about.content}
@@ -132,8 +128,8 @@ export const getStaticProps: GetStaticProps = async () => {
           bio
           job
           name
-          nameKana
-          icon {
+          nameRoman
+          profileImg {
             sourceUrl
           }
         }
@@ -145,7 +141,7 @@ export const getStaticProps: GetStaticProps = async () => {
     query: GET_ALL_POSTS,
   });
   const general = response.data.generalSettings;
-  const about: About = response.data.pageBy;
+  const about: AboutPage = response.data.pageBy;
 
   const posts: PostsNode[] = response.data.posts.nodes;
 

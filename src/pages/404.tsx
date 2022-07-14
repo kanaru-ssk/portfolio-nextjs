@@ -11,7 +11,6 @@ const Custom404: NextPage = () => {
       </Head>
 
       <main className="min-h-[75vh] px-4">
-        <div className="h-12 md:h-20"></div>
         <h1>404 Not Found</h1>
         <p className="pb-8">
           申し訳ございません。お探しのページは見つかりませんでした。
