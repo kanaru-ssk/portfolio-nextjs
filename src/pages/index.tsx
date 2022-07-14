@@ -83,7 +83,7 @@ const Home: NextPage<Props> = ({
               nameRoman={about.profile.nameRoman}
               job={about.profile.job}
             />
-            <ContactButton setIsContact={setIsContact} />
+            <ContactButton />
             <Tab
               aboutContent={about.content}
               blogPosts={blogPosts}
