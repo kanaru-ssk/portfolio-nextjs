@@ -9,22 +9,22 @@ type Props = {
 
 const Blog = ({ blogPosts }: Props) => {
   return (
-    <div>
+    <ul>
       {blogPosts.map((value) => {
         return (
           <Link href={"/blog/" + value.slug} key={value.id} prefetch={false}>
             <a>
-              <div className="flex h-24 px-4 py-3 sm:hover:bg-light-gray">
+              <li className="flex h-24 px-4 py-3 sm:hover:bg-light-gray">
                 <div className="h-[72px] w-32 min-w-fit">
                   <Image
                     src={
                       value.featuredImage?.node.sourceUrl
                         ? value.featuredImage.node.sourceUrl
-                        : "/img/ogp.png"
+                        : "/img/404.webp"
                     }
                     width="128"
                     height="72"
-                    alt="profile"
+                    alt="blog"
                   />
                 </div>
 
@@ -34,12 +34,12 @@ const Blog = ({ blogPosts }: Props) => {
                     {value.date.toString()}
                   </div>
                 </div>
-              </div>
+              </li>
             </a>
           </Link>
         );
       })}
-    </div>
+    </ul>
   );
 };
 

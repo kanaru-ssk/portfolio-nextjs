@@ -1,29 +1,27 @@
 import { useRouter } from "next/router";
 
-type TabStatus = "/about" | "/works" | "/blog";
+import { TabStatus } from "./index";
 
 type Props = {
   name: string;
   path: TabStatus;
-  tabStatus: TabStatus;
+  tabStatus: TabStatus | undefined;
 };
 
 const Tab = ({ name, path, tabStatus }: Props) => {
   const router = useRouter();
   return (
-    <label
-      htmlFor={"radio-" + name}
+    <button
       onClick={() => {
-        router.replace(path, path, { shallow: true });
+        path ? router.replace(path, path, { shallow: true }) : null;
       }}
       className={
         `${path === tabStatus ? "border-blue font-bold " : "border-gray "}` +
-        "w-full cursor-pointer border-b py-3 text-center text-base sm:hover:bg-light-gray"
+        "w-full border-b sm:hover:bg-light-gray"
       }
     >
-      <input type="radio" name="menu" id={"radio-" + name} className="hidden" />
       {name}
-    </label>
+    </button>
   );
 };
 

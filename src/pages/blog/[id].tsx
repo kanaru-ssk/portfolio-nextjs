@@ -26,7 +26,9 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content={post.seo.ogpImg ? post.seo.ogpImg.sourceUrl : "/img/ogp.png"}
+          content={
+            post.seo.ogpImg ? post.seo.ogpImg.sourceUrl : "/img/ogp.webp"
+          }
         />
         <meta
           property="og:title"
@@ -42,7 +44,6 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
       </Head>
 
       <main className="px-4">
-        <div className="h-12 md:h-20"></div>
         <h1>{post.title}</h1>
         <article dangerouslySetInnerHTML={{ __html: post.content }} />
       </main>
@@ -57,6 +58,7 @@ export const getStaticPaths = async () => {
     query getBlogPaths {
       posts(first: 9999, where: { categoryName: "blog" }) {
         nodes {
+          id
           slug
         }
       }
@@ -76,6 +78,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const GET_POST = gql`
     query getPost {
       postBy(slug: "${params!.id}") {
+        id
         title
         slug
         date

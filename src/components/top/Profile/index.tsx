@@ -1,17 +1,19 @@
 import Image from "next/image";
 
+import ContactButton from "./ContactButton";
+
 type Props = {
   profileImg: string;
   name: string;
-  nameKana: string;
+  nameRoman: string;
   job: string;
-  catchCopy: string;
+  bio: string;
 };
 
-const Profile = ({ catchCopy, profileImg, name, nameKana, job }: Props) => {
+const Profile = ({ bio, profileImg, name, nameRoman, job }: Props) => {
   return (
     <div className="py-4 px-4">
-      <div className="flex items-center gap-8 py-4">
+      <div className="flex items-center gap-8 py-4 md:justify-center">
         <Image
           className="rounded-full"
           src={profileImg}
@@ -22,10 +24,13 @@ const Profile = ({ catchCopy, profileImg, name, nameKana, job }: Props) => {
         <div>
           <div>{job}</div>
           <div className="text-xl">{name}</div>
-          <div>{nameKana}</div>
+          <div>{nameRoman}</div>
         </div>
       </div>
-      <div className="whitespace-pre-wrap tracking-wide">{catchCopy}</div>
+      <div className="whitespace-pre-wrap tracking-wide md:text-center">
+        {bio}
+      </div>
+      <ContactButton />
     </div>
   );
 };

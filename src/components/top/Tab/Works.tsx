@@ -12,21 +12,21 @@ const Works = ({ worksPosts }: Props) => {
     <ul className="flex flex-wrap justify-between">
       {worksPosts.map((value) => {
         return (
-          <li className="h-[50vw] w-1/2" key={value.id}>
+          <li className="w-1/2" key={value.id}>
             <Link href={"/works/" + value.slug} key={value.id} prefetch={false}>
-              <a>
-                <div className="relative h-full max-h-96 w-full sm:hover:opacity-50">
+              <a className="leading-[0]">
+                <div className="relative sm:hover:opacity-50">
                   <Image
                     src={
                       value.featuredImage?.node.sourceUrl
                         ? value.featuredImage.node.sourceUrl
-                        : "/img/ogp.png"
+                        : "/img/404.webp"
                     }
                     width="384"
                     height="384"
-                    alt="profile"
+                    alt="works"
                   />
-                  <div className="absolute bottom-0 h-8 w-full bg-trans-white text-center leading-8">
+                  <div className="absolute bottom-0 w-full bg-trans-white text-center leading-9">
                     {value.title}
                   </div>
                 </div>

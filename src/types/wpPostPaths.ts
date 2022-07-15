@@ -1,12 +1,13 @@
 export interface WpPostPathsRes {
-  posts: Paths;
+  posts: Posts;
 }
 
-export interface Paths {
+export interface Posts {
   nodes: Node[];
 }
 
 export interface Node {
+  id: string;
   slug: string;
 }
 
