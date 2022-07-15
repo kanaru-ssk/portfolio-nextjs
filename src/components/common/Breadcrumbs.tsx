@@ -7,7 +7,7 @@ type Props = {
   }[];
 };
 
-const Breadcrumb = ({ bread }: Props) => {
+const Breadcrumbs = ({ bread }: Props) => {
   return (
     <>
       <div className="absolute left-0 top-12 w-screen bg-light-gray px-4 py-2 text-sm md:top-20">
@@ -46,4 +46,4 @@ const Breadcrumb = ({ bread }: Props) => {
   );
 };
 
-export default Breadcrumb;
+export default Breadcrumbs;
