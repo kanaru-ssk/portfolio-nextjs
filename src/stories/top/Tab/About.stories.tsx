@@ -1,0 +1,14 @@
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+
+import About from "components/top/Tab/About";
+
+export default {
+  component: About,
+} as ComponentMeta<typeof About>;
+
+const Template: ComponentStory<typeof About> = (args) => <About {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+  html: `<h2>Profile</h2>\n<p>初めまして、佐々木哉瑠(かなる)です。</p>\n<p class=\"p1\">宮城大学の<span class=\"s1\">4</span>年生で、<span class=\"s1\">web</span>フロントエンドのフリーランスエンジニアとして活動しています。中期的には自分の事業を持ってしっかり稼ぐが目標です。<span class=\"s1\">( </span>何するかは決まってない<span class=\"s1\"> )</span></p>\n<p>今はいろいろな業界の方と関わりたいので、ホームページ制作やwebアプリ開発のお仕事を承っています。お仕事の話ではなくても、基本的に暇にしているので気軽にSNSにでもメールにでもお声がけください〜</p>\n<h2>できること</h2>\n<h3>ホームページ制作</h3>\n<p>ホームページは、WordPressとNextJSのSSGを利用して制作いたします。多くのweb制作会社が作るWordPressのみのサイトと比較して、<strong>高速な表示</strong>と<strong>高いセキュリティ</strong>を提供できます。デザインは指定して頂いても、こちらに任せて頂いても大丈夫です。</p>\n<p>料金の目安としては、このwebサイトを1から作ったとして30万円程度が目安になります。</p>\n<h3>フロントエンド開発</h3>\n<p>webフロントエンド開発の業務委託をお受けしています。現在業務レベルで習得している技術としては、JavaScript / TypeScript、ReactJS / NextJS、GraphQL / REST、Docker Compose、AWS EC2、Firebaseあたりです。</p>\n<p>参考までに、現在は時間単価3,000円〜程度でお受けしています。</p>\n<h2>経歴</h2>\n<h3>2021/02 ~ 2021/09</h3>\n<p><strong>SIer企業でシステム開発のアルバイト</strong></p>\n<p>大学2年生の終わり頃から仙台の独立系SIer企業でアルバイトを始めました。</p>\n<p>主にECサイトや倉庫の在庫管理システムのバックエンドを担当しました。</p>\n<p>使用した技術要素 :</p>\n<ul>\n<li>Zend Frame Works</li>\n<li>PHP</li>\n<li>C# ( .NET )</li>\n<li>SQL</li>\n<li>JavaScript</li>\n<li>HTML/CSS</li>\n<li>SVN ( バージョン管理 )</li>\n<li id=\"what-is-sql-server-management-studio-ssms\">SQL Server Management Studio</li>\n<li>Crystal Reports</li>\n</ul>\n<h3>2021/11 ~ 2022/05</h3>\n<p><strong>個人開発</strong></p>\n<p>大学3年の冬からポートフォリオ制作も兼ねて個人開発を始めました。</p>\n<h4>行きたいとこリスト</h4>\n<p>一つ目が、「行きたいとこリスト」というwebサービスです。友達と行きたい場所を共有して一緒に行く人を募集できます。</p>\n<p>こちらがサービスページです → <a href=\"https://go-list.net\">行きたいとこリスト</a></p>\n<p>こちらが技術的な紹介をしたページです → <a href=\"https://kanaru.jp/blog/行きたいとこリスト\">行きたいとこリストの制作</a></p>\n<p>使用した技術要素 :</p>\n<ul>\n<li>React</li>\n<li>TypeScript</li>\n<li>SCSS ( css modules )</li>\n<li>GCP ( Firebase , Places API )</li>\n<li>Git, GitHub, GitHub actions</li>\n<li>Illustrator, Photohop, XD</li>\n</ul>\n<p>フロントエンド案件を受けたかったのでトレンドのReact, TypeScriptで作成しました。 DBがNoSQLであり、設計にかなり苦労しました。</p>\n<h4>ホームページ</h4>\n<p>二つ目が、このホームページです。</p>\n<p>使用した技術要素 :</p>\n<ul>\n<li>NextJS</li>\n<li>TypeScript</li>\n<li>TailwindCSS</li>\n<li>WordPress ( headlessで使用 )</li>\n<li>nginx</li>\n<li>GraphQL ( apollo )</li>\n</ul>\n<p>既存のWordPressサイトを、NextJSのSSGを利用して高速表示できるように再設計しました。トップページはSPAで遷移速度を上げています。</p>\n<h3>2022/06 ~</h3>\n<p class=\"font-bold pb-2\"><strong>フリーランスエンジニアとして活動開始</strong></p>\n<p>現在、webのフリーランスエンジニアとして活動しています。</p>\n<p>現業務で使用中の技術要素 :</p>\n<ul>\n<li>AWS EC2</li>\n<li>Docker, Docker Compose</li>\n<li>NextJS</li>\n<li>TypeScript</li>\n<li>TailwindCSS</li>\n<li>Git, GitLab</li>\n<li>VRT</li>\n</ul>\n<p>NextJSを使用したSEO用webサイトのフロントエンド開発業務を担当しています。</p>\n`,
+};

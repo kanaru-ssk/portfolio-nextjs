@@ -7,7 +7,7 @@ type Props = {
   }[];
 };
 
-const Breadcrumb = ({ bread }: Props) => {
+const Breadcrumbs = ({ bread }: Props) => {
   return (
     <>
       <div className="absolute left-0 top-12 w-screen bg-light-gray px-4 py-2 text-sm md:top-20">
@@ -26,18 +26,18 @@ const Breadcrumb = ({ bread }: Props) => {
         </span>
         {bread.map((value) => {
           return (
-            <>
+            <span key={value.name}>
               <span> / </span>
               {value.path ? (
-                <span className="sm:hover:underline" key={value.name}>
+                <span className="sm:hover:underline">
                   <Link href={value.path}>
                     <a>{value.name}</a>
                   </Link>
                 </span>
               ) : (
-                <span key={value.name}>{value.name}</span>
+                <span>{value.name}</span>
               )}
-            </>
+            </span>
           );
         })}
       </div>
@@ -46,4 +46,4 @@ const Breadcrumb = ({ bread }: Props) => {
   );
 };
 
-export default Breadcrumb;
+export default Breadcrumbs;

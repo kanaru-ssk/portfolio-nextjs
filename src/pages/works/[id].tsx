@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import type { NextPage, GetStaticProps } from "next";
 
-import Breadcrumb from "components/common/Breadcrumbs";
+import Breadcrumbs from "components/common/Breadcrumbs";
 import { client } from "libs/wordpress";
 import { WpPostRes, Post } from "types/wpPost";
 import { WpPostPathsRes } from "types/wpPostPaths";
@@ -45,7 +45,7 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
       </Head>
 
       <main className="px-4">
-        <Breadcrumb
+        <Breadcrumbs
           bread={[{ name: "works", path: "/works" }, { name: post.title }]}
         />
         <h1>{post.title}</h1>
