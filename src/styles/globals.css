@@ -45,7 +45,7 @@
 }
 
 .wp-block-code {
-  @apply whitespace-pre-wrap border border-gray bg-light-gray p-4;
+  @apply whitespace-pre-wrap break-words border border-gray bg-light-gray p-4;
 }
 
 .toc {
