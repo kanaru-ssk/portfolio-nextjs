@@ -26,18 +26,18 @@ const Breadcrumbs = ({ bread }: Props) => {
         </span>
         {bread.map((value) => {
           return (
-            <>
+            <span key={value.name}>
               <span> / </span>
               {value.path ? (
-                <span className="sm:hover:underline" key={value.name}>
+                <span className="sm:hover:underline">
                   <Link href={value.path}>
                     <a>{value.name}</a>
                   </Link>
                 </span>
               ) : (
-                <span key={value.name}>{value.name}</span>
+                <span>{value.name}</span>
               )}
-            </>
+            </span>
           );
         })}
       </div>
