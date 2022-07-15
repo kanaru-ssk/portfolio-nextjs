@@ -5,6 +5,8 @@ import Form from "./Form";
 import SendError from "./SendError";
 import SendSuccess from "./SendSuccess";
 
+import Breadcrumb from "components/common/Breadcrumbs";
+
 type ViewStatus = "Form" | "Success" | "Error";
 
 const Contact = () => {
@@ -12,6 +14,8 @@ const Contact = () => {
   return (
     <div className="w-full bg-white px-4">
       <ContactHeader />
+
+      <Breadcrumb bread={[{ name: "contact" }]} />
 
       <h1>お問い合わせ</h1>
 
