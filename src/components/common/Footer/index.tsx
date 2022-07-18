@@ -1,4 +1,4 @@
-import Copy from "./Copy";
+import CopyLight from "./CopyLight";
 import FooterLogo from "./FooterLogo";
 import SiteMap from "./SiteMap";
 import Sns from "./Sns";
@@ -9,7 +9,7 @@ const Footer = () => {
       <FooterLogo />
       <SiteMap />
       <Sns />
-      <Copy />
+      <CopyLight />
     </footer>
   );
 };

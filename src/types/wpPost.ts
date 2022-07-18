@@ -12,9 +12,9 @@ export interface Post {
 }
 
 export interface SEO {
-  description: string;
+  description: string | null;
   title: string;
-  ogpImg: OgpImg;
+  ogpImg: OgpImg | null;
 }
 
 export interface OgpImg {
