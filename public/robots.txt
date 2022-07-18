@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://test.kanaru.jp
+Host: https://kanaru.jp
 
 # Sitemaps
-Sitemap: https://test.kanaru.jp/sitemap.xml
+Sitemap: https://kanaru.jp/sitemap.xml

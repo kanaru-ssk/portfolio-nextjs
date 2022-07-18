@@ -4,7 +4,7 @@ import { sendSuccessMessage } from "constants/contact";
 
 const SendSuccess = () => {
   return (
-    <article>
+    <article className="pb-12">
       <p className="font-bold">送信完了</p>
       <p className="whitespace-pre-wrap">{sendSuccessMessage}</p>
       <Link href="/">

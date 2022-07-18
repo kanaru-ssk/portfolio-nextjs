@@ -39,33 +39,37 @@ const Pagination = ({ count, category, pageNum }: Props) => {
     );
   }
 
-  return (
-    <div className="w-ful my-4 text-center">
-      <div className="flex justify-center">{persons}</div>
-      <div className="my-2 flex w-full justify-evenly">
-        <PrevNextButton
-          href={
-            pageNum === 1 || pageNum === 2
-              ? "/" + category
-              : "/" + category + "/page/" + (pageNum - 1).toString()
-          }
-          isShallow={pageNum === 1}
-        >
-          &lt; 前へ
-        </PrevNextButton>
-        <PrevNextButton
-          href={
-            pageNum === pageCount - 1 || pageNum === pageCount
-              ? "/" + category + "/page/" + pageCount
-              : "/" + category + "/page/" + (pageNum + 1).toString()
-          }
-          isShallow={pageNum === pageCount}
-        >
-          次へ &gt;
-        </PrevNextButton>
+  if (pageCount === 1) {
+    return <></>;
+  } else {
+    return (
+      <div className="w-ful my-4 text-center">
+        <div className="flex justify-center">{persons}</div>
+        <div className="my-2 flex w-full justify-evenly">
+          <PrevNextButton
+            href={
+              pageNum === 1 || pageNum === 2
+                ? "/" + category
+                : "/" + category + "/page/" + (pageNum - 1).toString()
+            }
+            isShallow={pageNum === 1}
+          >
+            &lt; 前へ
+          </PrevNextButton>
+          <PrevNextButton
+            href={
+              pageNum === pageCount - 1 || pageNum === pageCount
+                ? "/" + category + "/page/" + pageCount
+                : "/" + category + "/page/" + (pageNum + 1).toString()
+            }
+            isShallow={pageNum === pageCount}
+          >
+            次へ &gt;
+          </PrevNextButton>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Pagination;
