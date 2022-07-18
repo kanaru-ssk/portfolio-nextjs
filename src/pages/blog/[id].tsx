@@ -4,6 +4,7 @@ import Head from "next/head";
 import type { NextPage, GetStaticProps } from "next";
 
 import Breadcrumbs from "components/common/Breadcrumbs";
+import { getPostPathsQuery, getPostQuery } from "constants/graphqlQuery";
 import { client } from "libs/wordpress";
 import { WpPostRes, Post } from "types/wpPost";
 import { WpPostPathsRes } from "types/wpPostPaths";
@@ -61,14 +62,7 @@ export default WorksArticle;
 
 export const getStaticPaths = async () => {
   const GET_BLOG_PATH = gql`
-    query getBlogPaths {
-      posts(first: 9999, where: { categoryName: "blog" }) {
-        nodes {
-          id
-          slug
-        }
-      }
-    }
+    ${getPostPathsQuery("blog")}
   `;
 
   const response = await client.query<WpPostPathsRes>({
@@ -82,22 +76,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const GET_POST = gql`
-    query getPost {
-      postBy(slug: "${params!.id}") {
-        id
-        title
-        slug
-        date
-        content
-        seo {
-          description
-          title
-          ogpImg {
-            sourceUrl
-          }
-        }
-      }
-    }
+    ${getPostQuery(params!.id)}
   `;
 
   const response = await client.query<WpPostRes>({

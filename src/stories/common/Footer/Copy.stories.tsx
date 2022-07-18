@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Copy from "components/common/Footer/Copy";
+import Copy from "components/common/Footer/CopyLight";
 
 export default {
   component: Copy,

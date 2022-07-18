@@ -9,6 +9,7 @@ import type { NextPage, GetStaticProps } from "next";
 import Contact from "components/top/Contact";
 import Profile from "components/top/Profile";
 import Tab from "components/top/Tab";
+import { topQuery } from "constants/graphqlQuery";
 import { client } from "libs/wordpress";
 import { WpTopRes, PostsNode, AboutPage, GeneralSettings } from "types/wpTop";
 
@@ -28,7 +29,6 @@ const Home: NextPage<Props> = ({
   worksPosts,
   blogCount,
 }: Props) => {
-  console.log(blogCount);
   const logoStructuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -105,53 +105,7 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
   const GET_ALL_POSTS = gql`
-    query topQuery {
-      generalSettings {
-        title
-        description
-      }
-      posts(first: 20) {
-        nodes {
-          id
-          title
-          date
-          slug
-          featuredImage {
-            node {
-              id
-              sourceUrl
-            }
-          }
-          categories {
-            nodes {
-              id
-              name
-            }
-          }
-        }
-      }
-      pageBy(pageId: 2) {
-        id
-        content
-        profile {
-          bio
-          job
-          name
-          nameRoman
-          profileImg {
-            id
-            sourceUrl
-          }
-        }
-      }
-      categories {
-        nodes {
-          id
-          count
-          name
-        }
-      }
-    }
+    ${topQuery}
   `;
 
   const response = await client.query<WpTopRes>({
