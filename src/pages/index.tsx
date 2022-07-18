@@ -18,6 +18,7 @@ type Props = {
   aboutContent: string;
   blogPosts: PostsNode[];
   worksPosts: PostsNode[];
+  blogCount: number;
 };
 
 const Home: NextPage<Props> = ({
@@ -25,7 +26,9 @@ const Home: NextPage<Props> = ({
   general,
   blogPosts,
   worksPosts,
+  blogCount,
 }: Props) => {
+  console.log(blogCount);
   const logoStructuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -51,7 +54,10 @@ const Home: NextPage<Props> = ({
 
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/img/ogp.webp" />
+        <meta
+          property="og:image"
+          content={process.env.NEXT_PUBLIC_DOMAIN + "/img/ogp.webp"}
+        />
         <meta
           property="og:title"
           content={general.title ? "Kanaru | " + general.title : "Kanaru"}
@@ -109,6 +115,7 @@ export const getStaticProps: GetStaticProps = async () => {
           id
           title
           date
+          slug
           featuredImage {
             node {
               id
@@ -121,7 +128,6 @@ export const getStaticProps: GetStaticProps = async () => {
               name
             }
           }
-          slug
         }
       }
       pageBy(pageId: 2) {
@@ -133,8 +139,16 @@ export const getStaticProps: GetStaticProps = async () => {
           name
           nameRoman
           profileImg {
+            id
             sourceUrl
           }
+        }
+      }
+      categories {
+        nodes {
+          id
+          count
+          name
         }
       }
     }
@@ -143,11 +157,12 @@ export const getStaticProps: GetStaticProps = async () => {
   const response = await client.query<WpTopRes>({
     query: GET_ALL_POSTS,
   });
+
   const general = response.data.generalSettings;
+
   const about: AboutPage = response.data.pageBy;
 
   const posts: PostsNode[] = response.data.posts.nodes;
-
   const blogPosts: PostsNode[] = posts.filter((value) => {
     return value.categories.nodes[0].name === "blog";
   });
@@ -155,12 +170,18 @@ export const getStaticProps: GetStaticProps = async () => {
     return value.categories.nodes[0].name === "works";
   });
 
+  const blogCategory = response.data.categories.nodes.find(
+    (value) => value.name === "blog"
+  );
+  const blogCount = blogCategory?.count ? blogCategory.count : 0;
+
   return {
     props: {
       about,
       general,
       blogPosts,
       worksPosts,
+      blogCount,
     },
   };
 };
