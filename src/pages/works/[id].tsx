@@ -18,17 +18,17 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
       <Head>
         <link
           rel="canonical"
-          href={process.env.NEXT_PUBLIC_DOMAIN + "/blog/" + post.slug}
+          href={process.env.NEXT_PUBLIC_URL + "/blog/" + post.slug}
         />
 
-        <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
           content={
             post.seo.ogpImg?.sourceUrl
               ? post.seo.ogpImg.sourceUrl
-              : process.env.NEXT_PUBLIC_DOMAIN + "/img/ogp.webp"
+              : process.env.NEXT_PUBLIC_URL + "/img/ogp.webp"
           }
         />
         <meta

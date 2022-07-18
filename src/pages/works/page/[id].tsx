@@ -28,14 +28,14 @@ const BlogPage: NextPage<Props> = ({
       <Head>
         <link
           rel="canonical"
-          href={process.env.NEXT_PUBLIC_DOMAIN + "/works/page/" + pageNum}
+          href={process.env.NEXT_PUBLIC_URL + "/works/page/" + pageNum}
         />
 
-        <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content={process.env.NEXT_PUBLIC_DOMAIN + "/img/ogp.webp"}
+          content={process.env.NEXT_PUBLIC_URL + "/img/ogp.webp"}
         />
         <meta
           property="og:title"
