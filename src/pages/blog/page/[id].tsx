@@ -28,9 +28,7 @@ const BlogPage: NextPage<Props> = ({
       <Head>
         <link
           rel="canonical"
-          href={
-            process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + "/blog/page/" + pageNum
-          }
+          href={process.env.NEXT_PUBLIC_DOMAIN + "/blog/page/" + pageNum}
         />
 
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />

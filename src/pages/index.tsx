@@ -34,8 +34,8 @@ const Home: NextPage<Props> = ({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "佐々木哉瑠",
-    url: process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN,
-    logo: process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN + "/img/logo.svg",
+    url: process.env.NEXT_PUBLIC_DOMAIN,
+    logo: process.env.NEXT_PUBLIC_DOMAIN + "/img/logo.svg",
   };
 
   const router = useRouter();
@@ -48,10 +48,7 @@ const Home: NextPage<Props> = ({
   return (
     <>
       <Head>
-        <link
-          rel="canonical"
-          href={process.env.NEXT_PUBLIC_PRODUCTION_DOMAIN}
-        />
+        <link rel="canonical" href={process.env.NEXT_PUBLIC_DOMAIN} />
 
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:type" content="website" />

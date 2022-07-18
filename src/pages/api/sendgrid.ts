@@ -5,7 +5,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const handler = (req: NextApiRequest, res: NextApiResponse<any>) => {
   if (req.method === "POST") {
-    sgMail.setApiKey(process.env.SENTGRID_API_KEY);
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     const toUser: MailDataRequired = {
       to: req.body.email,
