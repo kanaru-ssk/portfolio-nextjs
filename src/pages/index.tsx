@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { gql } from "@apollo/client";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -11,23 +10,25 @@ import Profile from "components/top/Profile";
 import Tab from "components/top/Tab";
 import { topQuery } from "constants/graphqlQuery";
 import { client } from "libs/wordpress";
-import { WpTopRes, PostsNode, AboutPage, GeneralSettings } from "types/wpTop";
+import { WpTopRes, PostNode, AboutPage, GeneralSettings } from "types/wpTop";
 
 type Props = {
   about: AboutPage;
   general: GeneralSettings;
   aboutContent: string;
-  blogPosts: PostsNode[];
-  worksPosts: PostsNode[];
+  blogPosts: PostNode[];
   blogCount: number;
+  worksPosts: PostNode[];
+  worksCount: number;
 };
 
 const Home: NextPage<Props> = ({
   about,
   general,
   blogPosts,
-  worksPosts,
   blogCount,
+  worksPosts,
+  worksCount,
 }: Props) => {
   const logoStructuredData = {
     "@context": "https://schema.org",
@@ -91,8 +92,10 @@ const Home: NextPage<Props> = ({
 
             <Tab
               aboutContent={about.content}
-              blogPosts={blogPosts}
               worksPosts={worksPosts}
+              worksCount={worksCount}
+              blogPosts={blogPosts}
+              blogCount={blogCount}
             />
           </>
         )}
@@ -104,38 +107,35 @@ const Home: NextPage<Props> = ({
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const GET_ALL_POSTS = gql`
-    ${topQuery}
-  `;
-
   const response = await client.query<WpTopRes>({
-    query: GET_ALL_POSTS,
+    query: topQuery,
   });
 
   const general = response.data.generalSettings;
 
   const about: AboutPage = response.data.pageBy;
 
-  const posts: PostsNode[] = response.data.posts.nodes;
-  const blogPosts: PostsNode[] = posts.filter((value) => {
-    return value.categories.nodes[0].name === "blog";
-  });
-  const worksPosts: PostsNode[] = posts.filter((value) => {
-    return value.categories.nodes[0].name === "works";
-  });
+  const blogPosts: PostNode[] = response.data.blog.nodes;
+  const worksPosts: PostNode[] = response.data.works.nodes;
 
   const blogCategory = response.data.categories.nodes.find(
     (value) => value.name === "blog"
   );
   const blogCount = blogCategory?.count ? blogCategory.count : 0;
 
+  const worksCategory = response.data.categories.nodes.find(
+    (value) => value.name === "works"
+  );
+  const worksCount = worksCategory?.count ? worksCategory.count : 0;
+
   return {
     props: {
       about,
       general,
       blogPosts,
-      worksPosts,
       blogCount,
+      worksPosts,
+      worksCount,
     },
   };
 };

@@ -1,4 +1,3 @@
-import { gql } from "@apollo/client";
 import Head from "next/head";
 
 import type { NextPage, GetStaticProps } from "next";
@@ -13,7 +12,7 @@ type Props = {
   post: Post;
 };
 
-const WorksArticle: NextPage<Props> = ({ post }: Props) => {
+const BlogArticle: NextPage<Props> = ({ post }: Props) => {
   return (
     <>
       <Head>
@@ -58,29 +57,21 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
   );
 };
 
-export default WorksArticle;
+export default BlogArticle;
 
 export const getStaticPaths = async () => {
-  const GET_BLOG_PATH = gql`
-    ${getPostPathsQuery("blog")}
-  `;
-
   const response = await client.query<WpPostPathsRes>({
-    query: GET_BLOG_PATH,
+    query: getPostPathsQuery("blog"),
   });
 
-  const paths = response.data.posts.nodes.map((post) => `/blog/${post.slug}`);
+  const paths = response.data.posts.nodes.map((post) => "/blog/" + post.slug);
 
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const GET_POST = gql`
-    ${getPostQuery(params!.id)}
-  `;
-
   const response = await client.query<WpPostRes>({
-    query: GET_POST,
+    query: getPostQuery(params!.id),
   });
 
   const post = response.data.postBy;

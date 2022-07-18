@@ -21,6 +21,16 @@ const config = {
   async redirects() {
     return [
       {
+        source: "/blog/page/1",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/works/page/1",
+        destination: "/works",
+        permanent: true,
+      },
+      {
         source:
           "/works/%e8%a1%8c%e3%81%8d%e3%81%9f%e3%81%84%e3%81%a8%e3%81%93%e3%83%aa%e3%82%b9%e3%83%88",
         destination: "/works/go-list",

@@ -1,10 +1,34 @@
-export const topQuery = `
+import { gql } from "@apollo/client";
+
+import { blogPerPage, worksPerPage } from "./pagination";
+
+export const topQuery = gql`
   query topQuery {
     generalSettings {
       title
       description
     }
-    posts(first: 20) {
+    blog: posts(first: ${blogPerPage}, where: { categoryName: "blog" }) {
+      nodes {
+        id
+        title
+        date
+        slug
+        featuredImage {
+          node {
+            id
+            sourceUrl
+          }
+        }
+        categories {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }
+    works: posts(first: ${worksPerPage}, where: { categoryName: "works" }) {
       nodes {
         id
         title
@@ -49,7 +73,7 @@ export const topQuery = `
 `;
 
 export const getPostPathsQuery = (category: "blog" | "works") => {
-  return `
+  return gql`
     query getWorksPaths {
       posts(first: 9999, where: { categoryName: "${category}" }) {
         nodes {
@@ -62,7 +86,7 @@ export const getPostPathsQuery = (category: "blog" | "works") => {
 };
 
 export const getPostQuery = (id: string | string[] | undefined) => {
-  return `
+  return gql`
   query getPost {
     postBy(slug: "${id}") {
       id
@@ -80,4 +104,37 @@ export const getPostQuery = (id: string | string[] | undefined) => {
     }
   }
 `;
+};
+
+export const getPostsCount = gql`
+  query getPostsCount {
+    categories {
+      nodes {
+        id
+        count
+        name
+      }
+    }
+  }
+`;
+
+export const getAllPosts = (category: "blog" | "works") => {
+  return gql`
+    query getAllPosts {
+      posts(first: 9999, where: { categoryName: "${category}" }) {
+        nodes {
+          id
+          title
+          date
+          slug
+          featuredImage {
+            node {
+              id
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  `;
 };

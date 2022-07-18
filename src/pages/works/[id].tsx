@@ -1,4 +1,3 @@
-import { gql } from "@apollo/client";
 import Head from "next/head";
 
 import type { NextPage, GetStaticProps } from "next";
@@ -61,26 +60,18 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
 export default WorksArticle;
 
 export const getStaticPaths = async () => {
-  const GET_WORKS_PATH = gql`
-    ${getPostPathsQuery("works")}
-  `;
-
   const response = await client.query<WpPostPathsRes>({
-    query: GET_WORKS_PATH,
+    query: getPostPathsQuery("works"),
   });
 
-  const paths = response.data.posts.nodes.map((post) => `/works/${post.slug}`);
+  const paths = response.data.posts.nodes.map((post) => "/works/" + post.slug);
 
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const GET_POST = gql`
-    ${getPostQuery(params!.id)}
-  `;
-
   const response = await client.query<WpPostRes>({
-    query: GET_POST,
+    query: getPostQuery(params!.id),
   });
 
   const post = response.data.postBy;
