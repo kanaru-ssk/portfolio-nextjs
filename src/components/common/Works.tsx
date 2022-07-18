@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { PostsNode } from "types/wpTop";
+import { PostNode } from "types/wpTop";
 
 type Props = {
-  worksPosts: PostsNode[];
+  worksPosts: PostNode[];
 };
 
 const Works = ({ worksPosts }: Props) => {

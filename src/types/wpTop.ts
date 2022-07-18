@@ -1,7 +1,52 @@
 export interface WpTopRes {
   generalSettings: GeneralSettings;
-  posts: Posts;
+  blog: Post;
+  works: Post;
   pageBy: AboutPage;
+  categories: DataCategories;
+}
+
+export interface Post {
+  nodes: PostNode[];
+}
+
+export interface PostNode {
+  id: string;
+  title: string;
+  date: Date;
+  slug: string;
+  featuredImage: FeaturedImage | null;
+  categories: NodeCategories;
+}
+
+export interface NodeCategories {
+  nodes: PurpleNode[];
+}
+
+export interface PurpleNode {
+  id: string;
+  name: Name;
+}
+
+type Name = "blog" | "works";
+
+export interface FeaturedImage {
+  node: ProfileImg;
+}
+
+export interface ProfileImg {
+  id: string;
+  sourceUrl: string;
+}
+
+export interface DataCategories {
+  nodes: FluffyNode[];
+}
+
+export interface FluffyNode {
+  id: string;
+  count: number | null;
+  name: string;
 }
 
 export interface GeneralSettings {
@@ -21,39 +66,6 @@ export interface Profile {
   name: string;
   nameRoman: string;
   profileImg: ProfileImg;
-}
-
-export interface ProfileImg {
-  id: string;
-  sourceUrl: string;
-}
-
-export interface Posts {
-  nodes: PostsNode[];
-}
-
-export interface PostsNode {
-  id: string;
-  title: string;
-  date: Date;
-  featuredImage: FeaturedImage | null;
-  categories: Categories;
-  slug: string;
-}
-
-export interface Categories {
-  nodes: CategoriesNode[];
-}
-
-export interface CategoriesNode {
-  id: string;
-  name: Name;
-}
-
-export type Name = "blog" | "works";
-
-export interface FeaturedImage {
-  node: ProfileImg;
 }
 
 export interface Extensions {

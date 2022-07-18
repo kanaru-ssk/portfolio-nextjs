@@ -3,32 +3,42 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import About from "./About";
-import Blog from "./Blog";
 import Menu from "./Menu";
-import Works from "./Works";
 
+import Blog from "components/common/Blog";
 import Loading from "components/common/Loading";
-import { PostsNode } from "types/wpTop";
+import Pagination from "components/common/Pagination";
+import Works from "components/common/Works";
+import { PostNode } from "types/wpTop";
 
 export type TabStatus = "/" | "/works" | "/blog";
 
 type Props = {
   aboutContent: string;
-  blogPosts: PostsNode[];
-  worksPosts: PostsNode[];
+  blogPosts: PostNode[];
+  blogCount: number;
+  worksPosts: PostNode[];
+  worksCount: number;
 };
 
-const Tab = ({ aboutContent, blogPosts, worksPosts }: Props) => {
+const Tab = ({
+  aboutContent,
+  blogPosts,
+  blogCount,
+  worksPosts,
+  worksCount,
+}: Props) => {
   const router = useRouter();
   const [tabStatus, setTabStatus] = useState<TabStatus | undefined>(undefined);
 
   useEffect(() => {
-    if (
-      router.asPath === "/" ||
-      router.asPath === "/works" ||
-      router.asPath === "/blog"
-    )
-      setTabStatus(router.asPath);
+    if (/^\/blog/.test(router.asPath)) {
+      setTabStatus("/blog");
+    } else if (/^\/works/.test(router.asPath)) {
+      setTabStatus("/works");
+    } else {
+      setTabStatus("/");
+    }
   }, [router.asPath]);
 
   return (
@@ -41,8 +51,18 @@ const Tab = ({ aboutContent, blogPosts, worksPosts }: Props) => {
 
       {!tabStatus && <Loading />}
       {tabStatus === "/" && <About html={aboutContent} />}
-      {tabStatus === "/works" && <Works worksPosts={worksPosts} />}
-      {tabStatus === "/blog" && <Blog blogPosts={blogPosts} />}
+      {tabStatus === "/works" && (
+        <>
+          <Works worksPosts={worksPosts} />
+          <Pagination count={worksCount} category="works" pageNum={1} />
+        </>
+      )}
+      {tabStatus === "/blog" && (
+        <>
+          <Blog blogPosts={blogPosts} />
+          <Pagination count={blogCount} category="blog" pageNum={1} />
+        </>
+      )}
     </div>
   );
 };

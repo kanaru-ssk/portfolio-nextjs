@@ -1,8 +1,9 @@
-import { gql } from "@apollo/client";
 import Head from "next/head";
 
 import type { NextPage, GetStaticProps } from "next";
 
+import Breadcrumbs from "components/common/Breadcrumbs";
+import { getPostPathsQuery, getPostQuery } from "constants/graphqlQuery";
 import { client } from "libs/wordpress";
 import { WpPostRes, Post } from "types/wpPost";
 import { WpPostPathsRes } from "types/wpPostPaths";
@@ -11,7 +12,7 @@ type Props = {
   post: Post;
 };
 
-const WorksArticle: NextPage<Props> = ({ post }: Props) => {
+const BlogArticle: NextPage<Props> = ({ post }: Props) => {
   return (
     <>
       <Head>
@@ -27,23 +28,34 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
         <meta
           property="og:image"
           content={
-            post.seo.ogpImg ? post.seo.ogpImg.sourceUrl : "/img/ogp.webp"
+            post.seo.ogpImg?.sourceUrl
+              ? post.seo.ogpImg.sourceUrl
+              : process.env.NEXT_PUBLIC_DOMAIN + "/img/ogp.webp"
           }
         />
         <meta
           property="og:title"
           content={post.seo.title ? post.seo.title + " | Kanaru" : "Kanaru"}
         />
-        <meta property="og:description" content={post.seo.description} />
+        <meta
+          property="og:description"
+          content={post.seo.description ? post.seo.description : ""}
+        />
         <meta name="twitter:card" content="summary" />
 
         <title>
           {post.seo.title ? post.seo.title + " | Kanaru" : "Kanaru"}
         </title>
-        <meta name="description" content={post.seo.description} />
+        <meta
+          name="description"
+          content={post.seo.description ? post.seo.description : ""}
+        />
       </Head>
 
       <main className="px-4">
+        <Breadcrumbs
+          bread={[{ name: "blog", path: "/blog" }, { name: post.title }]}
+        />
         <h1>{post.title}</h1>
         <article dangerouslySetInnerHTML={{ __html: post.content }} />
       </main>
@@ -51,51 +63,21 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
   );
 };
 
-export default WorksArticle;
+export default BlogArticle;
 
 export const getStaticPaths = async () => {
-  const GET_BLOG_PATH = gql`
-    query getBlogPaths {
-      posts(first: 9999, where: { categoryName: "blog" }) {
-        nodes {
-          id
-          slug
-        }
-      }
-    }
-  `;
-
   const response = await client.query<WpPostPathsRes>({
-    query: GET_BLOG_PATH,
+    query: getPostPathsQuery("blog"),
   });
 
-  const paths = response.data.posts.nodes.map((post) => `/blog/${post.slug}`);
+  const paths = response.data.posts.nodes.map((post) => "/blog/" + post.slug);
 
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const GET_POST = gql`
-    query getPost {
-      postBy(slug: "${params!.id}") {
-        id
-        title
-        slug
-        date
-        content
-        seo {
-          description
-          title
-          ogpImg {
-            sourceUrl
-          }
-        }
-      }
-    }
-  `;
-
   const response = await client.query<WpPostRes>({
-    query: GET_POST,
+    query: getPostQuery(params!.id),
   });
 
   const post = response.data.postBy;

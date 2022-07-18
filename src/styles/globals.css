@@ -7,7 +7,7 @@
     @apply box-border font-sans font-light leading-7;
   }
   main {
-    @apply mx-auto max-w-3xl pb-12;
+    @apply mx-auto max-w-3xl;
   }
   h1 {
     @apply my-8 border-b-2 border-gray py-4 text-2xl font-bold;
@@ -45,7 +45,7 @@
 }
 
 .wp-block-code {
-  @apply whitespace-pre-wrap border border-gray bg-light-gray p-4;
+  @apply whitespace-pre-wrap break-words border border-gray bg-light-gray p-4;
 }
 
 .toc {
