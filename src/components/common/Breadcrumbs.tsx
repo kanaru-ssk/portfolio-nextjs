@@ -11,7 +11,7 @@ const Breadcrumbs = ({ bread }: Props) => {
   return (
     <>
       <div className="absolute left-0 top-12 w-screen bg-light-gray px-4 py-2 text-sm md:top-20">
-        <span className="sm:hover:underline">
+        <span className="sm:hover:text-blue  sm:hover:underline">
           <Link href="/">
             <a>
               <svg width="16" height="14" className="mb-1 inline">
@@ -29,13 +29,13 @@ const Breadcrumbs = ({ bread }: Props) => {
             <span key={value.name}>
               <span> / </span>
               {value.path ? (
-                <span className="sm:hover:underline">
+                <span className="sm:hover:text-blue sm:hover:underline">
                   <Link href={value.path}>
                     <a>{value.name}</a>
                   </Link>
                 </span>
               ) : (
-                <span>{value.name}</span>
+                <span className="text-dark-gray">{value.name}</span>
               )}
             </span>
           );
