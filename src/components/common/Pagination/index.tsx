@@ -40,7 +40,7 @@ const Pagination = ({ count, category, pageNum }: Props) => {
   }
 
   if (pageCount === 1) {
-    return;
+    return <></>;
   } else {
     return (
       <div className="w-ful my-4 text-center">
