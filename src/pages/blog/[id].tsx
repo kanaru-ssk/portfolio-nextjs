@@ -28,22 +28,28 @@ const BlogArticle: NextPage<Props> = ({ post }: Props) => {
         <meta
           property="og:image"
           content={
-            process.env.NEXT_PUBLIC_DOMAIN + post.seo.ogpImg
+            post.seo.ogpImg?.sourceUrl
               ? post.seo.ogpImg.sourceUrl
-              : "/img/ogp.webp"
+              : process.env.NEXT_PUBLIC_DOMAIN + "/img/ogp.webp"
           }
         />
         <meta
           property="og:title"
           content={post.seo.title ? post.seo.title + " | Kanaru" : "Kanaru"}
         />
-        <meta property="og:description" content={post.seo.description} />
+        <meta
+          property="og:description"
+          content={post.seo.description ? post.seo.description : ""}
+        />
         <meta name="twitter:card" content="summary" />
 
         <title>
           {post.seo.title ? post.seo.title + " | Kanaru" : "Kanaru"}
         </title>
-        <meta name="description" content={post.seo.description} />
+        <meta
+          name="description"
+          content={post.seo.description ? post.seo.description : ""}
+        />
       </Head>
 
       <main className="px-4">

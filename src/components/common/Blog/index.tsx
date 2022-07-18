@@ -16,7 +16,7 @@ const Blog = ({ blogPosts }: Props) => {
               key={value.id}
               slug={value.slug}
               sourceUrl={
-                value.featuredImage?.node.sourceUrl
+                value.featuredImage
                   ? value.featuredImage.node.sourceUrl
                   : "/img/404.webp"
               }
