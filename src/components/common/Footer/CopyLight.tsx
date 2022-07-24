@@ -1,7 +1,5 @@
-import { copyLight } from "constants/footer";
-
 const CopyLight = () => {
-  return <div className="text-center">&copy; {copyLight}</div>;
+  return <div className="text-center">&copy; 2022 Kanaru</div>;
 };
 
 export default CopyLight;
