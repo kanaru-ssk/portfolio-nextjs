@@ -9,7 +9,7 @@ export const siteMap = [
 
 export const sns = [
   {
-    url: "https://twitter.com/kanaru_dev",
+    url: "https://twitter.com/kanaru_ssk",
     snsName: "Twitter",
     snsIcon: (
       <svg width="24.625" height="20" viewBox="0 0 24.625 20">
