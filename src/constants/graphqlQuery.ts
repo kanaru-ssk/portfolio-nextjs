@@ -48,7 +48,7 @@ export const topQuery = gql`
         }
       }
     }
-    pageBy(pageId: 2) {
+    about: pageBy(pageId: 2) {
       id
       content
       profile {
@@ -68,6 +68,15 @@ export const topQuery = gql`
         count
         name
       }
+    }
+  }
+`;
+
+export const privacyQuery = gql`
+  query privacyQuery {
+    privacy: pageBy(pageId: 3840) {
+      id
+      content
     }
   }
 `;

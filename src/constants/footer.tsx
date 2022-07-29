@@ -4,6 +4,7 @@ export const siteMap = [
   { name: "about", path: "/" },
   { name: "works", path: "/works" },
   { name: "blog", path: "/blog" },
+  { name: "privacy", path: "/privacy" },
   { name: "contact", path: "/contact" },
 ];
 

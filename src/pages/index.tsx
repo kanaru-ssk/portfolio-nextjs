@@ -10,10 +10,10 @@ import Profile from "components/top/Profile";
 import Tab from "components/top/Tab";
 import { topQuery } from "constants/graphqlQuery";
 import { client } from "libs/wordpress";
-import { WpTopRes, PostNode, AboutPage, GeneralSettings } from "types/wpTop";
+import { WpTopRes, PostNode, About, GeneralSettings } from "types/wpTop";
 
 type Props = {
-  about: AboutPage;
+  about: About;
   general: GeneralSettings;
   aboutContent: string;
   blogPosts: PostNode[];
@@ -30,6 +30,11 @@ const Home: NextPage<Props> = ({
   worksPosts,
   worksCount,
 }: Props) => {
+  const title = general.title ? "Kanaru | " + general.title : "Kanaru";
+  const description = general.description
+    ? general.description
+    : "仙台で活動するwebエンジニア佐々木哉瑠(かなる)のHPです。承っているお仕事、これまでの経歴や開発したプロダクトのご紹介をします。";
+
   const logoStructuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -56,15 +61,12 @@ const Home: NextPage<Props> = ({
           property="og:image"
           content={process.env.NEXT_PUBLIC_URL + "/img/ogp.webp"}
         />
-        <meta
-          property="og:title"
-          content={general.title ? "Kanaru | " + general.title : "Kanaru"}
-        />
-        <meta property="og:description" content={general.description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
         <meta name="twitter:card" content="summary" />
 
-        <title>{general.title ? "Kanaru | " + general.title : "Kanaru"}</title>
-        <meta name="description" content={general.description} />
+        <title>{title}</title>
+        <meta name="description" content={description} />
 
         <script
           type="application/ld+json"
@@ -110,7 +112,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const general = response.data.generalSettings;
 
-  const about: AboutPage = response.data.pageBy;
+  const about: About = response.data.about;
 
   const blogPosts: PostNode[] = response.data.blog.nodes;
   const worksPosts: PostNode[] = response.data.works.nodes;
