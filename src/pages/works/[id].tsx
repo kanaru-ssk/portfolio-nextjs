@@ -13,6 +13,12 @@ type Props = {
 };
 
 const WorksArticle: NextPage<Props> = ({ post }: Props) => {
+  const title = post.seo.title ? post.seo.title + " | Kanaru" : "Kanaru";
+  const description = post.seo.description ? post.seo.description : "";
+  const ogpImg = post.seo.ogpImg?.sourceUrl
+    ? post.seo.ogpImg.sourceUrl
+    : process.env.NEXT_PUBLIC_URL + "/img/ogp.webp";
+
   return (
     <>
       <Head>
@@ -23,31 +29,13 @@ const WorksArticle: NextPage<Props> = ({ post }: Props) => {
 
         <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
         <meta property="og:type" content="website" />
-        <meta
-          property="og:image"
-          content={
-            post.seo.ogpImg?.sourceUrl
-              ? post.seo.ogpImg.sourceUrl
-              : process.env.NEXT_PUBLIC_URL + "/img/ogp.webp"
-          }
-        />
-        <meta
-          property="og:title"
-          content={post.seo.title ? post.seo.title + " | Kanaru" : "Kanaru"}
-        />
-        <meta
-          property="og:description"
-          content={post.seo.description ? post.seo.description : ""}
-        />
+        <meta property="og:image" content={ogpImg} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
         <meta name="twitter:card" content="summary" />
 
-        <title>
-          {post.seo.title ? post.seo.title + " | Kanaru" : "Kanaru"}
-        </title>
-        <meta
-          name="description"
-          content={post.seo.description ? post.seo.description : ""}
-        />
+        <title>{title}</title>
+        <meta name="description" content={description} />
       </Head>
 
       <main className="px-4">

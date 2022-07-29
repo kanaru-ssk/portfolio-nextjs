@@ -2,7 +2,7 @@ export interface WpTopRes {
   generalSettings: GeneralSettings;
   blog: Post;
   works: Post;
-  pageBy: AboutPage;
+  about: About;
   categories: DataCategories;
 }
 
@@ -34,11 +34,6 @@ export interface FeaturedImage {
   node: ProfileImg;
 }
 
-export interface ProfileImg {
-  id: string;
-  sourceUrl: string;
-}
-
 export interface DataCategories {
   nodes: FluffyNode[];
 }
@@ -54,7 +49,7 @@ export interface GeneralSettings {
   description: string;
 }
 
-export interface AboutPage {
+export interface About {
   id: string;
   content: string;
   profile: Profile;
@@ -66,6 +61,11 @@ export interface Profile {
   name: string;
   nameRoman: string;
   profileImg: ProfileImg;
+}
+
+export interface ProfileImg {
+  id: string;
+  sourceUrl: string;
 }
 
 export interface Extensions {

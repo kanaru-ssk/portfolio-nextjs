@@ -23,6 +23,12 @@ const BlogPage: NextPage<Props> = ({
   pageNum,
   blogCount,
 }: Props) => {
+  const title = "Kanaru | ブログ一覧 ページ" + pageNum;
+  const description =
+    "webエンジニア佐々木哉瑠のブログ一覧ページです。このページは" +
+    pageNum +
+    "ページ目です。";
+
   return (
     <>
       <Head>
@@ -37,29 +43,12 @@ const BlogPage: NextPage<Props> = ({
           property="og:image"
           content={process.env.NEXT_PUBLIC_URL + "/img/ogp.webp"}
         />
-        <meta
-          property="og:title"
-          content={"Kanaru | ブログ一覧 ページ" + pageNum}
-        />
-        <meta
-          property="og:description"
-          content={
-            "webエンジニア佐々木哉瑠のブログ一覧ページです。このページは" +
-            pageNum +
-            "ページ目です。"
-          }
-        />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
         <meta name="twitter:card" content="summary" />
 
-        <title>{"Kanaru | ブログ一覧 ページ" + pageNum}</title>
-        <meta
-          name="description"
-          content={
-            "webエンジニア佐々木哉瑠のブログ一覧ページです。このページは" +
-            pageNum +
-            "ページ目です。"
-          }
-        />
+        <title>{title}</title>
+        <meta name="description" content={description} />
       </Head>
 
       <main>
