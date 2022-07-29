@@ -13,6 +13,7 @@ const Document = () => {
           crossOrigin="anonymous"
         ></script>
       </Head>
+
       <body>
         <Main />
         <NextScript />
